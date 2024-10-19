@@ -4,20 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .dropdown-menu{
-            display: none;
-            transition: all 0.3s ease;
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                cream : '#fbba72',
+                merahTua : '#691e06',
+                merah : '#8f250c',
+                orenTua : '#bb4d00',
+                oren : '#cs5310',
+              }
+            }
+          }
         }
-        .dropdown-menu.show{
-            display: block;
-        }
-    </style>
+    </script>
     <title>poat</title>
 </head>
+
 <body class="overflow-hidden">
     <div class="h-screen bg-[url('img/bg-ruangmandi.svg')] bg-cover bg-center">
-        <nav class="bg-[#8f250c] p-2">
+        <nav class="bg-merah p-2">
             <ul class="flex justify-around items-center">
 
                 <li class="text-center hover:opacity-50">
@@ -27,13 +34,7 @@
                 </li>
 
                 <li class="text-center">
-                    <a href="#shop" class="flex flex-col items-center hover:opacity-50">
-                        <img src="img/belanja.svg" alt="Shop Icon" class="w-8 h-8 mb-1">
-                    </a>
-                </li>
-
-                <li class="text-center">
-                    <button onclick="toggledropdown()" class="flex flex-col items-center focus:outline-none hover:opacity-50">
+                    <button id="dropdownButton" class="flex flex-col items-center focus:outline-none hover:opacity-50">
                         <img src="img/lokasi.svg" alt="Game Icon" class="w-8 h-8 mb-1">
                     </button>
                     <ul id="lokasidropdown" class="dropdown-menu absolute p-2 mt-2 rounded-me w-24">
@@ -57,7 +58,6 @@
                                 <img class="rounded-full hover:shadow-lg hover:shadow-orange-950 transition-shadow duration-300" src="img/beranda.svg" alt="">
                             </a>
                         </li>
-
                     </ul>
                 </li>
 
@@ -94,13 +94,13 @@
 
     <div class="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm hidden" id="profileOverlay">
         <div class="flex items-center justify-center h-full">
-            <div class="bg-gradient-to-br from-red-900 to-[#fbba72]  rounded-lg max-w-xl w-1/2 md:w-1/3 text-center outline outline-red-950 text-white">
+            <div class="bg-gradient-to-br from-red-900 to-cream  rounded-lg max-w-xl w-1/2 md:w-1/3 text-center outline outline-red-950">
                 <div class="flex items-center space-x-4 mb-4">
                     <img src="https://tse3.mm.bing.net/th?id=OIP.l9-ICq501GfTIfJdmV4MTwHaHU&pid=Api&P=0&h=220" alt="" class="mb-4 rounded-md border-4 border-red-900 h-10 md:h-20 pt-0 shadow-xl shadow-red-950">
                     
                     <div class="flex items-center space-x-2">
                         
-                        <span id="userName" class="font-semibold text-lg underline underline-offset-8">Poat</span>  
+                        <span id="userName" class="font-semibold text-lg underline underline-offset-8 text-white">Poat</span>  
 
                         <button id="iconEdit">
                             <img class="w-5 h-5 hover:opacity-50" src="img/pulpenPutih.svg" alt="">
@@ -109,25 +109,37 @@
                 </div>
 
                 <div id="editNama" class="hidden p-2">
-                    <label for="userName" class="block mb-2 font-semibold text-start">Nama Pengguna:</label>
+                    <label for="userName" class="block mb-2 font-semibold text-start text-white">Nama Pengguna:</label>
 
                     <div class="md:flex gap-4 items-center">
                         <input type="text" id="inputNamaBaru" class="p-2 border border-gray-300 rounded w-full" placeholder="Masukkan nama baru" />
 
-                        <button id="simpanNama" class="px-2 py-1 mt-2 md:px-4 md:py-3 bg-[#691e06] text-white rounded hover:bg-red-950 text-xs font-semibold">Simpan</button>
+                        <button id="simpanNama" class="px-2 py-1 mt-2 md:px-4 md:py-3 bg-merahTua text-white rounded hover:bg-red-950 text-xs font-semibold">Simpan</button>
                     </div>
                 </div>
                 
-                <button id="tutupProfil" class="mt-3 mb-2 px-3 py-1 md:px-4 md:py-2 bg-[#691e06] text-white rounded hover:bg-red-950 text-xs font-semibold">Tutup</button>
+                <button id="tutupProfil" class="mt-3 mb-2 px-3 py-1 md:px-4 md:py-2 bg-merahTua text-white rounded hover:bg-red-950 text-xs font-semibold">Tutup</button>
             </div>
         </div>
     </div>
 
     <script>
-        function toggledropdown(){
-            var dropdown = document.getElementById("lokasidropdown");
-            dropdown.classList.toggle("show");
-        }
+        const dropdownButton = document.getElementById("dropdownButton");
+        const dropdownMenu = document.getElementById("lokasidropdown");
+
+        dropdownButton.addEventListener("click", () => {
+            dropdownMenu.classList.toggle("hidden");
+        });
+
+        document.querySelectorAll("#lokasidropdown a").forEach(link => {
+            link.addEventListener("click", () => {
+                dropdownMenu.classList.add("hidden");
+            });
+        });
+    
+        window.addEventListener('load', () => {
+            dropdownMenu.classList.add("hidden");
+        });
 
         document.getElementById("profileBtn").addEventListener("click", function(event) {
             event.preventDefault();
