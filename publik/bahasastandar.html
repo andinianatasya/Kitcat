@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Coding HTML</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-orange-700 bg-opacity-90 backdrop-blur-md font-sans">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold mb-8 text-center text-white">Latihan Coding HTML</h1>
+        
+        <div id="coinDisplay" class="text-xl font-bold mb-4 text-center text-green-300">Koin: 0</div>
+        
+        <div id="questionContainer" class="bg-orange-300 rounded-lg shadow-lg p-6 mb-8 relative"></div>
+
+        <div id="notification" class="mb-4 p-4 text-white text-center hidden"></div>
+    </div>
+
+    <div id="rulesOverlay" class="fixed inset-0 z-10 flex items-center justify-center min-h-screen">
+        <div class="bg-white p-10 rounded-lg shadow-lg w-11/12 max-w-md text-center">
+            <h2 class="text-2xl font-bold mb-4 text-red-800">Aturan Bermain</h2>
+            <p class="mb-4">Selamat datang di kuis HTML! Berikut adalah cara bermain:</p>
+            <ul class="list-disc pl-5 mb-4 text-left">
+                <li>Anda akan diberikan 3 pertanyaan terkait HTML per ronde.</li>
+                <li>Isi jawaban Anda di kolom yang disediakan dengan melengkapi kode yang kosong.</li>
+                <li>Anda akan mendapatkan 10 koin untuk setiap jawaban yang benar.</li>
+                <li>Jawaban yang salah tidak mendapat tambahan koin.</li>
+                <li>Setelah semua pertanyaan, kuis akan selesai dan skor akhir akan ditampilkan.</li>
+                <li>Semangat dan selamat bermain!</li>
+            </ul>
+            <button id="startButton" class="bg-orange-400 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded transition duration-200">
+                Oke, Saya Mengerti
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 0;
+        let coins = 0;
+        const totalQuestions = 3;
+
+        const questions = [
+    {
+        question: "Apa singkatan dari HTML?",
+        answer: "HyperText Markup Language"
+    },
+    {
+        question: "Tag HTML mana yang digunakan untuk menampilkan judul utama?",
+        answer: "<h1>"
+    },
+    {
+        question: "Apa tag yang digunakan untuk membuat paragraf dalam HTML?",
+        answer: "<p>"
+    },
+    {
+        question: "Tag mana yang digunakan untuk membuat tautan?",
+        answer: "<a>"
+    },
+    {
+        question: "Apa atribut yang digunakan untuk menentukan URL pada tag <a>?",
+        answer: "href"
+    },
+    {
+        question: "Tag mana yang digunakan untuk membuat daftar tidak terurut?",
+        answer: "<ul>"
+    },
+    {
+        question: "Apa tag yang digunakan untuk membuat daftar terurut?",
+        answer: "<ol>"
+    },
+    {
+        question: "Tag mana yang digunakan untuk memasukkan gambar?",
+        answer: "<img>"
+    },
+    {
+        question: "Apa atribut yang digunakan untuk menentukan sumber gambar?",
+        answer: "src"
+    },
+    {
+        question: "Tag mana yang digunakan untuk menampilkan tabel?",
+        answer: "<table>"
+    },
+    {
+        question: "Apa tag yang digunakan untuk membuat baris dalam tabel?",
+        answer: "<tr>"
+    },
+    {
+        question: "Tag mana yang digunakan untuk membuat sel di dalam tabel?",
+        answer: "<td>"
+    },
+    {
+        question: "Tag mana yang digunakan untuk membuat judul tabel?",
+        answer: "<th>"
+    },
+    {
+        question: "Apa tag yang digunakan untuk membuat form?",
+        answer: "<form>"
+    },
+    {
+        question: "Apa atribut yang digunakan untuk menentukan metode pengiriman dalam form?",
+        answer: "method"
+    },
+    {
+        question: "Tag mana yang digunakan untuk input teks?",
+        answer: "<input type='text'>"
+    },
+    {
+        question: "Tag mana yang digunakan untuk membuat tombol?",
+        answer: "<button>"
+    },
+    {
+        question: "Tag mana yang digunakan untuk menambahkan area teks?",
+        answer: "<textarea>"
+    },
+    {
+        question: "Apa tag yang digunakan untuk menampilkan header pada halaman?",
+        answer: "<header>"
+    },
+    {
+        question: "Apa tag yang digunakan untuk menampilkan footer pada halaman?",
+        answer: "<footer>"
+    },
+    {
+        question: "Tag mana yang digunakan untuk memasukkan komentar dalam HTML?",
+        answer: "<!-- komentar -->"
+    },
+    {
+        question: "Tag mana yang digunakan untuk membuat div?",
+        answer: "<div>"
+    },
+    {
+        question: "Apa tag yang digunakan untuk membuat elemen inline seperti teks tebal?",
+        answer: "<strong>"
+    },
+    {
+        question: "Apa tag yang digunakan untuk membuat elemen inline seperti teks miring?",
+        answer: "<em>"
+    },
+    {
+        question: "Tag mana yang digunakan untuk menambahkan meta data dalam HTML?",
+        answer: "<meta>"
+    },
+    {
+        question: "Tag mana yang digunakan untuk menyertakan CSS di dalam HTML?",
+        answer: "<link>"
+    },
+    {
+        question: "Tag mana yang digunakan untuk menyertakan JavaScript dalam HTML?",
+        answer: "<script>"
+    },
+    {
+        question: "Tag mana yang digunakan untuk membuat link ke stylesheet eksternal?",
+        answer: "<link rel='stylesheet'>"
+    },
+    {
+        question: "Apa atribut yang digunakan untuk memberikan nama pada elemen form?",
+        answer: "name"
+    },
+    {
+        question: "Tag mana yang digunakan untuk membuat section pada halaman?",
+        answer: "<section>"
+    },
+    {
+        question: "Apa tag yang digunakan untuk membuat area navigasi?",
+        answer: "<nav>"
+    },
+    {
+        question: "Apa tag yang digunakan untuk menampilkan ikon gambar?",
+        answer: "<svg>"
+    },
+    {
+        question: "Tag mana yang digunakan untuk menampilkan daftar item dalam format definisi?",
+        answer: "<dl>"
+    }
+];
+        function shuffleQuestions(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random () * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('questionContainer').innerHTML = `
+                <p class="mb-4 font-medium">${ question.question}</p>
+                <textarea id="answer" rows="2" class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring focus:ring-red-950"></textarea>
+                <button onclick="checkAnswer()" class ="bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 rounded transition duration-200">
+                    Kirim Jawaban
+                </button>
+            `;
+            document.getElementById('notification').classList.add('hidden');
+        }
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+            const correctAnswer = questions[currentQuestion].answer.toLowerCase();
+            
+            if (userAnswer === correctAnswer) {
+                showNotification("Anda benar!", true);
+                coins += 10; // Tambah koin untuk jawaban benar
+            } else {
+                showNotification("Anda salah!", false);
+            }
+            updateDisplays();
+            setTimeout(nextQuestion, 2000); // Tunggu 2 detik sebelum melanjutkan ke pertanyaan berikutnya
+        }
+
+        function showNotification(message, isCorrect) {
+            const notificationElement = document.getElementById('notification');
+            notificationElement.innerHTML = `
+                <p class="mb-4 text-white font-medium">${message}</p>
+            `;
+            notificationElement.classList.remove('hidden', 'bg-green-500', 'bg-red-700');
+            notificationElement.classList.add(isCorrect ? 'bg-green-500' : 'bg-red-700');
+            notificationElement.classList.remove('hidden'); // Pastikan notifikasi terlihat
+        }
+
+        function updateDisplays() {
+            document.getElementById('coinDisplay').innerHTML = `Koin: ${coins}`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion >= totalQuestions) {
+                // Quiz selesai, tampilkan skor akhir
+                showFinalScore();
+            } else {
+                loadQuestion();
+            }
+        }
+
+        function showFinalScore() {
+    // Tampilkan skor akhir dan koin
+    document.getElementById('questionContainer').innerHTML = `
+        <h2 class=" text-3xl font-bold mb-4 text-center text-green-500">Quiz Selesai!</h2>
+        <p class="mb-4 text-gray-700 font-medium">Koin: ${coins}</p>
+        <button onclick="location.href='ruangmain.html'" class="bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 rounded transition duration-200 mr-4">
+            Kembali ke Ruang Main
+        </button>
+        
+    `;
+
+    // Simpan koin ke localStorage
+    localStorage.setItem('coins', coins);
+}
+
+        
+
+        // Tampilkan overlay aturan bermain
+        document.getElementById('rulesOverlay').classList.remove('hidden');
+
+        // Mulai kuis ketika tombol "Oke, Saya Mengerti" ditekan
+        document.getElementById('startButton').addEventListener('click', () => {
+            document.getElementById('rulesOverlay').classList.add('hidden');
+            shuffleQuestions(questions);
+            loadQuestion();
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Coding C dan C++</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-orange-700 bg-opacity-90 backdrop-blur-md font-sans">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold mb-8 text-center text-white">Latihan Coding C dan C++</h1>
+        
+        <div id="coinDisplay" class="text-xl font-bold mb-4 text-center text-green-300">Koin: 0</div>
+        
+        <div id="questionContainer" class="bg-orange-300 rounded-lg shadow-lg p-6 mb-8 relative">
+            
+        </div>
+
+        <div id="notification" class="mb-4 p-4 text-white text-center hidden"></div>
+    </div>
+
+    <div id="rulesOverlay" class="fixed inset-0 z-10 flex items-center justify-center min-h-screen">
+        <div class="bg-white p-10 rounded-lg shadow-lg w-11/12 max-w-md text-center">
+            <h2 class="text-2xl font-bold mb-4 text-red-800">Aturan Bermain</h2>
+            <p class="mb-4">Selamat datang di kuis! Berikut adalah cara bermain:</p>
+            <ul class="list-disc pl-5 mb-4 text-left">
+                <li>Anda akan diberikan 3 pertanyaan terkait pemrograman C dan C++ per ronde.</li>
+                <li>Isi jawaban Anda di kolom yang disediakan dengan melengkapi kode yang kosong.</li>
+                <li>Anda akan mendapatkan 10 koin untuk setiap jawaban yang benar.</li>
+                <li>Jawaban yang salah tidak mendapat tambahan koin.</li>
+                <li>Setelah 3 pertanyaan, kuis akan selesai dan skor akhir akan ditampilkan.</li>
+                <li>Semangat dan selamat bermain!</li>
+            </ul>
+            <button id="startButton" class="bg-orange-400 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded transition duration-200">
+                Oke, Saya Mengerti
+            </button>
+        </div>
+    </div>
+
+
+    <script>
+        let currentQuestion = 0;
+        let coins = 0;
+        const totalQuestions = 3; // Jumlah soal yang diberikan
+
+        const questions = [
+            {
+                question: "<pre>Lengkapi kode berikut untuk mencetak \"Halo Dunia!\":\n\n#include &lt;stdio.h&gt;\nint main() {\n    ________ (\"Halo Dunia!\\n\");\n    return 0;\n}</pre>",
+                answer: "printf(\"Halo Dunia!\\n\");"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk mendek larasikan variabel int x dengan nilai 15 dan mencetak nilainya.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int x = ______;\n    printf(\"Nilai x adalah: %d\\n\", x);\n    return 0;\n}</pre>",
+                answer: "15"
+            },
+            {
+                question: "<pre>Isi bagian kosong untuk mengalikan dua bilangan a dan b.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int a = 6, b = 7;\n    int hasil = ________;\n    printf(\"Hasil: %d\\n\", hasil);\n    return 0;\n}</pre>",
+                answer: "a * b"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk mendeklarasikan variabel float dan mencetak nilainya.\n\n#include &lt;stdio.h&gt;\nint main() {\n    float y = 4.5;\n    ________ (\"Nilai y: %f\\n\", y);\n    return 0;\n}</pre>",
+                answer: "printf(\"Nilai y: %f\\n\", y);"
+            },
+            {
+                question: "<pre>Lengkapi kode berikut untuk melakukan pembagian antara dua bilangan a dan b.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int a = 20, b = 4;\n    int hasil = ________;\n    printf(\"Hasil: %d\\n\", hasil);\n    return 0;\n}</pre>",
+                answer: "a / b"
+            },
+            {
+                question: "<pre>Isi bagian kosong agar program mencetak \"Nilai a: 10\" jika a bernilai 10.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int a = 10;\n    printf(\"Nilai a: %d\\n\", ______);\n    return 0;\n}</pre>",
+                answer: "a"
+            },
+            {
+                question: "<pre>Lengkapi kode berikut untuk mendeklarasikan variabel char bernama c dan mengisinya dengan karakter 'B'.\n\n#include &lt;stdio.h&gt;\nint main() {\n    char c = ______;\n    printf(\"Karakter: %c\\n\", c);\n    return 0;\n}</pre>",
+                answer: "'B'"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk mengecek apakah nilai x adalah bilangan ganjil.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int x = 9;\n    if () {\n        printf(\"x adalah bilangan ganjil\\n\");\n    }\n    return 0;\n}</pre>",
+                answer: "x % 2 != 0"
+            },
+            {
+                question: "<pre>Lengkapi kode agar mencetak angka 1 hingga 5 menggunakan for loop.\n\n#include &lt;stdio.h&gt;\nint main() {\n    for (int i = 1; i <= 5; ________) {\n        printf(\"%d \", i);\n    }\n    return 0;\n}</pre>",
+                answer: "i++"
+            },
+            {
+                question: "<pre>Lengkapi kode agar program mencetak angka dari 5 hingga 1 menggunakan while loop.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int i = 5;\n    while (_) {\n        printf(\"%d \", i);\n        ______;\n    }\n    return 0;\n}</pre>",
+                answer: "i >= 1\ni--"
+            },
+            {
+                question: "<pre>Lengkapi kode berikut agar mencetak \"Bilangan negatif\" jika n kurang dari 0.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int n = -3;\n    if () {\n        printf(\"Bilangan negatif\\n\");\n    }\n    return 0;\n}</pre>",
+                answer: "n < 0"
+            },
+            {
+                question: "<pre>Lengkapi kode berikut untuk memeriksa apakah a sama dengan b.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int a = 5, b = 5;\n    if (_) {\n        printf(\"Nilai a sama dengan b\\n\");\n    }\n    return 0 ;\n}</pre>",
+                answer: "a == b"
+            },
+            {
+                question: "<pre>Lengkapi kode berikut agar program mencetak \"Nilai b lebih besar\" jika b lebih besar dari a.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int a = 10, b = 15;\n    if (_) {\n        printf(\"Nilai b lebih besar\\n\");\n    }\n    return 0;\n}</pre>",
+                answer: "b > a"
+            },
+            {
+                question: "<pre>Lengkapi kode berikut untuk meminta input pengguna dan menyimpannya dalam variabel x.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int x;\n    printf(\"Masukkan nilai x: \");\n    _________(\"%d\", &x);\n    printf(\"Nilai x adalah: %d\\n\", x);\n    return 0;\n}</pre>",
+                answer: "scanf(\"%d\", &x);"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk mendeklarasikan array int dengan 5 elemen.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int arr[5] = {1, 2, 3, 4, ________};\n    for (int i = 0; i < 5; i++) {\n        printf(\"%d \", arr[i]);\n    }\n    return 0;\n}</pre>",
+                answer: "5"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk menjumlahkan semua elemen dalam array arr.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int arr[] = {1, 2, 3, 4, 5};\n    int sum = 0;\n    for (int i = 0; i < 5; ________) {\n        sum += arr[i];\n    }\n    printf(\"Jumlah: %d\\n\", sum);\n    return 0;\n}</pre>",
+                answer: "i++"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk mencetak elemen terakhir dari array arr.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int arr[] = {10, 20, 30, 40, 50};\n    printf(\"Elemen terakhir: %d\\n\", arr[]);\n    return 0;\n}</pre>",
+                answer: "4"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk membalik urutan elemen dalam array arr.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int arr[] = {1, 2, 3, 4, 5};\n    for (int i = 0; i < 2; ________) {\n        int temp = arr[i];\n        arr[i] = arr[4 - i];\n        arr[4 - i] = temp;\n    }\n    for (int i = 0; i < 5; i++) {\n        printf(\"%d \", arr[i]);\n    }\n    return 0;\n}</pre>",
+                answer: "i++"
+            },
+            {
+                question: "<pre>Lengkapi kode berikut untuk mendeklarasikan dan menginisialisasi string.\n\n#include &lt;stdio.h&gt;\nint main() {\n    char str[] = \"Hello, World!\";\n    printf(\"%s\\n\", ________); // Tampilkan string\n    return 0;\n}</pre>",
+                answer: "str"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk mencetak bilangan bulat dari 1 hingga 10 menggunakan do while.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int i = 1;\n    do {\n        printf(\"%d \", i);\n        i++;\n    } while ();\n    return 0;\n}</pre>",
+                answer: "i <= 10"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk menemukan nilai maksimum antara dua bilangan a dan b.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int a = 10, b = 20;\n    int max = ________;\n    printf(\"Nilai maksimum: %d\\n\", max);\n    return 0;\n}</pre>",
+                answer: "( a > b) ? a : b"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk mencetak angka genap dari 0 hingga 20.\n\n#include &lt;stdio.h&gt;\nint main() {\n    for (int i = 0; i <= 20; ________) {\n        if (i % 2 == 0) {\n            printf(\"%d \", i);\n        }\n    }\n    return 0;\n}</pre>",
+                answer: "i++"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk menghitung faktorial dari bilangan n.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int n = 5, fact = 1;\n    for (int i = 1; i <= n; ________) {\n        fact *= i;\n    }\n    printf(\"Faktorial: %d\\n\", fact);\n    return 0;\n}</pre>",
+                answer: "i++"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk mencetak angka dari 1 sampai 10 dengan menggunakan switch case.\n\n#include &lt;stdio.h&gt;\nint main() {\n    for (int i = 1; i <= 10; i++) {\n        switch (i) {\n            case 1: printf(\"Satu\\n\"); break;\n            case 2: printf(\"Dua\\n\"); break;\n            case 3: printf(\"Tiga\\n\"); break;\n            case 4: printf(\"Empat\\n\"); break;\n            case 5: printf(\"Lima\\n\"); break;\n            case 6: printf(\"Enam\\n\"); break;\n            case 7: printf(\"Tujuh\\n\"); break;\n            case 8: printf(\"Delapan\\n\"); break;\n            case 9: printf(\"Sembilan\\n\"); break;\n            case 10: printf(\"Sepuluh\\n\"); break;\n        }\n    }\n    return 0;\n}</pre>",
+                answer: "(1 to 10)"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk mencetak jumlah dari dua bilangan yang diinputkan pengguna.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int a, b;\n    printf(\"Masukkan dua bilangan: \");\n    _________(\"%d %d\", &a, &b);\n    printf(\"Jumlah: %d\\n\", a + b);\n    return 0;\n}</pre>",
+                answer: "scanf(\"%d %d\", &a, &b);"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk menentukan apakah tahun y adalah tahun kabisat.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int y = 2024;\n    if () {\n        printf(\"%d adalah tahun kabisat\\n\", y);\n    }\n    return 0;\n}</pre>",
+                answer: "(y % 4 == 0 && y % 100 != 0) || (y % 400 == 0)"
+            },
+            {
+                question: "<pre>Lengkapi kode untuk mencetak hasil penjumlahan dari elemen array arr.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int arr[] = {1, 2, 3, 4, 5};\n    int total = 0;\n    for (int i = 0; i < 5; ________) {\n        total += arr[i];\n    }\n    printf(\"Total: %d\\n\", total);\n    return 0;\n}</pre>",
+                answer: "i++"
+            },
+        ];
+
+        function shuffleQuestions(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random () * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('questionContainer').innerHTML = `
+                <p class="mb-4 text-gray-700 font-medium">${ question.question}</p>
+                <textarea id="answer" rows="2" class="w-full p-2 border border-red-900 rounded-md mb-4 focus:outline-none focus:ring focus:ring-red-950"></textarea>
+                <button onclick="checkAnswer()" class ="bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 rounded transition duration-200">
+                    Kirim Jawaban
+                </button>
+            `;
+            document.getElementById('notification').classList.add('hidden');
+        }
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+            const correctAnswer = questions[currentQuestion].answer.toLowerCase();
+            
+            if (userAnswer === correctAnswer) {
+                showNotification("Anda benar!", true);
+                coins += 10; // Tambah koin untuk jawaban benar
+            } else {
+                showNotification("Anda salah!", false);
+            }
+            updateDisplays();
+            setTimeout(nextQuestion, 2000); // Tunggu 2 detik sebelum melanjutkan ke pertanyaan berikutnya
+        }
+
+        function showNotification(message, isCorrect) {
+            const notificationElement = document.getElementById('notification');
+            notificationElement.innerHTML = `
+                <p class="mb-4 text-gray-700 font-medium">${message}</p>
+            `;
+            notificationElement.classList.remove('hidden', 'bg-green-500', 'bg-red-500');
+            notificationElement.classList.add(isCorrect ? 'bg-green-500' : 'bg-red-500');
+            notificationElement.classList.remove('hidden');
+        }
+
+        function updateDisplays() {
+            document.getElementById('coinDisplay').innerHTML = `Koin: ${coins}`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion >= totalQuestions) {
+                // Quiz selesai, tampilkan skor akhir
+                showFinalScore();
+            } else {
+                loadQuestion();
+            }
+        }
+
+        function showFinalScore() {
+    // Tampilkan skor akhir dan koin
+    document.getElementById('questionContainer').innerHTML = `
+        <h2 class=" text-3xl font-bold mb-4 text-center text-green-500">Quiz Selesai!</h2>
+        <p class="mb-4 text-gray-700 font-medium">Koin:${coins}</p>
+        <button onclick="location.href='ruangmain.html'" class="bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 rounded transition duration-200 mr-4">
+            Kembali ke Ruang Main
+        </button>  
+    `;
+
+    // Simpan koin ke localStorage
+    localStorage.setItem('coins', coins);
+    }
+        // Tampilkan overlay aturan bermain
+        document.getElementById('rulesOverlay').classList.remove('hidden');
+
+        // Mulai kuis ketika tombol "Oke, Saya Mengerti" ditekan
+        document.getElementById('startButton').addEventListener('click', () => {
+            document.getElementById('rulesOverlay').classList.add('hidden');
+            shuffleQuestions(questions);
+            loadQuestion();
+        })
+    </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,30 +7,49 @@
     <title>Poat</title>
 </head>
 
-<body class="bg-bgLogin">
-    <div  class="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-md items-center justify-center h-screen flex">
-        <div class="bg-gradient-to-bl from-orenTua to-cream bg-opacity-80 backdrop-blur-md p-8 rounded-lg shadow-lg max-w-md w-full relative z-10 m-5 md:m-0">
-            <h2 class="text-2xl font-bold mb-4 text-center text-white">Masuk</h2>
-            <form id="loginForm">
-                <div class="mb-4">
-                    <label for="email" class="block mb-2 text-white font-semibold">Email:</label>
-                    <input type="email" id="email" class="border border-gray-300 p-2 rounded w-full" required>
-                </div>
-                <div class="mb-4">
-                    <label for="password" class="block mb-2 text-white font-semibold">Kata sandi:</label>
-                    <input type="password" id="password" class="border border-gray-300 p-2 rounded w-full" required>
-                </div>
-                <button id="loginBtn" class="w-full bg-merah text-white p-2 rounded hover:bg-orenTua">Login</button>
-            </form>
-        </div>
+<body class="bg-bgLogin backdrop-blur-sm flex items-center justify-center h-screen">
+    <div class="bg-gradient-to-br from-cream to-orange-100 p-8 m-5 rounded-lg shadow-md w-96" id="register-form">
+        <h2 class="text-2xl font-bold mb-6 text-center">Daftar</h2>
+        <form action="daftar.php" method="POST">
+            <div class="mb-4">
+                <label class="font-semibold" for="username">Nama Pengguna</label>
+                <input class="border rounded w-full py-2 px-3" type="text" name="username" required placeholder="Masukkan nama pengguna">
+            </div>
+            <div class="mb-4">
+                <label class="font-semibold" for="password">Kata sandi</label>
+                <input class="border rounded w-full py-2 px-3" type="password" name="password" required placeholder="Masukkan kata sandi">
+            </div>
+            <button class="bg-oren text-white rounded py-2 px-4 w-full hover:bg-orange-900" type="submit">Daftar</button>
+        </form>
+        <p class="mt-4 text-center">Sudah punya akun? <a href="#" onclick="showLogin()" class="text-orenTua font-semibold hover:text-merahTua">Masuk sekarang</a></p>
+    </div>
+
+    <div class="bg-gradient-to-br from-cream to-orange-100 p-8 m-5 rounded-lg shadow-md w-96 hidden" id="login-form">
+        <h2 class="text-2xl font-bold mb-6 text-center">Masuk</h2>
+        <form action="login.php" method="POST">
+            <div class="mb-4">
+                <label class="font-semibold" for="username">Nama Pengguna</label>
+                <input class="border rounded w-full py-2 px-3" type="text" name="username" required placeholder="Masukkan nama pengguna">
+            </div>
+            <div class="mb-4">
+                <label class="font-semibold" for="password">Kata sandi</label>
+                <input class="border rounded w-full py-2 px-3" type="password" name="password" required placeholder="Masukkan kata sandi">
+            </div>
+            <button class="bg-oren text-white rounded py-2 px-4 w-full hover:bg-orange-900" type="submit">Masuk</button>
+        </form>
+        <p class="mt-4 text-center">Belum punya akun? <a href="#" onclick="showRegister()" class="text-orenTua font-semibold hover:text-merahTua">Daftar sekarang</a></p>
     </div>
 
     <script>
-        document.getElementById("loginBtn").addEventListener("click", function(event) {
-            event.preventDefault();
-            localStorage.setItem("loggedIn", true);
-            window.location.href = 'beranda.html';
-        });
+        function showRegister() {
+            document.getElementById('register-form').classList.remove('hidden');
+            document.getElementById('login-form').classList.add('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('login-form').classList.remove('hidden');
+            document.getElementById('register-form').classList.add('hidden');
+        }
     </script>
 </body>
 </html>
