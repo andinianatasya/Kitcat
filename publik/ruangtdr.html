@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>poat</title>
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <title>Ruang Tidur</title>
 </head>
 
 <body class="overflow-hidden">
@@ -56,9 +57,9 @@
     
     <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
         <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 ml-12">
-    </div>
+    </div>
 
-    <div id="darkOverlay" class="fixed inset-0 bg-black bg-opacity-45 hidden"></div>
+    <div id="matiLampu" class="fixed inset-0 bg-black bg-opacity-45 hidden"></div>
 
     <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4">
         <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
@@ -66,46 +67,25 @@
         </div> 
     </div>
 
+    <script src="index.js"></script>
     <script>
-         document.addEventListener('DOMContentLoaded', function() {
-        const dropdownButton = document.getElementById("dropdownButton");
-        const dropdownMenu = document.getElementById("lokasidropdown");
-        const dropdownItems = dropdownMenu.querySelectorAll('li');
+        const lampu = document.getElementById('lampu');
+        const overlay = document.getElementById('matiLampu');
+        let isOverlayActive = false;
 
-        dropdownButton.addEventListener("click", (event) => {
-        event.stopPropagation(); 
-        dropdownMenu.classList.toggle("hidden"); 
-
-        dropdownItems.forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(1rem)';
-            item.style.transitionDelay = `${index * 100}ms`;
+        lampu.addEventListener('click', () => {
+            isOverlayActive = !isOverlayActive;
+            if (isOverlayActive) {
+                overlay.classList.remove('hidden');
+            } else {
+                overlay.classList.add('hidden');
+            }
         });
-
-        dropdownMenu.offsetHeight;
-
-        dropdownItems.forEach((item) => {
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
-        });
-        });
-
-        document.querySelectorAll("#lokasidropdown a").forEach(link => {
-        link.addEventListener("click", () => {
-            dropdownMenu.classList.add("hidden");
-        });
-        });
-
-        window.addEventListener('click', () => {
-        if (!dropdownMenu.classList.contains('hidden')) {
-            dropdownMenu.classList.add('hidden');
-        }});
-        });
-
+         
         document.getElementById("bukaChat").addEventListener("click", () => {
-    sessionStorage.setItem("previousPage", window.location.href);
-    window.location.href = "globalChat.html"; // Mengarahkan ke halaman chat global
-    });
+            sessionStorage.setItem("previousPage", window.location.href);
+            window.location.href = "globalChat.html";
+        });
     </script>
 
 </body>
