@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/logo(1).png" type="image/png">
+    <title>Obrolan Global</title>
+</head>
+<body class="overflow-hidden">
+        <div class="h-screen bg-bgProfil bg-cover bg-center flex items-center justify-center">
+            
+            <div id="chatGlobal" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+                <div class="bg-orange-300 rounded-lg shadow-lg w-11/12 md:w-1/2 lg:w-1/3 p-4 relative">
+                    <button id="tutupChat" class="absolute top-2 right-2 text-white hover:text-orange-400">&times;
+                    </button>
+                    <h2 class="text-xl font-semibold text-center mb-4 text-white">Obrolan Global</h2>
+
+                    <div id="chatContent" class="max-h-60 overflow-y-auto mb-4">
+                        <div class="flex items-start mb-2">
+                            <img src="img/avatar1.png" alt="User   1" class="w-10 h-10 rounded-full mr-2">
+                            <div class="bg-gray-200 rounded-lg p-2">
+                                <p>Halo, selamat siang</p>
+                            </div>
+                        </div>
+            
+                        <div class="flex items-start mb-2">
+                            <img src="img/avatar3.png" alt="User   2" class="w-10 h-10 rounded-full mr-2">
+                            <div class="bg-gray-200 rounded-lg p-2">
+                                <p>siang jugaa</p>
+                            </div>
+                        </div>
+            
+                        <div class="flex items-start justify-end mb-2">
+                            <div class="bg-red-600 text-white rounded-lg p-2">
+                                <p>Halo semuanya!</p>
+                            </div>
+                            <img src="img/avatar2.png" alt="Profil Saya" class="w-10 h-10 rounded-full ml-2">
+                        </div>
+                    </div>
+            
+                    <!-- Input Pesan -->
+                    <div class="flex items-center">
+                        <textarea id="chatInput" class="border rounded w-full p-2 mr-2" placeholder="Tulis pesan..."></textarea>
+                        <button id="sendMessage" class="bg-red-600 text-white rounded px-4">Kirim</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <script>
+        document.getElementById("sendMessage").addEventListener("click", () => {
+        const messageInput = document.getElementById("chatInput");
+        const message = messageInput.value;
+        if (message) {
+            const chatContent = document.getElementById("chatContent");
+            const newMessage = document.createElement("div");
+            newMessage.classList.add("flex", "items-start", "justify-end", "mb-2");
+            newMessage.innerHTML = `
+                <div class="bg-red-600 text-white rounded-lg p-2">
+                    <p>${message}</p>
+                </div>
+                <img src="img/1.png" alt="Profil Saya" class="w-10 h-10 rounded-full ml-2">
+            `;
+            chatContent.appendChild(newMessage);
+            messageInput.value = ""; // Kosongkan input setelah mengirim
+            chatContent.scrollTop = chatContent.scrollHeight; // Scroll ke bawah
+        }
+    });
+    document.getElementById("tutupChat").addEventListener("click", tutupChat);
+
+    function tutupChat() {
+        const previousPage = sessionStorage.getItem("previousPage");
+        if (previousPage) {
+            window.location.href = previousPage;
+        } else {
+            window.location.href = "beranda.html";
+        }
+    }
+    </script>
+</body>
+</html>

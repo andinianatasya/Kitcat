@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="css/style.css">
-    <title>poat</title>
+    <link rel="icon" href="img/logo(1).png" type="image/png">
+    <title>Ruang Tamu</title>
 </head>
 
 <body class="overflow-hidden">
@@ -13,7 +14,7 @@
             <ul class="flex justify-around items-center">
 
                 <li class="text-center hover:opacity-50">
-                    <a href="#profil" id="profileBtn" class="flex flex-col items-center">
+                    <a href="profil.php?ruangan=beranda.html" class="flex flex-col items-center">
                         <img src="img/profil.svg" alt="Profil Icon" class="flex flex-col items-center w-8 h-8 mb-1">
                     </a>
                 </li>
@@ -54,69 +55,67 @@
                 </li>
 
                 <li class="text-center">
-                    <a href="#chat" class="flex flex-col items-center hover:opacity-50">
-                        <img src="img/chat.svg" alt="Chat Icon" class="w-8 h-8 mb-1">
+                    <a href="#" class="flex flex-col items-center hover:opacity-50">
+                        <img id="bukaChat" src="img/chat.svg" alt="Chat Icon" class="w-8 h-8 mb-1">
                     </a>
                 </li>
             </ul>
         </nav>
     </div>
 
-    <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4">
-        <div class="flex space-x-5">
-            <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
-                <img src="img/senang.svg" alt="Kesenangan" class="rounded-full">
+    <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
+        <img id="catImage" src="img/tidur_bayi.png" alt="Kucing" class="h-56 mt-56">
+    </div>
+
+    <div class="fixed bottom-0 left-0 right-0 py-4 px-8">
+        <div class="flex justify-center space-x-8 md:space-x-72">
+            <div class="space-y-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
+                        <img src="img/senang.svg" alt="Kesenangan" class="rounded-full">
+                    </div>
+                    <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
+                        <div id="status_bar_senang" class="h-full bg-green-600 rounded"></div>
+                        <span id="senangBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
+                    </div>
+                </div>
+
+                <!-- Bar dan gambar Lapar -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
+                        <img src="img/lapar.svg" alt="Kelaparan" class="rounded-full">
+                    </div>
+                    <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
+                        <div id="status_bar_lapar" class="h-full bg-green-600 rounded"></div>
+                        <span id="laparBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
+                    </div>
+                </div>
             </div>
-            
-            <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
-                <img src="img/lapar.svg" alt="Kelaparan" class="rounded-full">
+
+            <div class="space-y-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
+                        <img src="img/sehat.svg" alt="Kesehatan" class="rounded-full">
+                    </div>
+                    <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
+                        <div id="status_bar_sehat" class="h-full bg-green-500 rounded"></div>
+                        <span id="sehatBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
+                        <img src="img/energi.svg" alt="Energi" class="rounded-full">
+                    </div>
+                    <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
+                        <div id="status_bar_energi" class="h-full bg-green-500 rounded"></div>
+                        <span id="energiBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
+                    </div>
+                </div>
             </div>
-            
-            <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
-                <img src="img/sehat.svg" alt="Kesehatan" class="rounded-full">
-            </div>
-            
-            <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
-                <img src="img/energi.svg" alt="Energi" class="rounded-full">
-            </div>
-            
         </div>
     </div>
     
-    <div class="content p-4">
-        <span id="userNameDisplay">Poat</span>
-    </div>
-
-    <div class="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm hidden" id="profileOverlay">
-        <div class="flex items-center justify-center h-full">
-            <div class="bg-gradient-to-br from-red-900 to-cream  rounded-lg max-w-xl w-1/2 md:w-1/3 text-center outline outline-red-950">
-                <div class="flex items-center space-x-4 mb-4">
-                    <img src="https://tse3.mm.bing.net/th?id=OIP.l9-ICq501GfTIfJdmV4MTwHaHU&pid=Api&P=0&h=220" alt="" class="mb-4 rounded-md border-4 border-red-900 h-10 md:h-20 pt-0 shadow-xl shadow-red-950">
-                    
-                    <div class="flex items-center space-x-2">
-                        
-                        <span id="userName" class="font-semibold text-lg underline underline-offset-8 text-white">Poat</span>  
-
-                        <button id="iconEdit">
-                            <img class="w-5 h-5 hover:opacity-50" src="img/pulpenPutih.svg" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div id="editNama" class="hidden p-2">
-                    <label for="userName" class="block mb-2 font-semibold text-start text-white">Nama Pengguna:</label>
-
-                    <div class="md:flex gap-4 items-center">
-                        <input type="text" id="inputNamaBaru" class="p-2 border border-gray-300 rounded w-full" placeholder="Masukkan nama baru" />
-
-                        <button id="simpanNama" class="px-2 py-1 mt-2 md:px-4 md:py-3 bg-merahTua text-white rounded hover:bg-red-950 text-xs font-semibold">Simpan</button>
-                    </div>
-                </div>
-                
-                <button id="tutupProfil" class="mt-3 mb-2 px-3 py-1 md:px-4 md:py-2 bg-merahTua text-white rounded hover:bg-red-950 text-xs font-semibold">Tutup</button>
-            </div>
-        </div>
-    </div>
 
     <div id="belanja" class="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm hidden">
         <div class="flex items-center justify-center h-full">
@@ -125,106 +124,218 @@
                     <img src="img/koin.svg" alt="Coin" class="h-8">
                     <span id="jumlahKoin" class="text-white text-xs font-semibold">1000</span>
                 </div>
-                
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="flex flex-col items-center">
-                        <img src="img/baju.svg
-                        " alt="Baju 1" class="w-24 h-24 mx-auto mb-2">
-                        <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25">Beli 25 Koin</button>
+                <div id="menuUtama" class="grid grid-cols-2 gap-4">
+                    <div>
+                        <img src="img/makan.svg" alt="Menu Makan" class="w-24 h-24 mx-auto mb-2">
+                        <button id="btnMakanan" class="px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Makanan</button>
                     </div>
-                    <div class="flex flex-col items-center">
-                        <img src="img/baju.svg" alt="Baju 2" class="w-24 h-24 mx-auto mb-2">
-                        <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="30">Beli 30 Koin</button>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <img src="img/baju.svg" alt="Baju 3" class="w-24 h-24 mx-auto mb-2">
-                        <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25">Beli 25 Koin</button>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <img src="img/baju.svg" alt="Baju 4" class="w-24 h-24 mx-auto mb-2">
-                        <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="40">Beli 40 Koin</button>
+                    <div>
+                        <img src="img/baju.svg" alt="Menu Kustom" class="w-24 h-24 mx-auto mb-2">
+                        <button id="btnKustom" class="px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Motif</button>
                     </div>
                 </div>
+
+                <!-- Menu Makanan-->
+                <div id="menuMakan" class="hidden">
+                    <div class="grid grid-cols-4 gap-4">
+                        <div class="flex flex-col items-center">
+                            <img src="img/makanan1.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="30">30 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/makanan2.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="10">10 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/makanan3.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="15">25 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/minuman1.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="10">10 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/minuman2.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="10">10 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/obat1.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="10">10 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/obat2.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="10">10 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/obat3.png" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="10">10 Koin</button>
+                        </div>
+                    </div>
+                    <button id="backToMenuMakan" class="mt-4 px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Kembali</button>
+                </div>
                 
+    
+                <!-- Menu Kustom -->
+                <div id="menuKustom" class="hidden">
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="flex flex-col items-center">
+                            <img src="img/Motif1.png" alt="Kustom 1" class="w-24 h-24 mx-auto mb-2">
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25" data-motif="1">Beli 25 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/Motif2.png" alt="Kustom 2" class="w-24 h-24 mx-auto mb-2">
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="30" data-motif="2">Beli 30 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/Motif3.png" alt="Kustom 3" class="w-24 h-24 mx-auto mb-2">
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25" data-motif="3">Beli 25 Koin</button>
+                        </div>
+                    </div>
+                    <button id="backToMenu" class="mt-4 px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Kembali</button>
+                </div>
                 <button id="tutupBelanja" class="mt-4 px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Tutup</button>
             </div>
         </div>
     </div>
 
+    <script src="index.js"></script>
+
     <script>
-        const dropdownButton = document.getElementById("dropdownButton");
-        const dropdownMenu = document.getElementById("lokasidropdown");
+        function decreaseAllStatusBars() {
+            // Mengambil nilai dari Local Storage
+            let currentLapar = localStorage.getItem('lapar') || 100;
+            let currentSehat = localStorage.getItem('sehat') || 100;
+            let currentEnergi = localStorage.getItem('energi') || 100;
+            let currentSenang = localStorage.getItem('senang') || 100;
 
-        dropdownButton.addEventListener("click", () => {
-            dropdownMenu.classList.toggle("hidden");
-        });
+            currentLapar = parseInt(currentLapar);
+            currentSehat = parseInt(currentSehat);
+            currentEnergi = parseInt(currentEnergi);
+            currentSenang = parseInt(currentSenang);
 
-        document.querySelectorAll("#lokasidropdown a").forEach(link => {
-            link.addEventListener("click", () => {
-                dropdownMenu.classList.add("hidden");
-            });
-        });
-    
-        window.addEventListener('load', () => {
-            dropdownMenu.classList.add("hidden");
-        });
+            if (currentLapar > 0) currentLapar--;
+            if (currentSehat > 0) currentSehat--;
+            if (currentEnergi > 0) currentEnergi--;
+            if (currentSenang > 0) currentSenang--;
         
-        document.getElementById("profileBtn").addEventListener("click", function(event) {
-            event.preventDefault();
-            document.getElementById("profileOverlay").classList.remove("hidden");
-        });
+            // Menyimpan nilai baru ke Local Storage
+            localStorage.setItem('lapar', currentLapar);
+            localStorage.setItem('sehat', currentSehat);
+            localStorage.setItem('energi', currentEnergi);
+            localStorage.setItem('senang', currentSenang);
+        
+            // Memperbarui tampilan bar
+            updateBarsDisplay(currentLapar, currentSehat, currentEnergi, currentSenang);
+        }
 
-        document.getElementById("tutupProfil").addEventListener("click", function() {
-            document.getElementById("profileOverlay").classList.add("hidden");
-        });
+        // Fungsi untuk memperbarui tampilan bar
+        function updateBarsDisplay(lapar, sehat, energi, senang) {
+            document.getElementById('status_bar_lapar').style.width = lapar + '%';
+            document.getElementById('laparBar').textContent = lapar + '%';
+        
+            document.getElementById('status_bar_sehat').style.width = sehat + '%';
+            document.getElementById('sehatBar').textContent = sehat + '%';
+        
+            document.getElementById('status_bar_energi').style.width = energi + '%';
+            document.getElementById('energiBar').textContent = energi + '%';
+        
+            document.getElementById('status_bar_senang').style.width = senang + '%';
+            document.getElementById('senangBar').textContent = senang + '%';
+        }
 
-        document.getElementById("iconEdit").addEventListener("click", function() {
-            document.getElementById("editNama").classList.remove("hidden");
-        });
+        // mengurangi bar
+        setInterval(decreaseAllStatusBars, 60000);
 
-        document.getElementById("simpanNama").addEventListener("click", function() {
-            var newName = document.getElementById("inputNamaBaru").value;
-            if(newName) {
-                document.getElementById("userNameDisplay").textContent = newName; // Update nama di tampilan
+        // Saat halaman dimuat, perbarui tampilan bar
+        window.onload = function() {
+            updateBarsDisplay(
+                localStorage.getItem('lapar') || 100,
+                localStorage.getItem('sehat') || 100,
+                localStorage.getItem('energi') || 100,
+                localStorage.getItem('senang') || 100
+            );
+        };
 
-                document.getElementById("userName").textContent = newName;
 
-                document.getElementById("profileOverlay").classList.add("hidden"); 
-
-                document.getElementById("editNama").classList.add("hidden");
-            }
-        });
-
+    /////////beliiiiii
         const shopImage = document.getElementById("shopImage");
         const shopOverlay = document.getElementById("shopOverlay");
         const closeShopBtn = document.getElementById("closeShopBtn");
         let jumlahKoin = 1000;
 
-        shopImage.addEventListener("click", () => {
-            belanja.classList.remove("hidden");
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+    const belanja = document.getElementById("belanja");
+    const jumlahKoinEl = document.getElementById("jumlahKoin");
+    const tutupBelanja = document.getElementById("tutupBelanja");
+    const menuUtama = document.getElementById("menuUtama");
+    const menuKustom = document.getElementById("menuKustom");
+    const menuMakan = document.getElementById("menuMakan");
+    const catImage = document.getElementById("catImage");
+    let jumlahKoin = 1000;
 
-        tutupBelanja.addEventListener("click", () => {
-            belanja.classList.add("hidden");
-        });
+    // Tampilkan dan tutup menu belanja
+    document.getElementById("shopImage").addEventListener("click", () => belanja.classList.remove("hidden"));
+    tutupBelanja.addEventListener("click", () => belanja.classList.add("hidden"));
 
-        function updateCoinDisplay() {
-        document.getElementById("jumlahKoin").textContent = jumlahKoin;
-    }
+    // Navigasi menu
+    document.getElementById("btnMakanan").addEventListener("click", () => {
+        menuUtama.classList.add("hidden");
+        menuMakan.classList.remove("hidden");
+    });
 
+    document.getElementById("btnKustom").addEventListener("click", () => {
+        menuUtama.classList.add("hidden");
+        menuKustom.classList.remove("hidden");
+    });
+
+    document.getElementById("backToMenu").addEventListener("click", () => {
+        menuKustom.classList.add("hidden");
+        menuUtama.classList.remove("hidden");
+    });
+
+    document.getElementById("backToMenuMakan").addEventListener("click", () => {
+        menuMakan.classList.add("hidden");
+        menuUtama.classList.remove("hidden");
+    });
+
+    // Fungsi untuk memperbarui tampilan koin
+    const updateCoinDisplay = () => {
+        jumlahKoinEl.textContent = jumlahKoin;
+    };
+
+    // Pembelian item
+    const handlePurchase = (button) => {
+        const harga = parseInt(button.getAttribute("hargaItem"));
+        if (jumlahKoin >= harga) {
+            jumlahKoin -= harga;
+            alert("Anda telah membeli " + button.textContent + " dengan harga " + harga + " koin");
+            updateCoinDisplay();
+            return true;
+        } else {
+            alert("Koin anda tidak cukup untuk membeli ini!");
+            return false;
+        }
+    };
+
+    // Event listener untuk tombol beli
     document.querySelectorAll(".beliBtn").forEach(button => {
         button.addEventListener("click", function() {
-            const harga = parseInt(this.getAttribute("hargaItem"));
-            if (jumlahKoin >= harga) {
-                jumlahKoin -= harga;
-                alert("Anda telah membeli " + this.textContent + " dengan harga " + harga + " koin");
-                updateCoinDisplay();
-            } else {
-                alert("Koin anda tidak cukup untuk membeli ini!");
+            if (handlePurchase(this)) {
+                const motif = this.getAttribute("data-motif");
+                if (motif) {
+                    catImage.src = `img/motif${motif}/default_bayi${motif}.png`;
+                }
             }
         });
     });
+
     updateCoinDisplay();
+    });
+
+    document.getElementById("bukaChat").addEventListener("click", () => {
+            sessionStorage.setItem("previousPage", window.location.href);
+            window.location.href = "globalChat.html";
+        });
     </script>
 
 </body>

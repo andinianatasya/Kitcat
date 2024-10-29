@@ -9,7 +9,8 @@ module.exports = {
         'bgDapur' : "url('/publik/img/bgdapur.png')",
         'bgKmrMandi' : "url('/publik/img/bgkmrMandi.png')",
         'bgMain' : "url('/publik/img/bgmain.png')",
-        'bgLogin' : "url('/publik/img/bglogin.png')"
+        'bgLogin' : "url('/publik/img/bglogin.png')",
+        'bgProfil' : "url('/publik/img/bgProfil.png')"
       },
 
       colors : {
