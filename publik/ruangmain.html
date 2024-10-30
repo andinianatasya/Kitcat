@@ -60,18 +60,27 @@
         <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 md:ml-80">
     </div>
 
-    <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4">
+    <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4 ">
         <div class="flex space-x-5">
-            <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
-                <a href=""></a>
+            <div id="leaderboardButton" class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
+                <a href="#" ></a>
                 <img src="img/leaderboard.svg" alt="leaderboard" class="rounded-full">
             </div>
             
             <div id="questionImage" class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
-                <a href=""></a>
-                <img src="img/tes.svg" alt="tes" class="rounded-full">
-            </div>  
+                <a href="#"><img src="img/tes.svg" alt="tes" class="rounded-full"></a>
+            </div>
         </div>
+    </div>
+
+    <!-- Leaderboard Section -->
+    <div id="leaderboardSection" class="hidden fixed bottom-16 left-1/2 transform -translate-x-1/2 bg-white shadow-lg p-4 rounded-lg w-80">
+        <h2 class="text-lg font-bold mb-2">Papan Peringkat</h2>
+        <div id="categories" class="flex flex-col space-y-2 mb-2">
+            <button id="programmingCategory" class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 fade-in">Bahasa Pemrograman</button>
+            <button id="markupCategory" class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 fade-in">Bahasa Markup Biasa</button>
+        </div>
+        <div id="leaderboardContent" class="space-y-1"></div>
     </div>
 
     <div id="quizOverlay" class="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm hidden">
@@ -92,6 +101,60 @@
         sessionStorage.setItem("previousPage", window.location.href);
         window.location.href = "globalChat.html"; // Mengarahkan ke halaman chat global
         });
+
+        document.getElementById("leaderboardButton").addEventListener('click', function() {
+        const leaderboardSection = document.getElementById('leaderboardSection');
+         leaderboardSection.classList.toggle('hidden');
+         if (!leaderboardSection.classList.contains('hidden')) {
+        // Menambahkan animasi saat muncul
+        leaderboardSection.classList.add('fade-in');
+            }
+        });
+
+// Contoh data untuk leaderboard
+const leaderboardData = {
+    programming: [
+        { no: 1, profile: 'User  1', name: 'Andini', score: 100, title: 'Expert' },
+        { no: 2, profile: 'User  2', name: 'Clara', score: 90, title: 'Intermediate' },
+        { no: 3, profile: 'User  3', name: 'Salsa', score: 85, title: 'Novice' },
+        { no: 4, profile: 'User  4', name: 'Yaya', score: 80, title: 'Beginner' },
+        { no: 5, profile: 'User  5', name: 'Tiara', score: 75, title: 'Newbie' },
+    ],
+    markup: [
+        { no: 1, profile: 'User  6', name: 'Andini', score: 95, title: 'Expert' },
+        { no: 2, profile: 'User  7', name: 'Tiara', score: 88, title: 'Intermediate' },
+        { no: 3, profile: 'User  8', name: 'Clara', score: 82, title: 'Novice' },
+        { no: 4, profile: 'User  9', name: 'Salsa', score: 78, title: 'Beginner' },
+        { no: 5, profile: 'User  10', name: 'Yaya', score: 70, title: 'Newbie' },
+    ],
+};
+
+// Fungsi untuk menampilkan leaderboard berdasarkan kategori
+function displayLeaderboard(category) {
+    const leaderboardContent = document.getElementById('leaderboardContent');
+    leaderboardContent.innerHTML = ''; // Kosongkan konten sebelumnya
+
+    const data = leaderboardData[category];
+    data.forEach(entry => {
+        const entryDiv = document.createElement('div');
+        entryDiv.className = 'flex justify-between items-center p-2 border-b';
+        entryDiv.innerHTML = `
+            <span>${entry.no}. ${entry.name} (${entry.title})</span>
+            <span>Score: ${entry.score}</span>
+        `;
+        leaderboardContent.appendChild(entryDiv);
+    });
+}
+
+// Event listener untuk kategori pemrograman
+document.getElementById('programmingCategory').addEventListener('click', function() {
+    displayLeaderboard('programming');
+});
+
+// Event listener untuk kategori markup
+document.getElementById('markupCategory').addEventListener('click', function() {
+    displayLeaderboard('markup');
+});
     </script>
     <script src="index.js"></script>
 </body>
