@@ -180,15 +180,15 @@
                     <div class="grid grid-cols-3 gap-4">
                         <div class="flex flex-col items-center">
                             <img src="img/Motif1.png" alt="Kustom 1" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25" data-motif="1">Beli 25 Koin</button>
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25" data-motif="1">25 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/Motif2.png" alt="Kustom 2" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="30" data-motif="2">Beli 30 Koin</button>
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="30" data-motif="2">30 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/Motif3.png" alt="Kustom 3" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25" data-motif="3">Beli 25 Koin</button>
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25" data-motif="3">25 Koin</button>
                         </div>
                     </div>
                     <button id="backToMenu" class="mt-4 px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Kembali</button>
@@ -308,7 +308,7 @@
         const harga = parseInt(button.getAttribute("hargaItem"));
         if (jumlahKoin >= harga) {
             jumlahKoin -= harga;
-            alert("Anda telah membeli " + button.textContent + " dengan harga " + harga + " koin");
+            alert("Anda telah membeli dengan harga " + harga + " koin");
             updateCoinDisplay();
             return true;
         } else {

@@ -57,7 +57,7 @@
     </div>
 
     <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
-        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 ml-12 mt-28">
+        <img id="catImage" src="img/penasaran_bayi.png" alt="Kucing" class="h-80 ml-12 mt-28">
     </div>
 
     <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4">
@@ -84,6 +84,20 @@
         sessionStorage.setItem("previousPage", window.location.href);
         window.location.href = "globalChat.html"; // Mengarahkan ke halaman chat global
         });
+
+        // Ambil elemen gambar kucing dan gambar sabun serta shower
+        const catImage = document.getElementById("catImage");
+        const sabunImage = document.querySelector('img[alt="sabun"]');
+        const showerImage = document.querySelector('img[alt="shower"]');
+
+        // Fungsi untuk mengubah gambar kucing
+        function changeCatImage() {
+            catImage.src = "img/ngantuk_bayi.png"; // Ganti dengan nama file gambar yang diinginkan
+        }
+
+        // Tambahkan event listener pada gambar sabun dan shower
+        sabunImage.addEventListener("click", changeCatImage);
+        showerImage.addEventListener("click", changeCatImage);
     </script>
 
 </body>

@@ -56,7 +56,7 @@
     </div>
     
     <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
-        <img id="catImage" src="img/tidur_anak.png" alt="Kucing" class="h-80 ml-12">
+        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 ml-12">
     </div>
 
     <div id="matiLampu" class="fixed inset-0 bg-black bg-opacity-45 hidden"></div>
@@ -71,22 +71,24 @@
     <script>
         const lampu = document.getElementById('lampu');
         const overlay = document.getElementById('matiLampu');
+        const catImage = document.getElementById('catImage');
         let isOverlayActive = false;
-
+    
         lampu.addEventListener('click', () => {
             isOverlayActive = !isOverlayActive;
             if (isOverlayActive) {
                 overlay.classList.remove('hidden');
+                catImage.src = 'img/tidur_bayi.png';
             } else {
                 overlay.classList.add('hidden');
+                catImage.src = 'img/default_bayi.png';
             }
         });
-         
+    
         document.getElementById("bukaChat").addEventListener("click", () => {
             sessionStorage.setItem("previousPage", window.location.href);
             window.location.href = "globalChat.html";
         });
     </script>
-
 </body>
 </html>
