@@ -36,6 +36,7 @@ echo "Ruangan sebelumnya: " . htmlspecialchars($ruangan_sebelumnya);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/logo(1).png" type="image/png">
     <title>Poat</title>
 </head>
 <body class="overflow-hidden">

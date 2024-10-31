@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="img/logo(1).png" type="image/png">
+    <link rel="icon" href="img/logo.png" type="image/png">
     <title>Ruang Main</title>
 </head>
 
@@ -12,7 +12,6 @@
     <div class="h-screen bg-bgMain bg-cover bg-center">
         <nav class="bg-merah p-2">
             <ul class="flex justify-around items-center">
-
                 <li class="text-center hover:opacity-50">
                     <a href="profil.php?ruangan=ruangmain.html" id="profileBtn" class="flex flex-col items-center">
                         <img src="img/profil.svg" alt="Profil Icon" class="w-8 h-8 mb-1">
@@ -57,12 +56,12 @@
     </div>
 
     <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
-        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 mt-12">
+        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 mr-5 mt-2">
     </div>
 
     <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4 ">
         <div class="flex space-x-5">
-            <div id="leaderboardButton" class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
+            <div id="leaderboardButton" class="hover:cursor-pointer w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
                 <a href="#" ></a>
                 <img src="img/leaderboard.svg" alt="leaderboard" class="rounded-full">
             </div>
@@ -74,13 +73,85 @@
     </div>
 
     <!-- Leaderboard Section -->
-    <div id="leaderboardSection" class="hidden fixed bottom-16 left-1/2 transform -translate-x-1/2 bg-white shadow-lg p-4 rounded-lg w-80">
-        <h2 class="text-lg font-bold mb-2">Papan Peringkat</h2>
-        <div id="categories" class="flex flex-col space-y-2 mb-2">
-            <button id="programmingCategory" class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 fade-in">Bahasa Pemrograman</button>
-            <button id="markupCategory" class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 fade-in">Bahasa Markup Biasa</button>
+    <div id="leaderboardSection" class="hidden fixed bottom-16 left-1/2 transform -translate-x-1/2 bg-red-900 shadow-lg p-4 rounded-lg w-80">
+        <div class="flex justify-between items-center">
+            <h2 class="text-white font-bold">Papan Peringkat</h2>
+            <button id="closeButton" class="text-white hover:opacity-75 focus:outline-none text-xl">
+                &times; <!-- Simbol 'X' sebagai tombol close -->
+            </button>
         </div>
-        <div id="leaderboardContent" class="space-y-1"></div>
+        <div class="flex flex-col space-y-2 mt-2">
+            <button id="programmingCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-blue-600 fade-in">Bahasa Pemrograman</button>
+            <button id="markupCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-blue-600 fade-in">Bahasa Markup Biasa</button>
+        </div>
+        <div id="leaderboardContent">
+            <!-- Papan Pemrograman-->
+            <div id="papanPemrograman" class="hidden">
+                <div class="w-72 bg-oren text-white p-5 rounded-lg shadow-md">
+                    <h2 class="text-center text-lg font-bold mb-4">Bahasa Pemrograman</h2>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-3">
+                            <span>1. Andini</span>
+                            <span class="text-center">skor: 100</span>
+                            <span class="text-right">(Ahli)</span>
+                        </div>
+                        <div class="grid grid-cols-3">
+                            <span>2. Clara</span>
+                            <span class="text-center">skor: 90</span>
+                            <span class="text-right">(Menengah)</span>
+                        </div>
+                        <div class="grid grid-cols-3">
+                            <span>3. Salsa</span>
+                            <span class="text-center">skor: 85</span>
+                            <span class="text-right">(Awal)</span>
+                        </div>
+                        <div class="grid grid-cols-3">
+                            <span>4. Yaya</span>
+                            <span class="text-center">skor: 80</span>
+                            <span class="text-right">(Baru)</span>
+                        </div>
+                        <div class="grid grid-cols-3">
+                            <span>5. Tiara</span>
+                            <span class="text-center">skor: 75</span>
+                            <span class="text-right">(Newbie)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Papan Bahasa Markup-->
+            <div id="papanMarkup" class="hidden">
+                <div class="w-72 bg-oren text-white p-5 rounded-lg shadow-md">
+                    <h2 class="text-center text-lg font-bold mb-4">Bahasa Markup</h2>
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-3">
+                            <span>1. Andini</span>
+                            <span class="text-center">skor: 100</span>
+                            <span class="text-right">(Ahli)</span>
+                        </div>
+                        <div class="grid grid-cols-3">
+                            <span>2. Clara</span>
+                            <span class="text-center">skor: 90</span>
+                            <span class="text-right">(Menengah)</span>
+                        </div>
+                        <div class="grid grid-cols-3">
+                            <span>3. Salsa</span>
+                            <span class="text-center">skor: 85</span>
+                            <span class="text-right">(Awal)</span>
+                        </div>
+                        <div class="grid grid-cols-3">
+                            <span>4. Yaya</span>
+                            <span class="text-center">skor: 80</span>
+                            <span class="text-right">(Baru)</span>
+                        </div>
+                        <div class="grid grid-cols-3">
+                            <span>5. Tiara</span>
+                            <span class="text-center">skor: 75</span>
+                            <span class="text-right">(Newbie)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="quizOverlay" class="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm hidden">
@@ -95,67 +166,85 @@
         </div>
     </div>
 
-    
+    <script src="js/index.js"></script>
+    <script src="js/chatglobal.js"></script>
     <script>
         document.getElementById("bukaChat").addEventListener("click", () => {
         sessionStorage.setItem("previousPage", window.location.href);
         window.location.href = "globalChat.html"; // Mengarahkan ke halaman chat global
         });
 
-        document.getElementById("leaderboardButton").addEventListener('click', function() {
+        // Mengambil elemen dari DOM
+        const leaderboardButton = document.getElementById('leaderboardButton');
         const leaderboardSection = document.getElementById('leaderboardSection');
-         leaderboardSection.classList.toggle('hidden');
-         if (!leaderboardSection.classList.contains('hidden')) {
-        // Menambahkan animasi saat muncul
-        leaderboardSection.classList.add('fade-in');
-            }
+        const programmingCategory = document.getElementById('programmingCategory');
+        const markupCategory = document.getElementById('markupCategory');
+        const papanPemrograman = document.getElementById('papanPemrograman');
+        const papanMarkup = document.getElementById('papanMarkup');
+        const closeButton = document.getElementById('closeButton');
+
+        // Fungsi untuk menampilkan leaderboardSection
+        leaderboardButton.addEventListener('click', () => {
+            leaderboardSection.classList.remove('hidden');
+            papanPemrograman.classList.add('hidden');
+            papanMarkup.classList.add('hidden');
+            console.log('leaderboardbutton');
+            programmingCategory.classList.remove('hidden');
+            markupCategory.classList.remove('hidden');
         });
 
-// Contoh data untuk leaderboard
-const leaderboardData = {
-    programming: [
-        { no: 1, profile: 'User  1', name: 'Andini', score: 100, title: 'Expert' },
-        { no: 2, profile: 'User  2', name: 'Clara', score: 90, title: 'Intermediate' },
-        { no: 3, profile: 'User  3', name: 'Salsa', score: 85, title: 'Novice' },
-        { no: 4, profile: 'User  4', name: 'Yaya', score: 80, title: 'Beginner' },
-        { no: 5, profile: 'User  5', name: 'Tiara', score: 75, title: 'Newbie' },
-    ],
-    markup: [
-        { no: 1, profile: 'User  6', name: 'Andini', score: 95, title: 'Expert' },
-        { no: 2, profile: 'User  7', name: 'Tiara', score: 88, title: 'Intermediate' },
-        { no: 3, profile: 'User  8', name: 'Clara', score: 82, title: 'Novice' },
-        { no: 4, profile: 'User  9', name: 'Salsa', score: 78, title: 'Beginner' },
-        { no: 5, profile: 'User  10', name: 'Yaya', score: 70, title: 'Newbie' },
-    ],
-};
+        // Fungsi untuk menutup leaderboardSection
+        closeButton.addEventListener('click', () => {
+            leaderboardSection.classList.add('hidden');
+        });
 
-// Fungsi untuk menampilkan leaderboard berdasarkan kategori
-function displayLeaderboard(category) {
-    const leaderboardContent = document.getElementById('leaderboardContent');
-    leaderboardContent.innerHTML = ''; // Kosongkan konten sebelumnya
+        // Fungsi untuk menampilkan papanPemrograman dan menutup leaderboardSection
+        programmingCategory.addEventListener('click', () => {
+            console.log('programmingcategory');
+            papanPemrograman.classList.remove('hidden');
+            papanMarkup.classList.add('hidden');
+            programmingCategory.classList.add('hidden');
+            markupCategory.classList.add('hidden');
+        });
 
-    const data = leaderboardData[category];
-    data.forEach(entry => {
-        const entryDiv = document.createElement('div');
-        entryDiv.className = 'flex justify-between items-center p-2 border-b';
-        entryDiv.innerHTML = `
-            <span>${entry.no}. ${entry.name} (${entry.title})</span>
-            <span>Score: ${entry.score}</span>
-        `;
-        leaderboardContent.appendChild(entryDiv);
-    });
-}
+        // Fungsi untuk menampilkan papanMarkup dan menutup leaderboardSection
+        markupCategory.addEventListener('click', () => {
+            console.log('markupcategory');
+            papanPemrograman.classList.add('hidden');
+            papanMarkup.classList.remove('hidden');
+            programmingCategory.classList.add('hidden');
+            markupCategory.classList.add('hidden');
+        });
+        // Event listener untuk kategori pemrograman
+        document.getElementById('programmingCategory').addEventListener('click', function() {
+            displayLeaderboard('programming');
+        });
 
-// Event listener untuk kategori pemrograman
-document.getElementById('programmingCategory').addEventListener('click', function() {
-    displayLeaderboard('programming');
-});
+        // Event listener untuk kategori markup
+        document.getElementById('markupCategory').addEventListener('click', function() {
+            displayLeaderboard('markup');
+        });
 
-// Event listener untuk kategori markup
-document.getElementById('markupCategory').addEventListener('click', function() {
-    displayLeaderboard('markup');
-});
+
+        document.getElementById('lampu').addEventListener('click', function() {
+        updateEnergi(10);
+        });
+        function updateEnergi(amount) {
+            let currentEnergi = localStorage.getItem('energi') || 100; 
+            currentEnergi = parseInt(currentEnergi);
+        
+            if (currentEnergi < 100) {
+                currentEnergi += amount;
+                if (currentEnergi > 100) {
+                    currentEnergi = 100; 
+                    alert("Bar energi sudah penuh!");
+                }
+                localStorage.setItem('energi', currentEnergi);
+            } 
+        
+            updateBarsDisplay(currentEnergi, localStorage.getItem('sehat') || 100, localStorage.getItem('lapar') || 100, localStorage.getItem('senang') || 100);
+        }
     </script>
-    <script src="index.js"></script>
+
 </body>
 </html>

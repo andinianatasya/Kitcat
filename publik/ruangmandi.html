@@ -78,13 +78,10 @@
         </div>
     </div>
 
-    <script src="index.js"></script>
-    <script>
-        document.getElementById("bukaChat").addEventListener("click", () => {
-        sessionStorage.setItem("previousPage", window.location.href);
-        window.location.href = "globalChat.html"; // Mengarahkan ke halaman chat global
-        });
+    <script src="js/index.js"></script>
+    <script src="js/chatglobal.js"></script>
 
+    <script>
         // Ambil elemen gambar kucing dan gambar sabun serta shower
         const catImage = document.getElementById("catImage");
         const sabunImage = document.querySelector('img[alt="sabun"]');
