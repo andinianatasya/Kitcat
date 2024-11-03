@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="css/style.css">
+
     <link rel="icon" href="img/logo(1).png" type="image/png">
+
     <title>Ruang Tamu</title>
 </head>
 
@@ -74,17 +76,20 @@
                     <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
                         <img src="img/senang.svg" alt="Kesenangan" class="rounded-full">
                     </div>
+
                     <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
                         <div id="status_bar_senang" class="h-full bg-green-600 rounded"></div>
                         <span id="senangBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
                     </div>
                 </div>
 
+
                 <!-- Bar dan gambar Lapar -->
                 <div class="flex items-center space-x-2">
                     <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
                         <img src="img/lapar.svg" alt="Kelaparan" class="rounded-full">
                     </div>
+
                     <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
                         <div id="status_bar_lapar" class="h-full bg-green-600 rounded"></div>
                         <span id="laparBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
@@ -110,6 +115,7 @@
                     <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
                         <div id="status_bar_energi" class="h-full bg-green-500 rounded"></div>
                         <span id="energiBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
+
                     </div>
                 </div>
             </div>
@@ -137,6 +143,7 @@
 
                 <!-- Menu Makanan-->
                 <div id="menuMakan" class="hidden">
+
                     <div class="grid grid-cols-4 gap-4">
                         <div class="flex flex-col items-center">
                             <img src="img/makanan1.png" alt="" class="w-24 h-24 mx-auto mb-2">
@@ -168,6 +175,7 @@
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/obat3.png" alt="" class="w-24 h-24 mx-auto mb-2">
+
                             <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="10">10 Koin</button>
                         </div>
                     </div>
@@ -179,6 +187,7 @@
                 <div id="menuKustom" class="hidden">
                     <div class="grid grid-cols-3 gap-4">
                         <div class="flex flex-col items-center">
+
                             <img src="img/Motif1.png" alt="Kustom 1" class="w-24 h-24 mx-auto mb-2">
                             <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25" data-motif="1">25 Koin</button>
                         </div>
@@ -189,6 +198,7 @@
                         <div class="flex flex-col items-center">
                             <img src="img/Motif3.png" alt="Kustom 3" class="w-24 h-24 mx-auto mb-2">
                             <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25" data-motif="3">25 Koin</button>
+
                         </div>
                     </div>
                     <button id="backToMenu" class="mt-4 px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Kembali</button>
@@ -197,6 +207,7 @@
             </div>
         </div>
     </div>
+
 
     <script src="js/index.js"></script>
     <script src="js/chatglobal.js"></script>
@@ -313,24 +324,38 @@
             } else {
                 alert("Koin anda tidak cukup untuk membeli ini!");
                 return false;
-            }
+                          }
+
         };
 
         // Event listener untuk tombol beli
+
         document.querySelectorAll(".beliBtn").forEach(button => {
+
             button.addEventListener("click", function() {
+
                 if (handlePurchase(this)) {
+
                     const motif = this.getAttribute("data-motif");
+
                     if (motif) {
+
                         catImage.src = `img/motif${motif}/default_bayi${motif}.png`;
+
                     }
+
                 }
+
             });
+
         });
 
         updateCoinDisplay();
+
         });
+
     </script>
+
 
 </body>
 </html>

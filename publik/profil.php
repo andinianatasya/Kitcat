@@ -22,7 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $nama_profil = isset($_SESSION['nama_profil']) ? $_SESSION['nama_profil'] : "Poat";
 $avatar = isset($_SESSION['avatar']) ? $_SESSION['avatar'] : "avatar1";
+
 $avatar_path = "img/" . htmlspecialchars($avatar) . ".png"; 
+
 
 echo "Path gambar avatar: " . htmlspecialchars($avatar_path);
 
@@ -36,7 +38,9 @@ echo "Ruangan sebelumnya: " . htmlspecialchars($ruangan_sebelumnya);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+
     <link rel="icon" href="img/logo(1).png" type="image/png">
+
     <title>Poat</title>
 </head>
 <body class="overflow-hidden">
@@ -72,17 +76,23 @@ echo "Ruangan sebelumnya: " . htmlspecialchars($ruangan_sebelumnya);
                                         <label class="flex flex-col items-center">
                                             <input type="radio" name="avatar" value="avatar1" 
                                             <?php if ($_SESSION['avatar'] == 'avatar1') echo 'checked'; ?>>
+
                                             <img class="w-10 rounded-lg" src="img/avatar1.png" alt="Avatar 1">
+
                                         </label>
                                         <label class="flex flex-col items-center">
                                             <input type="radio" name="avatar" value="avatar2" 
                                             <?php if ($_SESSION['avatar'] == 'avatar2') echo 'checked'; ?>>
+
                                             <img class="w-10 rounded-lg" src="img/avatar2.png" alt="Avatar 2">
+
                                         </label>
                                         <label class="flex flex-col items-center">
                                             <input type="radio" name="avatar" value="avatar3" 
                                             <?php if ($_SESSION['avatar'] == 'avatar3') echo 'checked'; ?>>
+
                                             <img class="w-10 rounded-lg" src="img/avatar3.png" alt="Avatar 3">
+
                                         </label>
                                     </div>
                                 </div>
