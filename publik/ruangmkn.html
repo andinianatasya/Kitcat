@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="img/logo.png" type="image/png">
+
+    <link rel="icon" href="img/logo(1).png" type="image/png">
+
     <title>Ruang Makan</title>
 </head>
 
@@ -63,25 +65,52 @@
     <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4">
         <div class="flex space-x-5">
             <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-900 transition-shadow duration-300">
-                <img class="rounded-full" src="img/ikan.svg" alt="makanan">
+                <img id="makanButton1" class="rounded-full" src="img/ikan.svg" alt="makanan">
             </div>
 
             <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-900 transition-shadow duration-300">
-                <img class="rounded-full" src="img/minum.svg" alt="minuman">
+                <img id="makanButton2" class="rounded-full" src="img/minum.svg" alt="minuman">
             </div>
 
             <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-900 transition-shadow duration-300">
-                <img class="rounded-full" src="img/sayur.svg" alt="makanan">
+                <img id="makanButton3" class="rounded-full" src="img/sayur.svg" alt="makanan">
             </div>   
         </div>
     </div>
 
-    <script src="index.js"></script>
-    <script>
-        document.getElementById("bukaChat").addEventListener("click", () => {
-            window.location.href = "globalChat.html"; // Mengarahkan ke halaman chat global
-            sessionStorage.setItem("previousPage", window.location.href);
+
+    <script src="js/index.js"></script>
+    <script src="js/chatglobal.js"></script>
+
+    <script>  
+        document.getElementById('makanButton1').addEventListener('click', function() {
+        updateLapar(10);
         });
+
+        document.getElementById('makanButton2').addEventListener('click', function() {
+            updateLapar(5);
+        });
+
+        document.getElementById('makanButton3').addEventListener('click', function() {
+            updateLapar(10);
+        });
+
+        function updateLapar(amount) {
+            let currentLapar = localStorage.getItem('lapar') || 100; 
+            currentLapar = parseInt(currentLapar);
+        
+            if (currentLapar < 100) {
+                currentLapar += amount;
+                if (currentLapar > 100) {
+                    currentLapar = 100; 
+                    alert("Bar lapar sudah penuh!");
+                }
+                localStorage.setItem('lapar', currentLapar);
+            } 
+        
+            updateBarsDisplay(currentLapar, localStorage.getItem('sehat') || 100, localStorage.getItem('energi') || 100, localStorage.getItem('senang') || 100);
+        }
+
     </script>
 
 </body>

@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="img/logo.png" type="image/png">
+
+    <link rel="icon" href="img/logo(1).png" type="image/png">
+
     <title>Ruang Mandi</title>
 </head>
 
@@ -57,7 +59,9 @@
     </div>
 
     <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
-        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 ml-12 mt-28">
+
+        <img id="catImage" src="img/penasaran_bayi.png" alt="Kucing" class="h-80 ml-12 mt-28">
+
     </div>
 
     <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4">
@@ -78,12 +82,25 @@
         </div>
     </div>
 
-    <script src="index.js"></script>
+
+    <script src="js/index.js"></script>
+    <script src="js/chatglobal.js"></script>
+
     <script>
-        document.getElementById("bukaChat").addEventListener("click", () => {
-        sessionStorage.setItem("previousPage", window.location.href);
-        window.location.href = "globalChat.html"; // Mengarahkan ke halaman chat global
-        });
+        // Ambil elemen gambar kucing dan gambar sabun serta shower
+        const catImage = document.getElementById("catImage");
+        const sabunImage = document.querySelector('img[alt="sabun"]');
+        const showerImage = document.querySelector('img[alt="shower"]');
+
+        // Fungsi untuk mengubah gambar kucing
+        function changeCatImage() {
+            catImage.src = "img/ngantuk_bayi.png"; // Ganti dengan nama file gambar yang diinginkan
+        }
+
+        // Tambahkan event listener pada gambar sabun dan shower
+        sabunImage.addEventListener("click", changeCatImage);
+        showerImage.addEventListener("click", changeCatImage);
+
     </script>
 
 </body>
