@@ -87,17 +87,14 @@
     <script src="js/chatglobal.js"></script>
 
     <script>
-        // Ambil elemen gambar kucing dan gambar sabun serta shower
         const catImage = document.getElementById("catImage");
         const sabunImage = document.querySelector('img[alt="sabun"]');
         const showerImage = document.querySelector('img[alt="shower"]');
 
-        // Fungsi untuk mengubah gambar kucing
         function changeCatImage() {
-            catImage.src = "img/ngantuk_bayi.png"; // Ganti dengan nama file gambar yang diinginkan
+            catImage.src = "img/ngantuk_bayi.png";
         }
 
-        // Tambahkan event listener pada gambar sabun dan shower
         sabunImage.addEventListener("click", changeCatImage);
         showerImage.addEventListener("click", changeCatImage);
 
