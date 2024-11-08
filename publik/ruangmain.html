@@ -34,7 +34,6 @@
                         <img src="img/lokasi.svg" alt="ruangan" class="w-8 h-8 mb-1">
                         <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruangan</span>
                     </button>
-                
                     <div>
                         <ul id="lokasidropdown" class="bg-oren rounded-md mt-4 absolute rounded-me md:w-40 w-20 0focus:outline-orenTua hidden">
                             <li>
@@ -117,13 +116,11 @@
     <div id="leaderboardSection" class="hidden fixed bottom-16 left-1/2 transform -translate-x-1/2 bg-red-900 shadow-lg p-4 rounded-lg w-80">
         <div class="flex justify-between items-center">
             <h2 class="text-white font-bold">Papan Peringkat</h2>
-            <button id="closeButton" class="text-white hover:opacity-75 focus:outline-none text-xl">
-                &times; <!-- Simbol 'X' sebagai tombol close -->
-            </button>
+            <button id="closeButton" class="text-white hover:opacity-75 focus:outline-none text-xl">&times;</button>
         </div>
         <div class="flex flex-col space-y-2 mt-2">
-            <button id="programmingCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-blue-600 fade-in">Bahasa Pemrograman</button>
-            <button id="markupCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-blue-600 fade-in">Bahasa Markup Biasa</button>
+            <button id="programmingCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in">Bahasa Pemrograman</button>
+            <button id="markupCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in">Bahasa Markup Biasa</button>
         </div>
         <div id="leaderboardContent">
             <!-- Papan Pemrograman-->
@@ -202,8 +199,8 @@
             <div class="bg-gradient-to-br from-merahTua to-orange-300 p-6 rounded-lg max-w-md w-full text-center">
                 <h1 class="text-lg font-bold mb-4 text-white">Pilih Bahasa</h1>
                 <div class="relative flex flex-col space-y-4 p-4 shadow-lg rounded-lg">   
-                    <button class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orenTua"> <a href="bahasapemrograman.html">Bahasa Pemrograman (C/C++)</a></button>
-                    <button class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orenTua"><a href="bahasastandar.html">Bahasa Markup Standar (HTML)</a></button>  
+                    <button id="pemro" class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orenTua"> <a href="bahasapemrograman.html">Bahasa Pemrograman (C/C++)</a></button>
+                    <button id="html" class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orenTua"><a href="bahasastandar.html">Bahasa Markup Standar (HTML)</a></button>  
                 <button id="tutupKuis" class="text-white text-xs font-semibold hover:text-orange-900" onclick="window.location.href='ruangmain.html'">Tutup</button>
             </div>
         </div>
@@ -212,84 +209,61 @@
 
     <script src="js/index.js"></script>
     <script src="js/chatglobal.js"></script>
+    <script src="js/barSenang..js"></script>
+    <script src="js/ldrboard.js"></script>
 
     <script>
-        document.getElementById("bukaChat").addEventListener("click", () => {
-        sessionStorage.setItem("previousPage", window.location.href);
-        window.location.href = "globalChat.html"; // Mengarahkan ke halaman chat global
-        });
 
+        // // Mengambil elemen dari DOM
+        // const leaderboardButton = document.getElementById('leaderboardButton');
+        // const leaderboardSection = document.getElementById('leaderboardSection');
+        // const programmingCategory = document.getElementById('programmingCategory');
+        // const markupCategory = document.getElementById('markupCategory');
+        // const papanPemrograman = document.getElementById('papanPemrograman');
+        // const papanMarkup = document.getElementById('papanMarkup');
+        // const closeButton = document.getElementById('closeButton');
 
-        // Mengambil elemen dari DOM
-        const leaderboardButton = document.getElementById('leaderboardButton');
-        const leaderboardSection = document.getElementById('leaderboardSection');
-        const programmingCategory = document.getElementById('programmingCategory');
-        const markupCategory = document.getElementById('markupCategory');
-        const papanPemrograman = document.getElementById('papanPemrograman');
-        const papanMarkup = document.getElementById('papanMarkup');
-        const closeButton = document.getElementById('closeButton');
+        // // Fungsi untuk menampilkan leaderboardSection
+        // leaderboardButton.addEventListener('click', () => {
+        //     leaderboardSection.classList.remove('hidden');
+        //     papanPemrograman.classList.add('hidden');
+        //     papanMarkup.classList.add('hidden');
+        //     console.log('leaderboardbutton');
+        //     programmingCategory.classList.remove('hidden');
+        //     markupCategory.classList.remove('hidden');
+        // });
 
-        // Fungsi untuk menampilkan leaderboardSection
-        leaderboardButton.addEventListener('click', () => {
-            leaderboardSection.classList.remove('hidden');
-            papanPemrograman.classList.add('hidden');
-            papanMarkup.classList.add('hidden');
-            console.log('leaderboardbutton');
-            programmingCategory.classList.remove('hidden');
-            markupCategory.classList.remove('hidden');
-        });
+        // // Fungsi untuk menutup leaderboardSection
+        // closeButton.addEventListener('click', () => {
+        //     leaderboardSection.classList.add('hidden');
+        // });
 
-        // Fungsi untuk menutup leaderboardSection
-        closeButton.addEventListener('click', () => {
-            leaderboardSection.classList.add('hidden');
-        });
+        // // Fungsi untuk menampilkan papanPemrograman dan menutup leaderboardSection
+        // programmingCategory.addEventListener('click', () => {
+        //     console.log('programmingcategory');
+        //     papanPemrograman.classList.remove('hidden');
+        //     papanMarkup.classList.add('hidden');
+        //     programmingCategory.classList.add('hidden');
+        //     markupCategory.classList.add('hidden');
+        // });
 
-        // Fungsi untuk menampilkan papanPemrograman dan menutup leaderboardSection
-        programmingCategory.addEventListener('click', () => {
-            console.log('programmingcategory');
-            papanPemrograman.classList.remove('hidden');
-            papanMarkup.classList.add('hidden');
-            programmingCategory.classList.add('hidden');
-            markupCategory.classList.add('hidden');
-        });
+        // // Fungsi untuk menampilkan papanMarkup dan menutup leaderboardSection
+        // markupCategory.addEventListener('click', () => {
+        //     console.log('markupcategory');
+        //     papanPemrograman.classList.add('hidden');
+        //     papanMarkup.classList.remove('hidden');
+        //     programmingCategory.classList.add('hidden');
+        //     markupCategory.classList.add('hidden');
+        // });
+        // // Event listener untuk kategori pemrograman
+        // document.getElementById('programmingCategory').addEventListener('click', function() {
+        //     displayLeaderboard('programming');
+        // });
 
-        // Fungsi untuk menampilkan papanMarkup dan menutup leaderboardSection
-        markupCategory.addEventListener('click', () => {
-            console.log('markupcategory');
-            papanPemrograman.classList.add('hidden');
-            papanMarkup.classList.remove('hidden');
-            programmingCategory.classList.add('hidden');
-            markupCategory.classList.add('hidden');
-        });
-        // Event listener untuk kategori pemrograman
-        document.getElementById('programmingCategory').addEventListener('click', function() {
-            displayLeaderboard('programming');
-        });
-
-        // Event listener untuk kategori markup
-        document.getElementById('markupCategory').addEventListener('click', function() {
-            displayLeaderboard('markup');
-        });
-
-
-        document.getElementById('lampu').addEventListener('click', function() {
-        updateEnergi(10);
-        });
-        function updateEnergi(amount) {
-            let currentEnergi = localStorage.getItem('energi') || 100; 
-            currentEnergi = parseInt(currentEnergi);
-        
-            if (currentEnergi < 100) {
-                currentEnergi += amount;
-                if (currentEnergi > 100) {
-                    currentEnergi = 100; 
-                    alert("Bar energi sudah penuh!");
-                }
-                localStorage.setItem('energi', currentEnergi);
-            } 
-        
-            updateBarsDisplay(currentEnergi, localStorage.getItem('sehat') || 100, localStorage.getItem('lapar') || 100, localStorage.getItem('senang') || 100);
-        }
+        // // Event listener untuk kategori markup
+        // document.getElementById('markupCategory').addEventListener('click', function() {
+        //     displayLeaderboard('markup');
+        // });
     </script>
 </body>
 </html>

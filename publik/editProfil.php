@@ -13,9 +13,7 @@ try {
     die("Connection failed: " . $e->getMessage());
 }
 
-// Periksa apakah pengguna sudah login
 if (isset($_SESSION['user_id'])) {
-    // Ambil data pengguna dari database
     $sql = "SELECT nama_profil, avatar FROM userPoat WHERE id = :user_id";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':user_id', $_SESSION['user_id']);
@@ -28,7 +26,6 @@ if (isset($_SESSION['user_id'])) {
     }
 }
 
-// Periksa apakah form disubmit
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama_baru = htmlspecialchars(trim($_POST['nama']));
     $avatar = isset($_POST['avatar']) ? htmlspecialchars(trim($_POST['avatar'])) : null;
@@ -36,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $max_length = 10;
     $error = false;
     
-    // Validasi nama
     if (strlen($nama_baru) > $max_length) {
         $_SESSION['message'] = "Error: Nama pengguna tidak boleh lebih dari $max_length karakter.";
         $error = true; // Set flag kesalahan
@@ -55,7 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Hanya proses pembaruan avatar jika tidak ada kesalahan
     if (!$error && $avatar && isset($_SESSION['user_id'])) {
         $sql = "UPDATE userPoat SET avatar = :avatar WHERE id = :user_id";
         $stmt = $conn->prepare($sql);
