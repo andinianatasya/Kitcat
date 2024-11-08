@@ -13,7 +13,7 @@ try {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        // ini buat cek usernme sama pass ya deks
+        // ini buat cek usernme sama pass ya
         $stmt = $pdo->prepare("SELECT * FROM userPoat WHERE username = :username");
         $stmt->execute(['username' => $username]);
         
@@ -22,7 +22,7 @@ try {
             if (password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
                 // jika login berhasil, mk diarahkan ke halaman beranda ygy ><
-                $_SESSION['nama_profil'] = $user['nama_profil']; // Ambil nama_profil dari database
+                $_SESSION['nama_profil'] = $user['nama_profil'];
                 $_SESSION['avatar'] = $user['avatar'];
                 header("Location: beranda.html");
                 exit;

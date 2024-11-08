@@ -20,7 +20,7 @@
                 </li>
 
                 <li class="text-center">
-                    <a href="#shop" class="flex flex-col items-center hover:opacity-50">
+                    <a href="#" class="flex flex-col items-center hover:opacity-50">
                         <img id="shopImage" src="img/belanja.svg" alt="Shop Icon" class="w-8 h-8 mb-1">
                     </a>
                 </li>
@@ -196,141 +196,11 @@
                 <button id="tutupBelanja" class="mt-4 px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Tutup</button>
             </div>
         </div>
-    </div>
+    </div> 
 
     <script src="js/index.js"></script>
     <script src="js/chatglobal.js"></script>
-
-    <script>
-        function decreaseAllStatusBars() {
-            // Mengambil nilai dari Local Storage
-            let currentLapar = localStorage.getItem('lapar') || 100;
-            let currentSehat = localStorage.getItem('sehat') || 100;
-            let currentEnergi = localStorage.getItem('energi') || 100;
-            let currentSenang = localStorage.getItem('senang') || 100;
-
-            currentLapar = parseInt(currentLapar);
-            currentSehat = parseInt(currentSehat);
-            currentEnergi = parseInt(currentEnergi);
-            currentSenang = parseInt(currentSenang);
-
-            if (currentLapar > 0) currentLapar--;
-            if (currentSehat > 0) currentSehat--;
-            if (currentEnergi > 0) currentEnergi--;
-            if (currentSenang > 0) currentSenang--;
-        
-            // Menyimpan nilai baru ke Local Storage
-            localStorage.setItem('lapar', currentLapar);
-            localStorage.setItem('sehat', currentSehat);
-            localStorage.setItem('energi', currentEnergi);
-            localStorage.setItem('senang', currentSenang);
-        
-            // Memperbarui tampilan bar
-            updateBarsDisplay(currentLapar, currentSehat, currentEnergi, currentSenang);
-        }
-
-        // Fungsi untuk memperbarui tampilan bar
-        function updateBarsDisplay(lapar, sehat, energi, senang) {
-            document.getElementById('status_bar_lapar').style.width = lapar + '%';
-            document.getElementById('laparBar').textContent = lapar + '%';
-        
-            document.getElementById('status_bar_sehat').style.width = sehat + '%';
-            document.getElementById('sehatBar').textContent = sehat + '%';
-        
-            document.getElementById('status_bar_energi').style.width = energi + '%';
-            document.getElementById('energiBar').textContent = energi + '%';
-        
-            document.getElementById('status_bar_senang').style.width = senang + '%';
-            document.getElementById('senangBar').textContent = senang + '%';
-        }
-
-        setInterval(decreaseAllStatusBars, 60000);
-
-        window.onload = function() {
-            updateBarsDisplay(
-                localStorage.getItem('lapar') || 100,
-                localStorage.getItem('sehat') || 100,
-                localStorage.getItem('energi') || 100,
-                localStorage.getItem('senang') || 100
-            );
-        };
-
-
-    /////////beliiiiii
-        const shopImage = document.getElementById("shopImage");
-        const shopOverlay = document.getElementById("shopOverlay");
-        const closeShopBtn = document.getElementById("closeShopBtn");
-        let jumlahKoin = 1000;
-
-        document.addEventListener('DOMContentLoaded', function() {
-        const belanja = document.getElementById("belanja");
-        const jumlahKoinEl = document.getElementById("jumlahKoin");
-        const tutupBelanja = document.getElementById("tutupBelanja");
-        const menuUtama = document.getElementById("menuUtama");
-        const menuKustom = document.getElementById("menuKustom");
-        const menuMakan = document.getElementById("menuMakan");
-        const catImage = document.getElementById("catImage");
-        let jumlahKoin = 1000;
-
-        // Tampilkan dan tutup menu belanja
-        document.getElementById("shopImage").addEventListener("click", () => belanja.classList.remove("hidden"));
-        tutupBelanja.addEventListener("click", () => belanja.classList.add("hidden"));
-
-        // Navigasi menu
-        document.getElementById("btnMakanan").addEventListener("click", () => {
-            menuUtama.classList.add("hidden");
-            menuMakan.classList.remove("hidden");
-        });
-
-        document.getElementById("btnKustom").addEventListener("click", () => {
-            menuUtama.classList.add("hidden");
-            menuKustom.classList.remove("hidden");
-        });
-
-        document.getElementById("backToMenu").addEventListener("click", () => {
-            menuKustom.classList.add("hidden");
-            menuUtama.classList.remove("hidden");
-        });
-
-        document.getElementById("backToMenuMakan").addEventListener("click", () => {
-            menuMakan.classList.add("hidden");
-            menuUtama.classList.remove("hidden");
-        });
-
-        //untuk memperbarui tampilan koin
-        const updateCoinDisplay = () => {
-            jumlahKoinEl.textContent = jumlahKoin;
-        };
-
-        // Pembelian item
-        const handlePurchase = (button) => {
-            const harga = parseInt(button.getAttribute("hargaItem"));
-            if (jumlahKoin >= harga) {
-                jumlahKoin -= harga;
-                alert("Anda telah membeli dengan harga " + harga + " koin");
-                updateCoinDisplay();
-                return true;
-            } else {
-                alert("Koin anda tidak cukup untuk membeli ini!");
-                return false;
-            }
-        };
-
-        // Event listener untuk tombol beli
-        document.querySelectorAll(".beliBtn").forEach(button => {
-            button.addEventListener("click", function() {
-                if (handlePurchase(this)) {
-                    const motif = this.getAttribute("data-motif");
-                    if (motif) {
-                        catImage.src = `img/motif${motif}/default_bayi${motif}.png`;
-                    }
-                }
-            });
-        });
-
-        updateCoinDisplay();
-        });
-    </script>
-
+    <script src="js/bar.js"></script>
+    <script src="js/belanja.js"></script>
 </body>
 </html>
