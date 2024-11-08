@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Latihan Coding HTML</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -17,6 +18,7 @@
     </div>
 
     <div id="rulesOverlay" class="fixed inset-0 flex items-center justify-center min-h-screen">
+
         <div class="bg-white p-10 rounded-lg shadow-lg w-11/12 max-w-md text-center">
             <h2 class="text-2xl font-bold mb-4 text-red-800">Aturan Bermain</h2>
             <p class="mb-4">Selamat datang di kuis HTML! Berikut adalah cara bermain:</p>
@@ -40,10 +42,12 @@
         const totalQuestions = 3;
 
         const questions = [
+
     // {
     //     question: "Apa singkatan dari HTML?",
     //     answer: "HyperText Markup Language"
     // },
+
     {
         question: "Tag HTML mana yang digunakan untuk menampilkan judul utama?",
         answer: "<h1>"
@@ -56,6 +60,7 @@
         question: "Tag mana yang digunakan untuk membuat tautan?",
         answer: "<a>"
     },
+
     // {
     //     question: "Apa atribut yang digunakan untuk menentukan URL pada tag <a>?",
     //     answer: "href"
@@ -160,10 +165,8 @@
     //     question: "Tag mana yang digunakan untuk membuat section pada halaman?",
     //     answer: "<section>"
     // },
-    {
-        question: "Apa tag yang digunakan untuk membuat area navigasi?",
-        answer: "<nav>"
-    },
+
+
     // {
     //     question: "Apa tag yang digunakan untuk menampilkan ikon gambar?",
     //     answer: "<svg>"
@@ -172,6 +175,7 @@
     //     question: "Tag mana yang digunakan untuk menampilkan daftar item dalam format definisi?",
     //     answer: "<dl>"
     // }
+
 ];
         function shuffleQuestions(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -203,12 +207,15 @@
                 showNotification("Anda salah!", false);
             }
             updateDisplays();
+
             setTimeout(nextQuestion, 2000); // Tunggu 2 detik sebelum lnjt
+
         }
 
         function showNotification(message, isCorrect) {
             const notificationElement = document.getElementById('notification');
             notificationElement.innerHTML = `
+
                 <p class="px-3 rounded-lg text-white font-medium">${message}</p>
             `;
             notificationElement.classList.remove('hidden', 'bg-green-500', 'bg-red-700');
@@ -218,6 +225,7 @@
             setTimeout(() => {
                 notificationElement.classList.add('hidden');
             }, 2000);
+
         }
 
         function updateDisplays() {
@@ -250,6 +258,7 @@
 }
 
         document.getElementById('rulesOverlay').classList.remove('hidden');
+
 
         document.getElementById('startButton').addEventListener('click', () => {
             document.getElementById('rulesOverlay').classList.add('hidden');
