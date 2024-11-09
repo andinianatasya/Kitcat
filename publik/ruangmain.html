@@ -10,12 +10,15 @@
 
 <body class="overflow-hidden">
     <div class="h-screen bg-bgMain bg-cover bg-center">
+        <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
+            <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 mr-5 mt-2">
+        </div>
         <nav class="bg-oren p-2">
             <ul class="flex justify-around items-center">
 
                 <li class="text-center hover:opacity-50 duration-300">
                     <a href="profil.php?ruangan=beranda.html" class="flex items-center">
-                        <img src="img/profil.svg" alt="Profil Icon" class="flex flex-col items-center w-8 h-8 mb-1">
+                        <img src="img/profil.svg" alt="Profil Icon" class="flex flex-col items-center w-10 h-10 mb-1">
                         <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Profil</span>
                     </a>
                     
@@ -23,17 +26,18 @@
 
                 <li class="text-center hover:opacity-50 duration-300">
                     <a href="#shop" class="flex items-center flex">
-                        <img id="shopImage" src="img/belanja.svg" alt="Shop Icon" class="w-8 h-8 mb-1">
+                        <img id="shopImage" src="img/belanja.svg" alt="Shop Icon" class="w-10 h-10 mb-1">
                         <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Toko</span>
                     </a>
                     
                 </li>
 
                 <li class="text-center">
-                    <button id="dropdownButton" class="flex items-center hover:opacity-50">
-                        <img src="img/lokasi.svg" alt="ruangan" class="w-8 h-8 mb-1">
+                    <button id="dropdownButton" class="flex items-center hover:opacity-50 duration-300">
+                        <img src="img/lokasi.svg" alt="ruangan" class="w-10 h-10 mb-1">
                         <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruangan</span>
                     </button>
+                
                     <div>
                         <ul id="lokasidropdown" class="bg-oren rounded-md mt-4 absolute rounded-me md:w-40 w-20 0focus:outline-orenTua hidden">
                             <li>
@@ -82,7 +86,7 @@
 
                 <li class="text-center hover:opacity-50 duration-300">
                     <a href="#" class="flex items-center">
-                        <img id="bukaChat" src="img/chat.svg" alt="Chat Icon" class="w-8 h-8 mb-1">
+                        <img id="bukaChat" src="img/chat.svg" alt="Chat Icon" class="w-10 mb-1">
                         <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Obrolan Global</span>
                     </a>
                     
@@ -91,24 +95,16 @@
         </nav>
     </div>
 
-
-    <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
-        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 mr-5 mt-2">
-    </div>
-
-    <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4 ">
+    <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4">
         <div class="flex space-x-5">
-
-            <div id="leaderboardButton" class="hover:cursor-pointer w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
-
+            <button id="leaderboardButton" class="w-16 h-16 shadow-cartoon rounded-lg">
                 <a href="#" ></a>
-                <img src="img/leaderboard.svg" alt="leaderboard" class="rounded-full">
-            </div>
+                <img src="img/leaderboard.svg" alt="leaderboard" class="rounded-lg active:translate-y-px active:duration-300">
+            </button>
             
-            <div id="questionImage" class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-200 transition-shadow duration-300">
-                <a href="#"><img src="img/tes.svg" alt="tes" class="rounded-full"></a>
-
-            </div>
+            <buttonn id="questionImage" class="w-16 h-16 shadow-cartoon rounded-lg">
+                <a href="#"><img src="img/tes.svg" alt="tes" class="rounded-lg active:translate-y-px active:duration-300"></a>
+            </button>
         </div>
     </div>
 
@@ -194,14 +190,14 @@
     </div>
 
 
-    <div id="quizOverlay" class="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm hidden">
-        <div class="flex items-center justify-center h-full">
-            <div class="bg-gradient-to-br from-merahTua to-orange-300 p-6 rounded-lg max-w-md w-full text-center">
-                <h1 class="text-lg font-bold mb-4 text-white">Pilih Bahasa</h1>
-                <div class="relative flex flex-col space-y-4 p-4 shadow-lg rounded-lg">   
-                    <button id="pemro" class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orenTua"> <a href="bahasapemrograman.html">Bahasa Pemrograman (C/C++)</a></button>
-                    <button id="html" class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orenTua"><a href="bahasastandar.html">Bahasa Markup Standar (HTML)</a></button>  
-                <button id="tutupKuis" class="text-white text-xs font-semibold hover:text-orange-900" onclick="window.location.href='ruangmain.html'">Tutup</button>
+    <div id="quizOverlay" class="fixed inset-0 bg-merahTua bg-opacity-30 backdrop-blur-sm hidden">
+        <div class="flex items-center justify-center h-screen">
+            <div class="bg-cream p-6 rounded-lg max-w-md w-screen text-center">
+                <h1 class="text-lg font-bold mb-4 text-oren">Pilih Bahasa</h1>
+                <div class="relative flex flex-col space-y-4 p-4 rounded-lg">   
+                    <button id="pemro" class="px-4 py-2 bg-oren text-orange-200 rounded hover:bg-merahTua"> <a href="bahasapemrograman.html">Bahasa Pemrograman (C/C++)</a></button>
+                    <button id="html" class="px-4 py-2 bg-oren text-orange-200 rounded hover:bg-merahTua"><a href="bahasastandar.html">Bahasa Markup Standar (HTML)</a></button>  
+                <button id="tutupKuis" class="text-oren font-semibold hover:text-merahTua" onclick="window.location.href='ruangmain.html'">Tutup</button>
             </div>
         </div>
     </div>
