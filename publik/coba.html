@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clickable Image Inside Div</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Elemen gambar yang bisa diklik di dalam div -->
+        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="cursor-pointer">
+        <audio id="meong" src="img/meow.mp3"></audio>
+    </div>
+
+    <script>
+        const suaraMeong = document.getElementById("meong");
+        const catImage = document.getElementById("catImage");
+
+        // Event listener pada gambar di dalam div
+        catImage.addEventListener('click', function() {
+            if (suaraMeong) {
+                suaraMeong.play()
+                    .then(() => console.log('Memutar audio'))
+                    .catch(error => console.error('Gagal memutar audio:', error));
+            } else {
+                console.error('Audio tidak ditemukan');
+            }
+        });
+    </script>
+</body>
+</html>

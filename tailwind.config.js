@@ -22,8 +22,8 @@ module.exports = {
       },
 
       boxShadow : {
-        'cartoon': "0 5px rgb(187, 77, 0)",
-        'squashed-cartoon': "0 0.5px rgb(187, 77, 0)"
+        'cartoon': "0 10px rgb(187, 77, 0)",
+        'squashed-cartoon': "0 5px rgb(187, 77, 0)"
       }
     },
   },
