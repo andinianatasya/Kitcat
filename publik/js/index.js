@@ -45,4 +45,3 @@ function showAnswer(questionNumber) {
 const answerDiv = document.getElementById(`correctAnswer${questionNumber}`);
 answerDiv.style.display = answerDiv.style.display === "none" ? "block" : "none";
 } 
-
