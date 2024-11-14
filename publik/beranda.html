@@ -4,98 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="css/style.css">
+
     <link rel="icon" href="img/logo(1).png" type="image/png">
+
     <title>Ruang Tamu</title>
 </head>
 
 <body class="overflow-hidden">
-    <div class="h-screen bg-bgBeranda bg-cover bg-center">
-        <nav class="bg-oren p-2">
-            <ul class="flex justify-around items-center">
-
-                <li class="text-center hover:opacity-50 duration-300">
-                    <a href="profil.php?ruangan=beranda.html" class="flex items-center">
-                        <img src="img/profil.svg" alt="Profil Icon" class="flex flex-col items-center w-8 h-8 mb-1">
-                        <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Profil</span>
-                    </a>
-                    
-                </li>
-
-                <li class="text-center hover:opacity-50 duration-300">
-                    <a href="#shop" class="flex items-center flex">
-
-                        <img id="shopImage" src="img/belanja.svg" alt="Shop Icon" class="w-8 h-8 mb-1">
-                        <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Toko</span>
-                    </a>
-                    
-                </li>
-
-                <li class="text-center">
-                    <button id="dropdownButton" class="flex items-center hover:opacity-50 duration-300">
-                        <img src="img/lokasi.svg" alt="ruangan" class="w-8 h-8 mb-1">
-                        <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruangan</span>
-                    </button>
-                
-                    <div>
-                        <ul id="lokasidropdown" class="bg-oren rounded-md mt-4 absolute rounded-me md:w-40 w-20 0focus:outline-orenTua hidden">
-                            <li>
-                                <button class="hover:opacity-50 flex duration-300 p-2">
-                                    <a href="beranda.html" class="flex items-center">
-                                        <img src="img/beranda.svg" alt="Ruang Makan" class="w-16 mb-1">
-                                    </a>
-                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Tamu</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="hover:opacity-50 flex duration-300 p-2">
-                                    <a href="ruangmkn.html" class="flex items-center">
-                                        <img src="img/makan.svg" alt="Ruang Makan" class="w-16 mb-1">
-                                    </a>
-                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Makan</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="hover:opacity-50 flex duration-300 p-2">
-                                    <a href="ruangtdr.html" class="flex items-center">
-                                        <img class="w-16 mb-1" src="img/tidur.svg" alt="Ruang Tidur">
-                                    </a>
-                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Tidur</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="hover:opacity-50 flex duration-300 p-2">
-                                    <a href="ruangmain.html" class="flex items-center">
-                                        <img class="w-16 mb-1" src="img/main.svg" alt="Ruang Main">
-                                    </a>
-                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Main</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="hover:opacity-50 flex duration-300 p-2">
-                                    <a href="ruangmandi.html" class="flex items-center">
-                                        <img class="w-16 mb-1" src="img/mandi.svg" alt="">
-                                    </a>
-                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Mandi</span>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="text-center hover:opacity-50 duration-300">
-                    <a href="#" class="flex items-center">
-                        <img id="bukaChat" src="img/chat.svg" alt="Chat Icon" class="w-8 h-8 mb-1">
-                        <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Obrolan Global</span>
-                    </a>
-                    
-                </li>
-            </ul>
-        </nav>
+    <div class="bg-bgBeranda bg-cover bg-center absolute inset-0 flex justify-center items-center">
+        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 mt-18 md:mt-56">
+        <audio id="meong" src="img/meow.mp3"></audio>
     </div>
 
-    <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
-        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-56 mt-56">
-    </div>
+    <nav class="fixed top-0 left-0 right-0 bg-oren p-2">
+        <ul class="flex justify-around items-center">
+
+            <li class="text-center hover:opacity-50 duration-300">
+                <a href="profil.php?ruangan=beranda.html" class="flex items-center">
+                    <img src="img/profil.svg" alt="Profil Icon" class="flex flex-col items-center w-10 h-10 mb-1">
+                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Profil</span>
+                </a>
+                
+            </li>
+
+            <li class="text-center hover:opacity-50 duration-300">
+                <a href="#shop" class="flex items-center flex">
+                    <img id="shopImage" src="img/belanja.svg" alt="Shop Icon" class="w-10 h-10 mb-1">
+                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Toko</span>
+                </a>
+                
+            </li>
+
+            <li class="text-center">
+                <button id="dropdownButton" class="flex items-center hover:opacity-50 duration-300">
+                    <img src="img/lokasi.svg" alt="ruangan" class="w-10 h-10 mb-1">
+                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruangan</span>
+                </button>
+            
+                <div>
+                    <ul id="lokasidropdown" class="bg-oren rounded-md mt-4 absolute rounded-me md:w-40 w-20 p-2 0focus:outline-orenTua hidden">
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="beranda.html" class="flex items-center" class="">
+                                    <img src="img/beranda.svg" alt="Ruang Makan" class="w-16 mb-1">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Tamu</span>
+                                </a>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="ruangmkn.html" class="flex items-center">
+                                    <img src="img/makan.svg" alt="Ruang Makan" class="w-16 mb-1">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Makan</span>
+                                </a>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="ruangtdr.html" class="flex items-center">
+                                    <img class="w-16 mb-1" src="img/tidur.svg" alt="Ruang Tidur">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Tidur</span>
+                                </a>
+                            </button>                 
+                        </li>
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="ruangmain.html" class="flex items-center">
+                                    <img class="w-16 mb-1" src="img/main.svg" alt="Ruang Main">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Main</span>
+                                </a>
+                            </button>                                
+                        </li>
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="ruangmandi.html" class="flex items-center">
+                                    <img class="w-16 mb-1" src="img/mandi.svg" alt="">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Mandi</span>
+                                </a>
+                            </button>                               
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="text-center hover:opacity-50 duration-300">
+                <a href="#" class="flex items-center">
+                    <img id="bukaChat" src="img/chat.svg" alt="Chat Icon" class="w-10 mb-1">
+                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Obrolan Global</span>
+                </a>
+                
+            </li>
+        </ul>
+    </nav>
+
 
     <div class="fixed bottom-0 left-0 right-0 py-4 px-8">
         <div class="flex justify-center space-x-8 md:space-x-72">
@@ -110,7 +111,6 @@
                         <span id="senangBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
                     </div>
                 </div>
-
 
                 <!-- Bar dan gambar Lapar -->
                 <div class="flex items-center space-x-2">
@@ -241,5 +241,6 @@
     <script src="js/chatglobal.js"></script>
     <script src="js/bar.js"></script>
     <script src="js/belanja.js"></script>
+    <script src="js/interaksiKucing.js"></script>
 </body>
 </html>
