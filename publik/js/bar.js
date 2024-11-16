@@ -1,4 +1,3 @@
-
 function decreaseAllStatusBars() { 
     let currentLapar = localStorage.getItem('lapar') || 100;
     let currentSehat = localStorage.getItem('sehat') || 100;

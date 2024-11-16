@@ -1,7 +1,6 @@
 const shopImage = document.getElementById("shopImage");
 const shopOverlay = document.getElementById("shopOverlay");
 const closeShopBtn = document.getElementById("closeShopBtn");
-let jumlahKoin = 1000
 document.addEventListener('DOMContentLoaded', function() {
 const belanja = document.getElementById("belanja");
 const jumlahKoinEl = document.getElementById("jumlahKoin");
@@ -10,7 +9,7 @@ const menuUtama = document.getElementById("menuUtama");
 const menuKustom = document.getElementById("menuKustom");
 const menuMakan = document.getElementById("menuMakan");
 const catImage = document.getElementById("catImage");
-let jumlahKoin = 1000
+
 // Tampilkan dan tutup menu belanja
 document.getElementById("shopImage").addEventListener("click", () => belanja.classList.remove("hidden"));
 tutupBelanja.addEventListener("click", () => belanja.classList.add("hidden"))

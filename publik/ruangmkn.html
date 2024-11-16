@@ -88,18 +88,50 @@
         </ul>
     </nav>
 
-    <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4">
+    <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4 px-5 scroll-pl-6 snap-x overflow-x-auto">
         <div class="flex space-x-5">
-            <button class="w-16 h-16 shadow-cartoon rounded-full">
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start">
                 <img id="makanButton1" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/ikan.svg" alt="makanan">
             </button>
 
-            <button class="w-16 h-16 shadow-cartoon rounded-full">
-                <img id="makanButton2" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/minum.svg" alt="minuman">
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start">
+                <img id="obatButton1" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat1.png" alt="obat">
+            </button> 
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="makanButton2" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/sayur.svg" alt="makanan">
             </button>
 
-            <button class="w-16 h-16 shadow-cartoon rounded-full">
-                <img id="makanButton3" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/sayur.svg" alt="makanan">
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="makanButton3" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/makanan1.png" alt="makanan">
+            </button>
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="makanButton4" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/makanan2.png" alt="makanan">
+            </button>
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="makanButton5" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/makanan3.png" alt="makanan">
+            </button> 
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="minumButton1" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/minum.svg" alt="minuman">
+            </button>  
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="minumButton2" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/minuman1.png" alt="minuman">
+            </button> 
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="minumButton3" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/minuman2.png" alt="minuman">
+            </button> 
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="obatButton2" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat2.png" alt="obat">
+            </button>   
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="obatButton3" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat3.png" alt="obat">
             </button>   
         </div>
     </div>
@@ -108,37 +140,8 @@
     <script src="js/index.js"></script>
     <script src="js/chatglobal.js"></script>
     <script src="js/interaksiKucing.js"></script>
-    <script>
-        
-        document.getElementById('makanButton1').addEventListener('click', function() {
-        updateLapar(10);
-        });
-
-        document.getElementById('makanButton2').addEventListener('click', function() {
-            updateLapar(5);
-        });
-
-        document.getElementById('makanButton3').addEventListener('click', function() {
-            updateLapar(10);
-        });
-
-        function updateLapar(amount) {
-            let currentLapar = localStorage.getItem('lapar') || 100; 
-            currentLapar = parseInt(currentLapar);
-        
-            if (currentLapar < 100) {
-                currentLapar += amount;
-                if (currentLapar > 100) {
-                    currentLapar = 100; 
-                    alert("Bar lapar sudah penuh!");
-                }
-                localStorage.setItem('lapar', currentLapar);
-            } 
-        
-            updateBarsDisplay(currentLapar, localStorage.getItem('sehat') || 100, localStorage.getItem('energi') || 100, localStorage.getItem('senang') || 100);
-        }
-
-    </script>
-
+    <script src="js/barLapar.js"></script>
+    <script src="js/barSehat.js"></script>
+    
 </body>
 </html>
