@@ -1,9 +1,67 @@
 <?php
 session_start();
 
-// Cek jika ada pesan kesalahan dan simpan dalam dsini
+$host = "localhost";
+$dbname = "userPoat";
+$user = "postgres";
+$password = "Medan2005"; 
+
+try {
+    $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Koneksi gagal: " . $e->getMessage();
+    exit;
+}
+
+$userId = $_SESSION['user_id'] ?? null;
+if (empty($userId)) {
+    echo "ID pengguna tidak ditemukan di sesi.";
+    exit;
+}
+
+try {
+    $stmt = $pdo->prepare("SELECT level, exp FROM userPoat WHERE id = :id");
+    $stmt->execute(['id' => $userId]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$user) {
+        echo "Pengguna tidak ditemukan.";
+        exit;
+    }
+
+    $level = $user['level'];
+    $exp = $user['exp'];
+} catch (PDOException $e) {
+    echo "Kesalahan saat mengeksekusi query: " . $e->getMessage();
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['makanan'])) {
+    $exp += 5;
+
+    if ($level < 50) {
+        if ($exp >= ($level * 10)) {
+            $level++;
+            $exp = 0;
+        }
+    } else {
+        if ($exp >= 500) {
+            $level++;
+            $exp = 0;
+        }
+    }
+
+    try {
+        $stmt = $pdo->prepare("UPDATE userPoat SET level = :level, exp = :exp WHERE id = :id");
+        $stmt->execute(['level' => $level, 'exp' => $exp, 'id' => $userId]);
+    } catch (PDOException $e) {
+        echo "Kesalahan saat memperbarui data: " . $e->getMessage();
+        exit;
+    }
+}
+
 $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
-// Hapus pesan dari sesi setelah diambil
 unset($_SESSION['message']);
 
 if (isset($_GET['ruangan'])) {
@@ -62,8 +120,10 @@ echo "Ruangan sebelumnya: " . htmlspecialchars($ruangan_sebelumnya);
                                 <img class="w-5 h-5 hover:opacity-50" src="img/pulpenPutih.svg" alt="Edit">
                             </button>
                         </div>
+                        <p class="text-white text-xs font-bold">Tingkat: <?php echo htmlspecialchars($level); ?></p>
+                        <p class="text-white text-xs font-bold">Poin: <?php echo htmlspecialchars($exp); ?></p>
                     </div>
-    
+
                     <div id="editNama" class="hidden p-2">
                         <form action="editProfil.php" method="post">
                             <label class="block mb-2 font-semibold text-start text-white">Nama Pengguna:</label>

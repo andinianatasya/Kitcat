@@ -3,39 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/logo.png" type="image/png">
     <title>Latihan Coding HTML</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* CSS untuk timer */
-        #timer {
-            font-size: 20px;
-            color: red;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        /* Animasi untuk tombol */
-        button {
-            transition: transform 0.2s;
-        }
-
-        button:hover {
-            transform: scale(1.05);
-        }
-
-        /* Peringkat */
-        #rankDisplay {
-            font-size: 18px;
-            margin-top: 20px;
-            text-align: center;
-        }
-    </style>
+    <link rel="icon" href="img/logo(1).png" type="image/png">
 </head>
 <body class="bg-bgMain backdrop-blur-sm flex items-center justify-center h-screen overflow-hidden bg-cover bg-center">
     <div class="mx-auto px-4 py-8">
         <h1 class="text-4xl font-bold mb-8 text-center text-merah bg-orange-300 rounded-lg">Latihan Coding HTML</h1>
-        
         <div id="coinDisplay" class="text-xl font-bold mb-4 text-center text-merah bg-orange-300 rounded-lg">Koin: 0</div>
         <div id="rankDisplay" class="text-xl font-bold mb-4 text-center text-merah bg-orange-300 rounded-lg">Peringkat: Pemula</div>
         <div id="timer" class="hidden">60 detik tersisa</div>
@@ -158,7 +133,7 @@
                 "answer": "<h2>"
             }
         ];
-
+      
         function shuffleQuestions(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));

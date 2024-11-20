@@ -11,107 +11,137 @@
 </head>
 
 <body class="overflow-hidden">
-    <div class="h-screen bg-bgDapur bg-cover bg-center">
-        <nav class="bg-merah p-2">
-            <ul class="flex justify-around items-center">
+    <div class="bg-bgDapur bg-cover bg-center absolute inset-0 flex justify-center items-center">
+        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 mt-20 cursor-pointer">
+        <audio id="meong" src="img/meow.mp3"></audio>
+    </div>
 
-                <li class="text-center hover:opacity-50">
-                    <a href="profil.php?ruangan=ruangmkn.html" class="flex flex-col items-center">
-                        <img src="img/profil.svg" alt="Profil Icon" class="w-8 h-8 mb-1">
-                    </a>
-                </li>
+    <nav class="fixed top-0 left-0 right-0 bg-oren p-2">
+        <ul class="flex justify-around items-center">
+            <li class="text-center hover:opacity-50 duration-300">
+                <a href="profil.php?ruangan=beranda.html" class="flex items-center">
+                    <img src="img/profil.svg" alt="Profil Icon" class="flex flex-col items-center w-10 h-10 mb-1">
+                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Profil</span>
+                </a>
+                
+            </li>
 
-                <li class="text-center">
-                    <button id="dropdownButton" class="flex flex-col items-center focus:outline-none hover:opacity-50">
-                        <img src="img/lokasi.svg" alt="Game Icon" class="w-8 h-8 mb-1">
-                    </button>
-                    <ul id="lokasidropdown" class="absolute p-2 mt-2 rounded-me w-24">
-                        <li class="py-1">
-                            <a href="beranda.html" class="flex items-center px-4">
-                                <img class="rounded-full hover:shadow-lg hover:shadow-orange-950 transition-shadow duration-300" src="img/beranda.svg" alt="">
-                            </a>
+            <li class="text-center">
+                <button id="dropdownButton" class="flex items-center hover:opacity-50 duration-300">
+                    <img src="img/lokasi.svg" alt="ruangan" class="w-10 h-10 mb-1">
+                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruangan</span>
+                </button>
+            
+                <div>
+                    <ul id="lokasidropdown" class="bg-oren rounded-md mt-4 absolute rounded-me md:w-40 w-20 p-2 0focus:outline-orenTua hidden">
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="beranda.html" class="flex items-center" class="">
+                                    <img src="img/beranda.svg" alt="Ruang Makan" class="w-16 mb-1">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Tamu</span>
+                                </a>
+                            </button>
                         </li>
-                        <li class="py-1">
-                            <a href="ruangtdr.html" class="flex items-center px-4">
-                                <img class="rounded-full hover:shadow-lg hover:shadow-orange-950 transition-shadow duration-300" src="img/tidur.svg" alt="">
-                            </a>
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="ruangmkn.html" class="flex items-center">
+                                    <img src="img/makan.svg" alt="Ruang Makan" class="w-16 mb-1">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Makan</span>
+                                </a>
+                            </button>
                         </li>
-                        <li class="py-1">
-                            <a href="ruangmain.html" class="flex items-center px-4">
-                                <img class="rounded-full hover:shadow-lg hover:shadow-orange-950 transition-shadow duration-300" src="img/main.svg" alt="gambargame">
-                            </a>
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="ruangtdr.html" class="flex items-center">
+                                    <img class="w-16 mb-1" src="img/tidur.svg" alt="Ruang Tidur">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Tidur</span>
+                                </a>
+                            </button>                 
                         </li>
-                        <li class="py-1">
-                            <a href="ruangmandi.html" class="flex items-center px-4">
-                                <img class="rounded-full hover:shadow-lg hover:shadow-orange-950 transition-shadow duration-300" src="img/mandi.svg" alt="">
-                            </a>
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="ruangmain.html" class="flex items-center">
+                                    <img class="w-16 mb-1" src="img/main.svg" alt="Ruang Main">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Main</span>
+                                </a>
+                            </button>                                
+                        </li>
+                        <li>
+                            <button class="hover:opacity-50 duration-300">
+                                <a href="ruangmandi.html" class="flex items-center">
+                                    <img class="w-16 mb-1" src="img/mandi.svg" alt="">
+                                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Mandi</span>
+                                </a>
+                            </button>                               
                         </li>
                     </ul>
-                </li>
+                </div>
+            </li>
 
-                <li class="text-center">
-                    <a href="#chat" class="flex flex-col items-center hover:opacity-50">
-                        <img id="bukaChat" src="img/chat.svg" alt="Chat Icon" class="w-8 h-8 mb-1">
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+            <li class="text-center hover:opacity-50 duration-300">
+                <a href="#" class="flex items-center">
+                    <img id="bukaChat" src="img/chat.svg" alt="Chat Icon" class="w-10 mb-1">
+                    <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Obrolan Global</span>
+                </a>
+                
+            </li>
+        </ul>
+    </nav>
 
-    <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
-        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 ml-12 mt-20">
-    </div>
-
-    <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4">
+    <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4 px-5 scroll-pl-6 snap-x overflow-x-auto">
         <div class="flex space-x-5">
-            <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-900 transition-shadow duration-300">
-                <img id="makanButton1" class="rounded-full" src="img/ikan.svg" alt="makanan">
-            </div>
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start">
+                <img id="makanButton1" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/ikan.svg" alt="makanan">
+            </button>
 
-            <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-900 transition-shadow duration-300">
-                <img id="makanButton2" class="rounded-full" src="img/minum.svg" alt="minuman">
-            </div>
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start">
+                <img id="obatButton1" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat1.png" alt="obat">
+            </button> 
 
-            <div class="w-12 h-12 rounded-full hover:shadow-lg hover:shadow-orange-900 transition-shadow duration-300">
-                <img id="makanButton3" class="rounded-full" src="img/sayur.svg" alt="makanan">
-            </div>   
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="makanButton2" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/sayur.svg" alt="makanan">
+            </button>
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="makanButton3" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/makanan1.png" alt="makanan">
+            </button>
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="makanButton4" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/makanan2.png" alt="makanan">
+            </button>
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="makanButton5" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/makanan3.png" alt="makanan">
+            </button> 
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="minumButton1" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/minum.svg" alt="minuman">
+            </button>  
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="minumButton2" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/minuman1.png" alt="minuman">
+            </button> 
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="minumButton3" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/minuman2.png" alt="minuman">
+            </button> 
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="obatButton2" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat2.png" alt="obat">
+            </button>   
+
+            <button class="w-16 h-16 shadow-cartoon rounded-full snap-start opacity-50 cursor-not-allowed" disabled>
+                <img id="obatButton3" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300" src="img/makanminum/obat3.png" alt="obat">
+            </button>   
         </div>
     </div>
 
 
     <script src="js/index.js"></script>
     <script src="js/chatglobal.js"></script>
-
-    <script>  
-        document.getElementById('makanButton1').addEventListener('click', function() {
-        updateLapar(10);
-        });
-
-        document.getElementById('makanButton2').addEventListener('click', function() {
-            updateLapar(5);
-        });
-
-        document.getElementById('makanButton3').addEventListener('click', function() {
-            updateLapar(10);
-        });
-
-        function updateLapar(amount) {
-            let currentLapar = localStorage.getItem('lapar') || 100; 
-            currentLapar = parseInt(currentLapar);
-        
-            if (currentLapar < 100) {
-                currentLapar += amount;
-                if (currentLapar > 100) {
-                    currentLapar = 100; 
-                    alert("Bar lapar sudah penuh!");
-                }
-                localStorage.setItem('lapar', currentLapar);
-            } 
-        
-            updateBarsDisplay(currentLapar, localStorage.getItem('sehat') || 100, localStorage.getItem('energi') || 100, localStorage.getItem('senang') || 100);
-        }
-
-    </script>
-
+    <script src="js/interaksiKucing.js"></script>
+    <script src="js/barLapar.js"></script>
+    <script src="js/barSehat.js"></script>
+    
 </body>
 </html>
