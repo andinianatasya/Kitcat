@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-bgMain backdrop-blur-sm flex items-center justify-center h-screen overflow-hidden bg-cover bg-center">
-    <div class="mx-auto px-4 py-8 p-5">
-        <h1 class="text-4xl font-bold mb-8 text-center text-merah bg-orange-300 rounded-lg">Latihan Coding C/C++</h1>
+    <div class="mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold mb-8 text-center text-merah bg-orange-300 rounded-lg">Latihan Coding HTML</h1>
         
         <div id="coinDisplay" class="text-xl font-bold mb-4 text-center text-merah bg-orange-300 rounded-lg">Koin: 0</div>
+        <div id="rankDisplay" class="text-xl font-bold mb-4 text-center text-merah bg-orange-300 rounded-lg">Peringkat: Pemula</div>
+        <div id="timer" class="hidden">60 detik tersisa</div>
         <button id="notification" class="m-4 p-4 text-white text-center rounded-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 hidden"></button>
         <div id="questionContainer" class="bg-orange-300 rounded-lg shadow-lg p-6 mb-8 relative"></div>
-
     </div>
 
     <div id="rulesOverlay" class="fixed inset-0 flex items-center justify-center min-h-screen">
@@ -22,12 +23,12 @@
             <h2 class="text-2xl font-bold mb-4 text-red-800">Aturan Bermain</h2>
             <p class="mb-4">Selamat datang di kuis C/C++! Berikut adalah cara bermain:</p>
             <ul class="list-disc pl-5 mb-4 text-left">
-                <li>Anda akan diberikan 3 pertanyaan terkait C/C++ per ronde.</li>
+                <li>Anda akan diberikan pertanyaan terkait C/C++.</li>
                 <li>Isi jawaban Anda di kolom yang disediakan dengan melengkapi kode yang kosong.</li>
                 <li>Anda akan mendapatkan 10 koin untuk setiap jawaban yang benar.</li>
-                <li>Jawaban yang salah tidak mendapat tambahan koin.</li>
-                <li>Setelah semua pertanyaan, kuis akan selesai dan skor akhir akan ditampilkan.</li>
-
+                <li>Jawaban yang salah akan mengurangi waktu 5 detik.</li>
+                <li>Setiap jawaban yang benar akan menambah waktu 5 detik, hingga maksimal 60 detik total.</li>
+                <li>Permainan berakhir ketika waktu habis.</li>
                 <li>Semangat dan selamat bermain!</li>
             </ul>
             <button id="startButton" class="bg-orange-400 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded transition duration-200">
@@ -36,132 +37,169 @@
         </div>
     </div>
 
-
     <script>
         let currentQuestion = 0;
         let coins = 0;
-        const totalQuestions = 3;
+        let timeLeft = 60; // Total waktu maksimal
+        let timer;
 
 
         const questions = [
-            {
-                question: "<pre>Lengkapi kode berikut untuk mencetak \"Halo Dunia!\":\n\n#include &lt;stdio.h&gt;\nint main() {\n    ________ (\"Halo Dunia!\\n\");\n    return 0;\n}</pre>",
-
-                answer: "printf"
-
-            },
-            {
-                question: "<pre>Lengkapi kode untuk mendek larasikan variabel int x dengan nilai 15 dan mencetak nilainya.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int x = ______;\n    printf(\"Nilai x adalah: %d\\n\", x);\n    return 0;\n}</pre>",
-                answer: "15"
-            },
-            {
-                question: "<pre>Isi bagian kosong untuk mengalikan dua bilangan a dan b.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int a = 6, b = 7;\n    int hasil = ________;\n    printf(\"Hasil: %d\\n\", hasil);\n    return 0;\n}</pre>",
-                answer: "a * b"
-            },
-
-            {
-                question: "<pre>Lengkapi kode untuk mendeklarasikan variabel float dan mencetak nilainya.\n\n#include &lt;stdio.h&gt;\nint main() {\n    float y = 4.5;\n    ________ (\"Nilai y: %f\\n\", y);\n    return 0;\n}</pre>",
-                answer: "printf(\"Nilai y: %f\\n\", y);"
-            },
-            {
-                question: "<pre>Lengkapi kode berikut untuk melakukan pembagian antara dua bilangan a dan b.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int a = 20, b = 4;\n    int hasil = ________;\n    printf(\"Hasil: %d\\n\", hasil);\n    return 0;\n}</pre>",
-                answer: "a / b"
-            },
-
-            {
-                question: "<pre>Isi bagian kosong agar program mencetak \"Nilai a: 10\" jika a bernilai 10.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int a = 10;\n    printf(\"Nilai a: %d\\n\", ______);\n    return 0;\n}</pre>",
-                answer: "a"
-            },
-
-            {
-                question: "<pre>Lengkapi kode berikut untuk mendeklarasikan variabel char bernama c dan mengisinya dengan karakter 'B'.\n\n#include &lt;stdio.h&gt;\nint main() {\n    char c = ______;\n    printf(\"Karakter: %c\\n\", c);\n    return 0;\n}</pre>",
-                answer: "'B'"
-            },
-            {
-                question: "<pre>Lengkapi kode untuk mengecek apakah nilai x adalah bilangan ganjil.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int x = 9;\n    if () {\n        printf(\"x adalah bilangan ganjil\\n\");\n    }\n    return 0;\n}</pre>",
-                answer: "x % 2 != 0"
-            },
-            {
-                question: "<pre>Lengkapi kode agar mencetak angka 1 hingga 5 menggunakan for loop.\n\n#include &lt;stdio.h&gt;\nint main() {\n    for (int i = 1; i <= 5; ________) {\n        printf(\"%d \", i);\n    }\n    return 0;\n}</pre>",
-                answer: "i++"
-            },
-            {
-                question: "<pre>Lengkapi kode agar program mencetak angka dari 5 hingga 1 menggunakan while loop.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int i = 5;\n    while (_) {\n        printf(\"%d \", i);\n        ______;\n    }\n    return 0;\n}</pre>",
-                answer: "i >= 1\ni--"
-            },
-            {
-                question: "<pre>Lengkapi kode berikut agar mencetak \"Bilangan negatif\" jika n kurang dari 0.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int n = -3;\n    if () {\n        printf(\"Bilangan negatif\\n\");\n    }\n    return 0;\n}</pre>",
-                answer: "n < 0"
-            },
-            {
-                question: "<pre>Lengkapi kode berikut untuk memeriksa apakah a sama dengan b.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int a = 5, b = 5;\n    if (_) {\n        printf(\"Nilai a sama dengan b\\n\");\n    }\n    return 0 ;\n}</pre>",
-                answer: "a == b"
-            },
-            {
-                question: "<pre>Lengkapi kode berikut agar program mencetak \"Nilai b lebih besar\" jika b lebih besar dari a.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int a = 10, b = 15;\n    if (_) {\n        printf(\"Nilai b lebih besar\\n\");\n    }\n    return 0;\n}</pre>",
-                answer: "b > a"
-            },
-            {
-                question: "<pre>Lengkapi kode berikut untuk meminta input pengguna dan menyimpannya dalam variabel x.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int x;\n    printf(\"Masukkan nilai x: \");\n    _________(\"%d\", &x);\n    printf(\"Nilai x adalah: %d\\n\", x);\n    return 0;\n}</pre>",
-                answer: "scanf(\"%d\", &x);"
-            },
-            {
-                question: "<pre>Lengkapi kode untuk mendeklarasikan array int dengan 5 elemen.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int arr[5] = {1, 2, 3, 4, ________};\n    for (int i = 0; i < 5; i++) {\n        printf(\"%d \", arr[i]);\n    }\n    return 0;\n}</pre>",
-                answer: "5"
-            },
-            {
-                question: "<pre>Lengkapi kode untuk menjumlahkan semua elemen dalam array arr.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int arr[] = {1, 2, 3, 4, 5};\n    int sum = 0;\n    for (int i = 0; i < 5; ________) {\n        sum += arr[i];\n    }\n    printf(\"Jumlah: %d\\n\", sum);\n    return 0;\n}</pre>",
-                answer: "i++"
-            },
-            {
-                question: "<pre>Lengkapi kode untuk mencetak elemen terakhir dari array arr.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int arr[] = {10, 20, 30, 40, 50};\n    printf(\"Elemen terakhir: %d\\n\", arr[]);\n    return 0;\n}</pre>",
-                answer: "4"
-            },
-            {
-                question: "<pre>Lengkapi kode untuk membalik urutan elemen dalam array arr.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int arr[] = {1, 2, 3, 4, 5};\n    for (int i = 0; i < 2; ________) {\n        int temp = arr[i];\n        arr[i] = arr[4 - i];\n        arr[4 - i] = temp;\n    }\n    for (int i = 0; i < 5; i++) {\n        printf(\"%d \", arr[i]);\n    }\n    return 0;\n}</pre>",
-                answer: "i++"
-            },
-            {
-                question: "<pre>Lengkapi kode berikut untuk mendeklarasikan dan menginisialisasi string.\n\n#include &lt;stdio.h&gt;\nint main() {\n    char str[] = \"Hello, World!\";\n    printf(\"%s\\n\", ________); // Tampilkan string\n    return 0;\n}</pre>",
-                answer: "str"
-            },
-            {
-                question: "<pre>Lengkapi kode untuk mencetak bilangan bulat dari 1 hingga 10 menggunakan do while.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int i = 1;\n    do {\n        printf(\"%d \", i);\n        i++;\n    } while ();\n    return 0;\n}</pre>",
-                answer: "i <= 10"
-            },
-            {
-                question: "<pre>Lengkapi kode untuk menemukan nilai maksimum antara dua bilangan a dan b.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int a = 10, b = 20;\n    int max = ________;\n    printf(\"Nilai maksimum: %d\\n\", max);\n    return 0;\n}</pre>",
-                answer: "( a > b) ? a : b"
-            },
-            {
-                question: "<pre>Lengkapi kode untuk mencetak angka genap dari 0 hingga 20.\n\n#include &lt;stdio.h&gt;\nint main() {\n    for (int i = 0; i <= 20; ________) {\n        if (i % 2 == 0) {\n            printf(\"%d \", i);\n        }\n    }\n    return 0;\n}</pre>",
-                answer: "i++"
-            },
-            {
-                question: "<pre>Lengkapi kode untuk menghitung faktorial dari bilangan n.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int n = 5, fact = 1;\n    for (int i = 1; i <= n; ________) {\n        fact *= i;\n    }\n    printf(\"Faktorial: %d\\n\", fact);\n    return 0;\n}</pre>",
-                answer: "i++"
-            },
-            {
-                question: "<pre>Lengkapi kode untuk mencetak angka dari 1 sampai 10 dengan menggunakan switch case.\n\n#include &lt;stdio.h&gt;\nint main() {\n    for (int i = 1; i <= 10; i++) {\n        switch (i) {\n            case 1: printf(\"Satu\\n\"); break;\n            case 2: printf(\"Dua\\n\"); break;\n            case 3: printf(\"Tiga\\n\"); break;\n            case 4: printf(\"Empat\\n\"); break;\n            case 5: printf(\"Lima\\n\"); break;\n            case 6: printf(\"Enam\\n\"); break;\n            case 7: printf(\"Tujuh\\n\"); break;\n            case 8: printf(\"Delapan\\n\"); break;\n            case 9: printf(\"Sembilan\\n\"); break;\n            case 10: printf(\"Sepuluh\\n\"); break;\n        }\n    }\n    return 0;\n}</pre>",
-                answer: "(1 to 10)"
-            },
-            {
-                question: "<pre>Lengkapi kode untuk mencetak jumlah dari dua bilangan yang diinputkan pengguna.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int a, b;\n    printf(\"Masukkan dua bilangan: \");\n    _________(\"%d %d\", &a, &b);\n    printf(\"Jumlah: %d\\n\", a + b);\n    return 0;\n}</pre>",
-                answer: "scanf(\"%d %d\", &a, &b);"
-            },
-            {
-                question: "<pre>Lengkapi kode untuk menentukan apakah tahun y adalah tahun kabisat.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int y = 2024;\n    if () {\n        printf(\"%d adalah tahun kabisat\\n\", y);\n    }\n    return 0;\n}</pre>",
-                answer: "(y % 4 == 0 && y % 100 != 0) || (y % 400 == 0)"
-            },
-            {
-                question: "<pre>Lengkapi kode untuk mencetak hasil penjumlahan dari elemen array arr.\n\n#include &lt;stdio.h&gt;\nint main() {\n    int arr[] = {1, 2, 3, 4, 5};\n    int total = 0;\n    for (int i = 0; i < 5; ________) {\n        total += arr[i];\n    }\n    printf(\"Total: %d\\n\", total);\n    return 0;\n}</pre>",
-                answer: "i++"
-            },
+       
+        {
+            "question": "<pre>Lengkapi kode untuk menampilkan angka 10 di layar.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << _____;\n    return 0;\n}</pre>",
+            "answer": "10"
+        },
+        {
+            "question": "<pre>Lengkapi kode untuk menampilkan \"Nilai: 20\" di layar.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << \"Nilai: \" << _____;\n    return 0;\n}</pre>",
+            "answer": "20"
+        },
+        {
+            "question": "<pre>Lengkapi kode untuk menerima input bilangan dari pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int x;\n    cin >> _____;\n    return 0;\n}</pre>",
+            "answer": "x"
+        },
+        {
+            "question": "<pre>Lengkapi kode untuk menerima dan menampilkan nama pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    string name;\n    cin >> _____;\n    cout << \"Hello, \" << name;\n    return 0;\n}</pre>",
+            "answer": "name"
+        },
+        {
+            "question": "<pre>Lengkapi kode untuk menampilkan hasil penjumlahan dua bilangan 5 dan 3.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 5, b = 3;\n    cout << a + _____;\n    return 0;\n}</pre>",
+            "answer": "b"
+        },
+        {
+            "question": "<pre>Lengkapi kode agar loop menampilkan angka 1 sampai 5.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    for (int i = 1; i <= 5; _____) {\n        cout << i << \" \";\n    }\n    return 0;\n}</pre>",
+            "answer": "i++"
+        },
+        {
+            "question": "<pre>Lengkapi kode untuk menghitung luas persegi dengan panjang sisi s.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int s = 4;\n    int luas = s * _____;\n    cout << \"Luas persegi: \" << luas;\n    return 0;\n}</pre>",
+            "answer": "s"
+        },
+        {
+            "question": "<pre>Lengkapi kode untuk mengganti nilai a menjadi 10.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 5;\n    a = _____;\n    cout << a;\n    return 0;\n}</pre>",
+            "answer": "10"
+        },
+        {
+            "question": "<pre>Lengkapi kode untuk menampilkan bilangan yang diinput pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int n;\n    cin >> n;\n    cout << \"Anda memasukkan: \" << _____;\n    return 0;\n}</pre>",
+            "answer": "n"
+        },
+        {
+            "question": "<pre>Lengkapi kode untuk menghitung hasil perkalian a dan b.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 4, b = 5;\n    int hasil = a * _____;\n    cout << \"Hasil: \" << hasil;\n    return 0;\n}</pre>",
+            "answer": "b"
+        },
+        {
+            "question": "<pre>Lengkapi kode untuk menampilkan karakter 'A'.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    char c = _____;\n    cout << c;\n    return 0;\n}</pre>",
+            "answer": "'A'"
+        },
+        {
+            "question": "<pre>Lengkapi kode untuk menghitung hasil pembagian x dan y.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int x = 20, y = 4;\n    int hasil = x / _____;\n    cout << hasil;\n    return 0;\n}</pre>",
+            "answer": "y"
+        },
+        {
+            "question": "<pre>Lengkapi kode untuk menampilkan \"Kelipatan tiga\" jika num adalah kelipatan 3.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int num = 9;\n    if (num % 3 == _____) {\n        cout << \"Kelipatan tiga\";\n    }\n    return 0;\n}</pre>",
+            "answer": "0"
+        },
+        {
+        "question": "<pre>Lengkapi kode untuk menampilkan jumlah dua bilangan 7 dan 8.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 7, b = 8;\n    cout << a + _____;\n    return 0;\n}</pre>",
+        "answer": "b"
+        },
+        {
+        "question": "<pre>Lengkapi kode untuk menampilkan angka genap dari 2 sampai 10.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    for (int i = 2; i <= 10; i += _____) {\n        cout << i << \" \";\n    }\n    return 0;\n}</pre>",
+        "answer": "2"
+        },
+        {
+        "question": "<pre>Lengkapi kode untuk menghitung sisa bagi dari 10 dibagi 3.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int hasil = 10 % _____;\n    cout << hasil;\n    return 0;\n}</pre>",
+        "answer": "3"
+        },
+        {
+        "question": "<pre>Lengkapi kode untuk mendeklarasikan variabel bertipe boolean.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    bool isTrue = _____;\n    return 0;\n}</pre>",
+        "answer": "true"
+        },
+        {
+        "question": "<pre>Lengkapi kode untuk menampilkan hasil penjumlahan 10 dan 15.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << 10 + _____;\n    return 0;\n}</pre>",
+        "answer": "15"
+        },
+        {
+        "question": "<pre>Lengkapi kode untuk menampilkan jumlah dari 1 sampai 5.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int total = 0;\n    for (int i = 1; i <= 5; i++) {\n        total += _____;\n    }\n    cout << total;\n    return 0;\n}</pre>",
+        "answer": "i"
+        },
+        {
+        "question": "<pre>Lengkapi kode untuk menampilkan karakter 'B'.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    char c = _____;\n    cout << c;\n    return 0;\n}</pre>",
+        "answer": "'B'"
+        },
+        {
+    "question": "<pre>Isi kode berikut untuk menampilkan angka 25 di layar.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << _____;\n    return 0;\n}</pre>",
+    "answer": "25"
+    },
+    {
+    "question": "<pre>Tambahkan kode berikut untuk menampilkan \"Nilai: 50\" di layar.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << \"Nilai: \" << _____;\n    return 0;\n}</pre>",
+    "answer": "50"
+    },
+    {
+    "question": "<pre>Gunakan kode berikut untuk menerima input bilangan bulat dari pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int y;\n    cin >> _____;\n    return 0;\n}</pre>",
+    "answer": "y"
+    },
+    {
+    "question": "<pre>Tambahkan kode untuk menerima dan menampilkan umur pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int age;\n    cin >> _____;\n    cout << \"Umur Anda: \" << age;\n    return 0;\n}</pre>",
+    "answer": "age"
+    },
+    {
+    "question": "<pre>Isi kode berikut untuk menampilkan hasil pengurangan dua bilangan 10 dan 4.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int m = 10, n = 4;\n    cout << m - _____;\n    return 0;\n}</pre>",
+    "answer": "n"
+    },
+    {
+    "question": "<pre>Atur kode berikut agar loop menampilkan angka 1 sampai 10.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    for (int i = 1; i <= 10; _____) {\n        cout << i << \" \";\n    }\n    return 0;\n}</pre>",
+    "answer": "i++"
+    },
+    {
+    "question": "<pre>Isi kode berikut untuk menghitung luas lingkaran dengan jari-jari r.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    float r = 3;\n    float luas = 3.14 * _____ * _____;\n    cout << \"Luas lingkaran: \" << luas;\n    return 0;\n}</pre>",
+    "answer": "r"
+    },
+    {
+    "question": "<pre>Ubah kode berikut untuk mengganti nilai c menjadi 30.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int c = 15;\n    c = _____;\n    cout << c;\n    return 0;\n}</pre>",
+    "answer": "30"
+    },
+    {
+    "question": "<pre>Gunakan kode berikut untuk menampilkan bilangan yang diinput pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int input;\n    cin >> input;\n    cout << \"Anda memasukkan: \" << _____;\n    return 0;\n}</pre>",
+    "answer": "input"
+    },
+    {
+    "question": "<pre>Isi kode berikut untuk menghitung hasil pembagian a dan b.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 20, b = 5;\n    int hasil = a / _____;\n    cout << \"Hasil: \" << hasil;\n    return 0;\n}</pre>",
+    "answer": "b"
+    },
+    {
+    "question": "<pre>Gunakan kode berikut untuk menampilkan karakter 'X'.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    char letter = _____;\n    cout << letter;\n    return 0;\n}</pre>",
+    "answer": "'X'"
+    },
+    {
+    "question": "<pre>Atur kode berikut untuk menghitung sisa bagi dari 15 dibagi 4.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int hasil = 15 % _____;\n    cout << hasil;\n    return 0;\n}</pre>",
+    "answer": "4"
+    },
+    {
+    "question": "<pre>Gunakan kode berikut untuk mendeklarasikan variabel bertipe float.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    float pi = _____;\n    return 0;\n}</pre>",
+    "answer": "3.14"
+    },
+    {
+    "question": "<pre>Atur kode berikut untuk menampilkan hasil penjumlahan 12 dan 18.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << 12 + _____;\n    return 0;\n}</pre>",
+    "answer": "18"
+    },
+    {
+    "question": "<pre>Isi kode berikut untuk menampilkan jumlah dari 1 sampai 10.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int total = 0;\n    for (int i = 1; i <= 10; i++) {\n        total += _____;\n    }\n    cout << total;\n    return 0;\n}</pre>",
+    "answer": "i"
+    },
+    {
+    "question": "<pre>Gunakan kode berikut untuk menampilkan karakter 'Y'.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    char character = _____;\n    cout << character;\n    return 0;\n}</pre>",
+    "answer": "'Y'"
+    },
+    {
+    "question": "<pre>Atur kode berikut untuk menampilkan \"Bukan kelipatan lima\" jika num bukan kelipatan 5.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int num = 11;\n    if (num % 5 != _____) {\n        cout << \"Bukan kelipatan lima\";\n    }\n    return 0;\n}</pre>",
+    "answer": "0"
+    }
         ];
+
 
         function shuffleQuestions(array) {
             for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random () * (i + 1));
+                const j = Math.floor(Math.random() * (i + 1));
                 [array[i], array[j]] = [array[j], array[i]];
             }
         }
@@ -169,39 +207,50 @@
         function loadQuestion() {
             const question = questions[currentQuestion];
             document.getElementById('questionContainer').innerHTML = `
-
-                <p class="mb-4 font-medium">${ question.question}</p>
+                <div id="timer">${timeLeft} detik tersisa</div>
+                <p class="mb-4 font-medium">${question.question}</p>
                 <textarea id="answer" rows="2" class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring focus:ring-red-950"></textarea>
-
-                <button onclick="checkAnswer()" class ="bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 rounded transition duration-200">
+                <button onclick="checkAnswer()" class="bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 rounded transition duration-200">
                     Kirim Jawaban
                 </button>
             `;
             document.getElementById('notification').classList.add('hidden');
+            startTimer();
+        }
+
+        function startTimer() {
+            document.getElementById('timer').classList.remove('hidden');
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = `${timeLeft} detik tersisa`;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    showFinalScore();
+                }
+            }, 1000);
         }
 
         function checkAnswer() {
+            clearInterval(timer);
             const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
             const correctAnswer = questions[currentQuestion].answer.toLowerCase();
             
             if (userAnswer === correctAnswer) {
                 showNotification("Anda benar!", true);
-                coins += 10;
+                coins += 10; // Tambah koin untuk jawaban benar
+                timeLeft = Math.min(timeLeft + 5, 60); // Tambah waktu, maksimal 60 detik
             } else {
                 showNotification("Anda salah!", false);
+                timeLeft = Math.max(timeLeft - 5, 0); // Kurangi waktu, tidak boleh kurang dari 0
             }
             updateDisplays();
 
-            setTimeout(nextQuestion, 2000);
-
+            setTimeout(nextQuestion, 2000); // Tunggu 2 detik sebelum lanju
         }
 
         function showNotification(message, isCorrect) {
             const notificationElement = document.getElementById('notification');
-            notificationElement.innerHTML = `
-
-                <p class="px-3 rounded-lg text-white font-medium">${message}</p>
-            `;
+            notificationElement.innerHTML = `<p class="px-3 rounded-lg text-white font-medium">${message}</p>`;
             notificationElement.classList.remove('hidden', 'bg-green-500', 'bg-red-700');
             notificationElement.classList.add(isCorrect ? 'bg-green-500' : 'bg-red-700');
             notificationElement.classList.remove('hidden');
@@ -209,16 +258,17 @@
             setTimeout(() => {
                 notificationElement.classList.add('hidden');
             }, 2000);
-
         }
 
         function updateDisplays() {
             document.getElementById('coinDisplay').innerHTML = `Koin: ${coins}`;
+            const rank = coins >= 30 ? "Ahli" : coins >= 20 ? "Menengah" : coins >= 10 ? "Pemula" : "Pemula";
+            document.getElementById('rankDisplay').innerHTML = `Peringkat: ${rank}`;
         }
 
         function nextQuestion() {
             currentQuestion++;
-            if (currentQuestion >= totalQuestions) {
+            if (currentQuestion >= questions.length) {
                 showFinalScore();
             } else {
                 loadQuestion();
@@ -226,44 +276,26 @@
         }
 
         function showFinalScore() {
+            clearInterval(timer);
             document.getElementById('questionContainer').innerHTML = `
-            <h2 class=" text-3xl font-bold mb-4 text-center text-red-900">Kuis Selesai!</h2>
-            <p class="mb-4 text-red-900 font-medium">Koin: ${coins}</p>
-            <button onclick="location.href='ruangmain.html'" class="bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 rounded transition duration-200 mr-4">
-                Kembali ke Ruang Main
-            </button>
-            <div id="notification" class="hidden"></div>   
-        `;
-
+                <h2 class="text-3xl font-bold mb-4 text-center text-red-900">Quiz Selesai!</h2>
+                <p class="mb-4 text-red-900 font-medium">Koin: ${coins}</p>
+                <button onclick="location.href='ruangmain.html'" class="bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 rounded transition duration-200 mr-4">
+                    Kembali ke Ruang Main
+                </button>
+                <div id="notification" class="hidden"></div>
+            `;
             localStorage.setItem('coins', coins);
-            saveCoinsToDatabase();
-        }
-
-        function saveCoinsToDatabase() {
-            fetch('simpanKoin.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ koin: coins }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
         }
 
         document.getElementById('rulesOverlay').classList.remove('hidden');
-
 
         document.getElementById('startButton').addEventListener('click', () => {
             document.getElementById('rulesOverlay').classList.add('hidden');
             shuffleQuestions(questions);
             loadQuestion();
-        })
+        });
     </script>
+
 </body>
 </html>
