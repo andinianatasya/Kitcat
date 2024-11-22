@@ -6,14 +6,14 @@
     <link rel="icon" href="img/logo.png" type="image/png">
     <title>Latihan Coding C/C++</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/logo(1).png" type="image/png">
 </head>
 <body class="bg-bgMain backdrop-blur-sm flex items-center justify-center h-screen overflow-hidden bg-cover bg-center">
     <div class="mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold mb-8 text-center text-merah bg-orange-300 rounded-lg">Latihan Coding HTML</h1>
-        
+        <h1 class="text-4xl font-bold mb-8 text-center text-merah bg-orange-300 rounded-lg">Latihan Coding C/C++</h1>
         <div id="coinDisplay" class="text-xl font-bold mb-4 text-center text-merah bg-orange-300 rounded-lg">Koin: 0</div>
         <div id="rankDisplay" class="text-xl font-bold mb-4 text-center text-merah bg-orange-300 rounded-lg">Peringkat: Pemula</div>
-        <div id="timer" class="hidden">60 detik tersisa</div>
+        <div id="timer" class="hidden text-2xl text-red-600 font-bold text-center mb-5">60 detik tersisa</div>
         <button id="notification" class="m-4 p-4 text-white text-center rounded-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 hidden"></button>
         <div id="questionContainer" class="bg-orange-300 rounded-lg shadow-lg p-6 mb-8 relative"></div>
     </div>
@@ -40,162 +40,159 @@
     <script>
         let currentQuestion = 0;
         let coins = 0;
-        let timeLeft = 60; // Total waktu maksimal
+        let timeLeft = 60; 
         let timer;
 
-
         const questions = [
-       
         {
-            "question": "<pre>Lengkapi kode untuk menampilkan angka 10 di layar.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << _____;\n    return 0;\n}</pre>",
-            "answer": "10"
-        },
-        {
-            "question": "<pre>Lengkapi kode untuk menampilkan \"Nilai: 20\" di layar.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << \"Nilai: \" << _____;\n    return 0;\n}</pre>",
-            "answer": "20"
-        },
-        {
-            "question": "<pre>Lengkapi kode untuk menerima input bilangan dari pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int x;\n    cin >> _____;\n    return 0;\n}</pre>",
-            "answer": "x"
-        },
-        {
-            "question": "<pre>Lengkapi kode untuk menerima dan menampilkan nama pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    string name;\n    cin >> _____;\n    cout << \"Hello, \" << name;\n    return 0;\n}</pre>",
-            "answer": "name"
-        },
-        {
-            "question": "<pre>Lengkapi kode untuk menampilkan hasil penjumlahan dua bilangan 5 dan 3.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 5, b = 3;\n    cout << a + _____;\n    return 0;\n}</pre>",
-            "answer": "b"
-        },
-        {
-            "question": "<pre>Lengkapi kode agar loop menampilkan angka 1 sampai 5.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    for (int i = 1; i <= 5; _____) {\n        cout << i << \" \";\n    }\n    return 0;\n}</pre>",
-            "answer": "i++"
-        },
-        {
-            "question": "<pre>Lengkapi kode untuk menghitung luas persegi dengan panjang sisi s.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int s = 4;\n    int luas = s * _____;\n    cout << \"Luas persegi: \" << luas;\n    return 0;\n}</pre>",
-            "answer": "s"
-        },
-        {
-            "question": "<pre>Lengkapi kode untuk mengganti nilai a menjadi 10.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 5;\n    a = _____;\n    cout << a;\n    return 0;\n}</pre>",
-            "answer": "10"
-        },
-        {
-            "question": "<pre>Lengkapi kode untuk menampilkan bilangan yang diinput pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int n;\n    cin >> n;\n    cout << \"Anda memasukkan: \" << _____;\n    return 0;\n}</pre>",
-            "answer": "n"
-        },
-        {
-            "question": "<pre>Lengkapi kode untuk menghitung hasil perkalian a dan b.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 4, b = 5;\n    int hasil = a * _____;\n    cout << \"Hasil: \" << hasil;\n    return 0;\n}</pre>",
-            "answer": "b"
-        },
-        {
-            "question": "<pre>Lengkapi kode untuk menampilkan karakter 'A'.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    char c = _____;\n    cout << c;\n    return 0;\n}</pre>",
-            "answer": "'A'"
-        },
-        {
-            "question": "<pre>Lengkapi kode untuk menghitung hasil pembagian x dan y.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int x = 20, y = 4;\n    int hasil = x / _____;\n    cout << hasil;\n    return 0;\n}</pre>",
-            "answer": "y"
-        },
-        {
-            "question": "<pre>Lengkapi kode untuk menampilkan \"Kelipatan tiga\" jika num adalah kelipatan 3.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int num = 9;\n    if (num % 3 == _____) {\n        cout << \"Kelipatan tiga\";\n    }\n    return 0;\n}</pre>",
-            "answer": "0"
-        },
-        {
-        "question": "<pre>Lengkapi kode untuk menampilkan jumlah dua bilangan 7 dan 8.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 7, b = 8;\n    cout << a + _____;\n    return 0;\n}</pre>",
+        "question": "<pre>Lengkapi kode untuk menampilkan angka 10 di layar.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << _____;\n    return 0;\n}</pre>",
+        "answer": "10"
+    },
+    {
+        "question": "<pre>Lengkapi kode untuk menampilkan \"Nilai: 20\" di layar.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << \"Nilai: \" << _____;\n    return 0;\n}</pre>",
+        "answer": "20"
+    },
+    {
+        "question": "<pre>Lengkapi kode untuk menerima input bilangan dari pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int x;\n    cin >> _____;\n    return 0;\n}</pre>",
+        "answer": "x"
+    },
+    {
+        "question": "<pre>Lengkapi kode untuk menerima dan menampilkan nama pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    string name;\n    cin >> _____;\n    cout << \"Hello, \" << name;\n    return 0;\n}</pre>",
+        "answer": "name"
+    },
+    {
+        "question": "<pre>Lengkapi kode untuk menampilkan hasil penjumlahan dua bilangan 5 dan 3.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 5, b = 3;\n    cout << a + _____;\n    return 0;\n}</pre>",
         "answer": "b"
-        },
-        {
-        "question": "<pre>Lengkapi kode untuk menampilkan angka genap dari 2 sampai 10.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    for (int i = 2; i <= 10; i += _____) {\n        cout << i << \" \";\n    }\n    return 0;\n}</pre>",
-        "answer": "2"
-        },
-        {
-        "question": "<pre>Lengkapi kode untuk menghitung sisa bagi dari 10 dibagi 3.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int hasil = 10 % _____;\n    cout << hasil;\n    return 0;\n}</pre>",
-        "answer": "3"
-        },
-        {
-        "question": "<pre>Lengkapi kode untuk mendeklarasikan variabel bertipe boolean.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    bool isTrue = _____;\n    return 0;\n}</pre>",
-        "answer": "true"
-        },
-        {
-        "question": "<pre>Lengkapi kode untuk menampilkan hasil penjumlahan 10 dan 15.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << 10 + _____;\n    return 0;\n}</pre>",
-        "answer": "15"
-        },
-        {
-        "question": "<pre>Lengkapi kode untuk menampilkan jumlah dari 1 sampai 5.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int total = 0;\n    for (int i = 1; i <= 5; i++) {\n        total += _____;\n    }\n    cout << total;\n    return 0;\n}</pre>",
-        "answer": "i"
-        },
-        {
-        "question": "<pre>Lengkapi kode untuk menampilkan karakter 'B'.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    char c = _____;\n    cout << c;\n    return 0;\n}</pre>",
-        "answer": "'B'"
-        },
-        {
-    "question": "<pre>Isi kode berikut untuk menampilkan angka 25 di layar.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << _____;\n    return 0;\n}</pre>",
-    "answer": "25"
     },
     {
-    "question": "<pre>Tambahkan kode berikut untuk menampilkan \"Nilai: 50\" di layar.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << \"Nilai: \" << _____;\n    return 0;\n}</pre>",
-    "answer": "50"
+        "question": "<pre>Lengkapi kode agar loop menampilkan angka 1 sampai 5.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    for (int i = 1; i <= 5; _____) {\n        cout << i << \" \";\n    }\n    return 0;\n}</pre>",
+        "answer": "i++"
     },
     {
-    "question": "<pre>Gunakan kode berikut untuk menerima input bilangan bulat dari pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int y;\n    cin >> _____;\n    return 0;\n}</pre>",
-    "answer": "y"
+        "question": "<pre>Lengkapi kode untuk menghitung luas persegi dengan panjang sisi s.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int s = 4;\n    int luas = s * _____;\n    cout << \"Luas persegi: \" << luas;\n    return 0;\n}</pre>",
+        "answer": "s"
     },
     {
-    "question": "<pre>Tambahkan kode untuk menerima dan menampilkan umur pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int age;\n    cin >> _____;\n    cout << \"Umur Anda: \" << age;\n    return 0;\n}</pre>",
-    "answer": "age"
+        "question": "<pre>Lengkapi kode untuk mengganti nilai a menjadi 10.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 5;\n    a = _____;\n    cout << a;\n    return 0;\n}</pre>",
+        "answer": "10"
     },
     {
-    "question": "<pre>Isi kode berikut untuk menampilkan hasil pengurangan dua bilangan 10 dan 4.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int m = 10, n = 4;\n    cout << m - _____;\n    return 0;\n}</pre>",
-    "answer": "n"
+        "question": "<pre>Lengkapi kode untuk menampilkan bilangan yang diinput pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int n;\n    cin >> n;\n    cout << \"Anda memasukkan: \" << _____;\n    return 0;\n}</pre>",
+        "answer": "n"
     },
     {
-    "question": "<pre>Atur kode berikut agar loop menampilkan angka 1 sampai 10.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    for (int i = 1; i <= 10; _____) {\n        cout << i << \" \";\n    }\n    return 0;\n}</pre>",
-    "answer": "i++"
+        "question": "<pre>Lengkapi kode untuk menghitung hasil perkalian a dan b.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 4, b = 5;\n    int hasil = a * _____;\n    cout << \"Hasil: \" << hasil;\n    return 0;\n}</pre>",
+        "answer": "b"
     },
     {
-    "question": "<pre>Isi kode berikut untuk menghitung luas lingkaran dengan jari-jari r.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    float r = 3;\n    float luas = 3.14 * _____ * _____;\n    cout << \"Luas lingkaran: \" << luas;\n    return 0;\n}</pre>",
-    "answer": "r"
+        "question": "<pre>Lengkapi kode untuk menampilkan karakter 'A'.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    char c = _____;\n    cout << c;\n    return 0;\n}</pre>",
+        "answer": "'A'"
     },
     {
-    "question": "<pre>Ubah kode berikut untuk mengganti nilai c menjadi 30.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int c = 15;\n    c = _____;\n    cout << c;\n    return 0;\n}</pre>",
-    "answer": "30"
+        "question": "<pre>Lengkapi kode untuk menghitung hasil pembagian x dan y.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int x = 20, y = 4;\n    int hasil = x / _____;\n    cout << hasil;\n    return 0;\n}</pre>",
+        "answer": "y"
     },
     {
-    "question": "<pre>Gunakan kode berikut untuk menampilkan bilangan yang diinput pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int input;\n    cin >> input;\n    cout << \"Anda memasukkan: \" << _____;\n    return 0;\n}</pre>",
-    "answer": "input"
+        "question": "<pre>Lengkapi kode untuk menampilkan \"Kelipatan tiga\" jika num adalah kelipatan 3.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int num = 9;\n    if (num % 3 == _____) {\n        cout << \"Kelipatan tiga\";\n    }\n    return 0;\n}</pre>",
+        "answer": "0"
     },
     {
-    "question": "<pre>Isi kode berikut untuk menghitung hasil pembagian a dan b.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 20, b = 5;\n    int hasil = a / _____;\n    cout << \"Hasil: \" << hasil;\n    return 0;\n}</pre>",
+    "question": "<pre>Lengkapi kode untuk menampilkan jumlah dua bilangan 7 dan 8.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 7, b = 8;\n    cout << a + _____;\n    return 0;\n}</pre>",
     "answer": "b"
     },
     {
-    "question": "<pre>Gunakan kode berikut untuk menampilkan karakter 'X'.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    char letter = _____;\n    cout << letter;\n    return 0;\n}</pre>",
-    "answer": "'X'"
+    "question": "<pre>Lengkapi kode untuk menampilkan angka genap dari 2 sampai 10.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    for (int i = 2; i <= 10; i += _____) {\n        cout << i << \" \";\n    }\n    return 0;\n}</pre>",
+    "answer": "2"
     },
     {
-    "question": "<pre>Atur kode berikut untuk menghitung sisa bagi dari 15 dibagi 4.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int hasil = 15 % _____;\n    cout << hasil;\n    return 0;\n}</pre>",
-    "answer": "4"
+    "question": "<pre>Lengkapi kode untuk menghitung sisa bagi dari 10 dibagi 3.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int hasil = 10 % _____;\n    cout << hasil;\n    return 0;\n}</pre>",
+    "answer": "3"
     },
     {
-    "question": "<pre>Gunakan kode berikut untuk mendeklarasikan variabel bertipe float.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    float pi = _____;\n    return 0;\n}</pre>",
-    "answer": "3.14"
+    "question": "<pre>Lengkapi kode untuk mendeklarasikan variabel bertipe boolean.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    bool isTrue = _____;\n    return 0;\n}</pre>",
+    "answer": "true"
     },
     {
-    "question": "<pre>Atur kode berikut untuk menampilkan hasil penjumlahan 12 dan 18.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << 12 + _____;\n    return 0;\n}</pre>",
-    "answer": "18"
+    "question": "<pre>Lengkapi kode untuk menampilkan hasil penjumlahan 10 dan 15.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << 10 + _____;\n    return 0;\n}</pre>",
+    "answer": "15"
     },
     {
-    "question": "<pre>Isi kode berikut untuk menampilkan jumlah dari 1 sampai 10.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int total = 0;\n    for (int i = 1; i <= 10; i++) {\n        total += _____;\n    }\n    cout << total;\n    return 0;\n}</pre>",
+    "question": "<pre>Lengkapi kode untuk menampilkan jumlah dari 1 sampai 5.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int total = 0;\n    for (int i = 1; i <= 5; i++) {\n        total += _____;\n    }\n    cout << total;\n    return 0;\n}</pre>",
     "answer": "i"
     },
     {
-    "question": "<pre>Gunakan kode berikut untuk menampilkan karakter 'Y'.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    char character = _____;\n    cout << character;\n    return 0;\n}</pre>",
-    "answer": "'Y'"
+    "question": "<pre>Lengkapi kode untuk menampilkan karakter 'B'.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    char c = _____;\n    cout << c;\n    return 0;\n}</pre>",
+    "answer": "'B'"
     },
     {
-    "question": "<pre>Atur kode berikut untuk menampilkan \"Bukan kelipatan lima\" jika num bukan kelipatan 5.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int num = 11;\n    if (num % 5 != _____) {\n        cout << \"Bukan kelipatan lima\";\n    }\n    return 0;\n}</pre>",
-    "answer": "0"
-    }
+"question": "<pre>Isi kode berikut untuk menampilkan angka 25 di layar.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << _____;\n    return 0;\n}</pre>",
+"answer": "25"
+},
+{
+"question": "<pre>Tambahkan kode berikut untuk menampilkan \"Nilai: 50\" di layar.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << \"Nilai: \" << _____;\n    return 0;\n}</pre>",
+"answer": "50"
+},
+{
+"question": "<pre>Gunakan kode berikut untuk menerima input bilangan bulat dari pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int y;\n    cin >> _____;\n    return 0;\n}</pre>",
+"answer": "y"
+},
+{
+"question": "<pre>Tambahkan kode untuk menerima dan menampilkan umur pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int age;\n    cin >> _____;\n    cout << \"Umur Anda: \" << age;\n    return 0;\n}</pre>",
+"answer": "age"
+},
+{
+"question": "<pre>Isi kode berikut untuk menampilkan hasil pengurangan dua bilangan 10 dan 4.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int m = 10, n = 4;\n    cout << m - _____;\n    return 0;\n}</pre>",
+"answer": "n"
+},
+{
+"question": "<pre>Atur kode berikut agar loop menampilkan angka 1 sampai 10.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    for (int i = 1; i <= 10; _____) {\n        cout << i << \" \";\n    }\n    return 0;\n}</pre>",
+"answer": "i++"
+},
+{
+"question": "<pre>Isi kode berikut untuk menghitung luas lingkaran dengan jari-jari r.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    float r = 3;\n    float luas = 3.14 * _____ * _____;\n    cout << \"Luas lingkaran: \" << luas;\n    return 0;\n}</pre>",
+"answer": "r"
+},
+{
+"question": "<pre>Ubah kode berikut untuk mengganti nilai c menjadi 30.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int c = 15;\n    c = _____;\n    cout << c;\n    return 0;\n}</pre>",
+"answer": "30"
+},
+{
+"question": "<pre>Gunakan kode berikut untuk menampilkan bilangan yang diinput pengguna.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int input;\n    cin >> input;\n    cout << \"Anda memasukkan: \" << _____;\n    return 0;\n}</pre>",
+"answer": "input"
+},
+{
+"question": "<pre>Isi kode berikut untuk menghitung hasil pembagian a dan b.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int a = 20, b = 5;\n    int hasil = a / _____;\n    cout << \"Hasil: \" << hasil;\n    return 0;\n}</pre>",
+"answer": "b"
+},
+{
+"question": "<pre>Gunakan kode berikut untuk menampilkan karakter 'X'.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    char letter = _____;\n    cout << letter;\n    return 0;\n}</pre>",
+"answer": "'X'"
+},
+{
+"question": "<pre>Atur kode berikut untuk menghitung sisa bagi dari 15 dibagi 4.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int hasil = 15 % _____;\n    cout << hasil;\n    return 0;\n}</pre>",
+"answer": "4"
+},
+{
+"question": "<pre>Gunakan kode berikut untuk mendeklarasikan variabel bertipe float.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    float pi = _____;\n    return 0;\n}</pre>",
+"answer": "3.14"
+},
+{
+"question": "<pre>Atur kode berikut untuk menampilkan hasil penjumlahan 12 dan 18.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    cout << 12 + _____;\n    return 0;\n}</pre>",
+"answer": "18"
+},
+{
+"question": "<pre>Isi kode berikut untuk menampilkan jumlah dari 1 sampai 10.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int total = 0;\n    for (int i = 1; i <= 10; i++) {\n        total += _____;\n    }\n    cout << total;\n    return 0;\n}</pre>",
+"answer": "i"
+},
+{
+"question": "<pre>Gunakan kode berikut untuk menampilkan karakter 'Y'.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    char character = _____;\n    cout << character;\n    return 0;\n}</pre>",
+"answer": "'Y'"
+},
+{
+"question": "<pre>Atur kode berikut untuk menampilkan \"Bukan kelipatan lima\" jika num bukan kelipatan 5.\n\n#include &lt;iostream&gt;\nusing namespace std;\nint main() {\n    int num = 11;\n    if (num % 5 != _____) {\n        cout << \"Bukan kelipatan lima\";\n    }\n    return 0;\n}</pre>",
+"answer": "0"
+}
         ];
-
 
         function shuffleQuestions(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -207,8 +204,8 @@
         function loadQuestion() {
             const question = questions[currentQuestion];
             document.getElementById('questionContainer').innerHTML = `
-                <div id="timer">${timeLeft} detik tersisa</div>
-                <p class="mb-4 font-medium">${question.question}</p>
+                <div id="timer" class="text-2xl text-red-600 font-bold text-center mb-5">${timeLeft} detik tersisa</div>
+                <p class="mb-4 font-medium question">${question.question}</p>
                 <textarea id="answer" rows="2" class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring focus:ring-red-950"></textarea>
                 <button onclick="checkAnswer()" class="bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 rounded transition duration-200">
                     Kirim Jawaban
@@ -237,15 +234,15 @@
             
             if (userAnswer === correctAnswer) {
                 showNotification("Anda benar!", true);
-                coins += 10; // Tambah koin untuk jawaban benar
-                timeLeft = Math.min(timeLeft + 5, 60); // Tambah waktu, maksimal 60 detik
+                coins += 10; 
+                timeLeft = Math.min(timeLeft + 5, 60); 
             } else {
-                showNotification("Anda salah!", false);
-                timeLeft = Math.max(timeLeft - 5, 0); // Kurangi waktu, tidak boleh kurang dari 0
+                showNotification(`Anda salah! <br> Kunci jawaban yang benar adalah: ${questions[currentQuestion].answer}`, false);
+                timeLeft = Math.max(timeLeft - 5, 0); 
             }
             updateDisplays();
 
-            setTimeout(nextQuestion, 2000); // Tunggu 2 detik sebelum lanju
+            setTimeout(nextQuestion, 2000); 
         }
 
         function showNotification(message, isCorrect) {
