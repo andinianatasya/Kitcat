@@ -27,7 +27,7 @@
 
             <li class="text-center">
                 <button id="dropdownButton" class="flex items-center hover:opacity-50 duration-300">
-                    <img src="img/lokasi.svg" alt="ruangan" class="w-10 h-10 mb-1">
+                    <img src="img/icon rumah kitcat.svg" alt="ruangan" class="w-10 h-10 mb-1">
                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruangan</span>
                 </button>
             
@@ -106,80 +106,10 @@
             <button id="closeButton" class="text-white hover:opacity-75 focus:outline-none text-xl">&times;</button>
         </div>
         <div class="flex flex-col space-y-2 mt-2">
-            <button id="programmingCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in">Bahasa Pemrograman</button>
-            <button id="markupCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in">Bahasa Markup Biasa</button>
-        </div>
-        <div id="leaderboardContent">
-            <!-- Papan Pemrograman-->
-            <div id="papanPemrograman" class="hidden">
-                <div class="w-72 bg-oren text-white p-5 rounded-lg shadow-md">
-                    <h2 class="text-center text-lg font-bold mb-4">Bahasa Pemrograman</h2>
-                    <div class="space-y-2">
-                        <div class="grid grid-cols-3">
-                            <span>1. Andini</span>
-                            <span class="text-center">skor: 100</span>
-                            <span class="text-right">(Ahli)</span>
-                        </div>
-                        <div class="grid grid-cols-3">
-                            <span>2. Clara</span>
-                            <span class="text-center">skor: 90</span>
-                            <span class="text-right">(Menengah)</span>
-                        </div>
-                        <div class="grid grid-cols-3">
-                            <span>3. Salsa</span>
-                            <span class="text-center">skor: 85</span>
-                            <span class="text-right">(Awal)</span>
-                        </div>
-                        <div class="grid grid-cols-3">
-                            <span>4. Yaya</span>
-                            <span class="text-center">skor: 80</span>
-                            <span class="text-right">(Baru)</span>
-                        </div>
-                        <div class="grid grid-cols-3">
-                            <span>5. Tiara</span>
-                            <span class="text-center">skor: 75</span>
-                            <span class="text-right">(Newbie)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Papan Bahasa Markup-->
-            <div id="papanMarkup" class="hidden">
-                <div class="w-72 bg-oren text-white p-5 rounded-lg shadow-md">
-                    <h2 class="text-center text-lg font-bold mb-4">Bahasa Markup</h2>
-                    <div class="space-y-2">
-                        <div class="grid grid-cols-3">
-                            <span>1. Andini</span>
-                            <span class="text-center">skor: 100</span>
-                            <span class="text-right">(Ahli)</span>
-                        </div>
-                        <div class="grid grid-cols-3">
-                            <span>2. Clara</span>
-                            <span class="text-center">skor: 90</span>
-                            <span class="text-right">(Menengah)</span>
-                        </div>
-                        <div class="grid grid-cols-3">
-                            <span>3. Salsa</span>
-                            <span class="text-center">skor: 85</span>
-                            <span class="text-right">(Awal)</span>
-                        </div>
-                        <div class="grid grid-cols-3">
-                            <span>4. Yaya</span>
-                            <span class="text-center">skor: 80</span>
-                            <span class="text-right">(Baru)</span>
-                        </div>
-                        <div class="grid grid-cols-3">
-                            <span>5. Tiara</span>
-                            <span class="text-center">skor: 75</span>
-                            <span class="text-right">(Newbie)</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            <button id="programmingCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in" onclick="window.location.href='papanperingkatbahasapemograman.html'">Bahasa Pemrograman</button>
+            <button id="markupCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in" onclick="window.location.href='papanperingkatbahasamarkup.html'">Bahasa Markup Biasa</button>
         </div>
     </div>
-
 
     <div id="quizOverlay" class="fixed inset-0 bg-merahTua bg-opacity-30 backdrop-blur-sm hidden">
         <div class="flex items-center justify-center h-screen">
