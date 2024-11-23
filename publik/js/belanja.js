@@ -3,7 +3,6 @@ const shopOverlay = document.getElementById("shopOverlay");
 const closeShopBtn = document.getElementById("closeShopBtn");
 document.addEventListener('DOMContentLoaded', function() {
 const belanja = document.getElementById("belanja");
-const jumlahKoinEl = document.getElementById("jumlahKoin");
 const tutupBelanja = document.getElementById("tutupBelanja");
 const menuUtama = document.getElementById("menuUtama");
 const menuKustom = document.getElementById("menuKustom");
@@ -34,24 +33,32 @@ document.getElementById("backToMenuMakan").addEventListener("click", () => {
     menuUtama.classList.remove("hidden");
 });
 
-//untuk memperbarui tampilan koin
-const updateCoinDisplay = () => {
-    jumlahKoinEl.textContent = jumlahKoin;
-};
-
-// Pembelian item
-const handlePurchase = (button) => {
-    const harga = parseInt(button.getAttribute("hargaItem"));
-    if (jumlahKoin >= harga) {
-        jumlahKoin -= harga;
-        alert("Anda telah membeli dengan harga " + harga + " koin");
-        updateCoinDisplay();
-        return true;
-    } else {
-        alert("Koin anda tidak cukup untuk membeli ini!");
-        return false;
-    }
-};
+// beli item
+const beliButtons = document.querySelectorAll('.beliBtn');
+beliButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const hargaItem = parseInt(this.getAttribute('hargaItem'));
+        // ke php buat ngurangi koin
+        fetch('beli.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ koin: hargaItem })
+        })
+        .then(response => response.json())
+        .then(data => {
+        
+            alert(data.message);
+            if (data.status === 'sukses') {
+                tampilkanKoin();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+});
 
 // Event listener untuk tombol beli
 document.querySelectorAll(".beliBtn").forEach(button => {
@@ -65,5 +72,4 @@ document.querySelectorAll(".beliBtn").forEach(button => {
     });
 });
 
-updateCoinDisplay();
 });

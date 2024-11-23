@@ -1,4 +1,4 @@
-function loadKoin() {
+function tampilkanKoin() {
     fetch('simpanKoin.php')
         .then(response => response.json())
         .then(data => {
