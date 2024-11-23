@@ -13,12 +13,12 @@
         <h1 class="text-4xl font-bold mb-8 text-center text-merah bg-orange-300 rounded-lg">Latihan Coding HTML</h1>
         <div id="coinDisplay" class="text-xl font-bold mb-4 text-center text-merah bg-orange-300 rounded-lg">Koin: 0</div>
         <div id="rankDisplay" class="text-xl font-bold mb-4 text-center text-merah bg-orange-300 rounded-lg">Peringkat: Pemula</div>
-        <div id="timer" class="hidden">60 detik tersisa</div>
-        <button id="notification" class="m-4 p-4 text-white text-center rounded-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 hidden"></button>
-        <div id="questionContainer" class="bg-orange-300 rounded-lg shadow-lg p-6 mb-8 relative"></div>
-    </div>
+    <div id="timer" class="text-red-600 font-bold text-center mb-5">60 detik tersisa</div>
+    <button id="notification" class="m-4 p-4 text-white text-center rounded-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 hidden"></button>
+    <div id="questionContainer" class="bg-orange-300 rounded-lg shadow-lg p-6 mb-8 relative"></div>
+</div>
 
-    <div id="rulesOverlay" class="fixed inset-0 flex items-center justify-center min-h-screen">
+     <div id="rulesOverlay" class="fixed inset-0 flex items-center justify-center min-h-screen">
         <div class="bg-white p-10 rounded-lg shadow-lg w-11/12 max-w-md text-center">
             <h2 class="text-2xl font-bold mb-4 text-red-800">Aturan Bermain</h2>
             <p class="mb-4">Selamat datang di kuis HTML! Berikut adalah cara bermain:</p>
@@ -40,100 +40,30 @@
     <script>
         let currentQuestion = 0;
         let coins = 0;
-        let timeLeft = 60; // Total waktu maksimal
+        let timeLeft = 60; 
         let timer;
-
+ 
         const questions = [
-            {
-                "question": "Apa tag untuk membuat judul paling besar di HTML?\n\n",
-                "answer": "<h1>"
-            },
-            {
-                "question": "Apa tag untuk membuat paragraf di HTML?\n\n",
-                "answer": "<p>"
-            },
-            {
-                "question": "Apa tag untuk membuat daftar tidak terurut?\n\n<ul>\n\n</ul>",
-                "answer": "<li>"
-            },
-            {
-                "question": "Apa tag untuk membuat tombol?\n\n",
-                "answer": "<button>"
-            },
-            {
-                "question": "Apa tag untuk membuat footer?\n\n",
-                "answer": "<footer>"
-            },
-            {
-                "question": "Apa tag untuk membuat link di HTML?\n\n",
-                "answer": "<a>"
-            },
-            {
-                "question": "Apa tag untuk Baris baru?\n\n",
-                "answer": "<br>"
-            },
-            {
-                "question": "Tag apa yang digunakan untuk membuat judul terkecil?\n\n",
-                "answer": "<h6>"
-            },
-            {
-                "question": "Di tag apakah yang merupakan bagian utama dari halaman web,di mana berisi semua konten yang ingin ditampilkan audiens?\n\n",
-                "answer": "<body>"
-            },
-            {
-                "question": "Tag apakah yang berfungsi untuk menetapkan judul halaman web yang akan ditampilkan pada tab browser?\n\n",
-                "answer": "<title>"
-            },
-            {
-                "question": "Apa tag untuk membuat form?\n\n",
-                "answer": "<form>"
-            },
-            {
-                "question": "Tag apa yang dipakai untuk membuat garis horizontal dan biasanya sering digunakan sebagai pemisah konten?\n\n",
-                "answer": "<hr>"
-            },
-            {
-                "question": "Apa tag yang digunakan untuk membuat daftar berurutan,dimana setiap item diberi nomor?\n\n",
-                "answer": "<ol>"
-            },
-            {
-                "question": "Apa tag  utama untuk membuat tabel di HTML?\n\n",
-                "answer": "<table>"
-            },
-            {
-                "question": "Apa tag untuk bagian judul tabel?\n\n",
-                "answer": "<th>"
-            },
-            {
-                "question": "Bagaimana cara membuat baris dalam tabel?\n\n",
-                "answer": "<tr>"
-            },
-            {
-                "question": "Bagaimana cara membuat kolom dalam tabel?\n\n",
-                "answer": "<td>"
-            },
-            {
-                "question": "Apa tag untuk menampilkan gambar di HTML?\n\n",
-                "answer": "<img>"
-            },
-            {
-                "question": "Apa tag untuk membuat daftar terurut?\n\n<ol>\n\n</ol>",
-                "answer": "<li>"
-            },
-            {
-                "question": "Apa tag untuk membuat divisi atau bagian di HTML?\n\n",
-                "answer": "<div>"
-            },
-            {
-                "question": "Apa tag untuk membuat tabel di HTML?\n\n",
-                "answer": "<table>"
-            },
-            {
-                "question": "Apa tag untuk membuat heading kedua di HTML?\n\n",
-                "answer": "<h2>"
-            }
-        ];
-      
+        { "question": "Apa tag untuk membuat judul paling besar di HTML?", "answer": "<h1>" },
+    { "question": "Apa tag untuk membuat paragraf di HTML?", "answer": "<p>" },
+    { "question": "Apa tag untuk membuat daftar tidak terurut,di mana setiap item ditandai dengan simbol?", "answer": "<ul>" },
+    { "question": "Apa tag untuk membuat tombol?", "answer": "<button>" },
+    { "question": "Apa atribut yang digunakan untuk menetapkan alamat URL dalam tag anchor?", "answer": "href" },
+    { "question": "Apa tag untuk menampilkan gambar di HTML?", "answer": "<img>" },
+    { "question": "Apa tag yang digunakan untuk membuat form di HTML?", "answer": "<form>" },
+    { "question": "Apa tag untuk membuat tabel di HTML?", "answer": "<table>" },
+    { "question": "Apa tag untuk membuat link di HTML?", "answer": "<a>" },
+    { "question": "Apa tag untuk menampilkan teks tebal di HTML?", "answer": "<strong>" },
+    { "question": "Apa tag untuk menampilkan teks miring di HTML?", "answer": "<em>" },
+    { "question": "Apa tag yang digunakan untuk membuat daftar terurut,dimana setiap item nya diberi nomor?", "answer": "<ol>" },
+    { "question": "Apa tag untuk menyisipkan video di HTML?", "answer": "<video>" },
+    { "question": "Apa tag untuk menyisipkan audio di HTML?", "answer": "<audio>" },
+    { "question": "Apa atribut yang digunakan untuk menetapkan lebar gambar?", "answer": "width" },
+    { "question": "Apa atribut yang digunakan untuk menetapkan tinggi gambar?", "answer": "height" }
+];
+
+
+
         function shuffleQuestions(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -144,22 +74,20 @@
         function loadQuestion() {
             const question = questions[currentQuestion];
             document.getElementById('questionContainer').innerHTML = `
-                <div id="timer">${timeLeft} detik tersisa</div>
-                <p class="mb-4 font-medium">${question.question}</p>
-                <textarea id="answer" rows="2" class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring focus:ring-red-950"></textarea>
-                <button onclick="checkAnswer()" class="bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 rounded transition duration-200">
+                <p class="mb-4">${question.question}</p>
+                <textarea id="answer" placeholder="Tulis jawaban di sini..." class="w-full h-12 mb-2 p-2 border border-gray-400 rounded-md"></textarea>
+                <button onclick="checkAnswer()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-200">
                     Kirim Jawaban
                 </button>
             `;
             document.getElementById('notification').classList.add('hidden');
-            startTimer();
+ startTimer();
         }
 
         function startTimer() {
-            document.getElementById('timer').classList.remove('hidden');
             timer = setInterval(() => {
                 timeLeft--;
-                document.getElementById('timer').textContent = `${timeLeft} detik tersisa`;
+                document.getElementById('timer').innerText = `${timeLeft} detik tersisa`;
                 if (timeLeft <= 0) {
                     clearInterval(timer);
                     showFinalScore();
@@ -169,38 +97,33 @@
 
         function checkAnswer() {
             clearInterval(timer);
-            const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
-            const correctAnswer = questions[currentQuestion].answer.toLowerCase();
-            
-            if (userAnswer === correctAnswer) {
-                showNotification("Anda benar!", true);
-                coins += 10; // Tambah koin untuk jawaban benar
-                timeLeft = Math.min(timeLeft + 5, 60); // Tambah waktu, maksimal 60 detik
+            const userAnswer = document.getElementById('answer').value.trim();
+            if (userAnswer === questions[currentQuestion].answer) {
+                coins += 10;
+                showNotification("Jawaban Anda benar!", true);
+                timeLeft = Math.min(timeLeft + 5, 60);
             } else {
-                showNotification("Anda salah!", false);
-                timeLeft = Math.max(timeLeft - 5, 0); // Kurangi waktu, tidak boleh kurang dari 0
+                showNotification(`Jawaban Anda salah! Jawaban yang benar adalah: ${questions[currentQuestion].answer}`, false);
+                timeLeft = Math.max(timeLeft - 5, 0);
             }
             updateDisplays();
-
-            setTimeout(nextQuestion, 2000); // Tunggu 2 detik sebelum lanjut
+            setTimeout(nextQuestion, 2000);
         }
 
         function showNotification(message, isCorrect) {
             const notificationElement = document.getElementById('notification');
-            notificationElement.innerHTML = `<p class="px-3 rounded-lg text-white font-medium">${message}</p>`;
-            notificationElement.classList.remove('hidden', 'bg-green-500', 'bg-red-700');
-            notificationElement.classList.add(isCorrect ? 'bg-green-500' : 'bg-red-700');
+            notificationElement.innerText = message;
+            notificationElement.style.backgroundColor = isCorrect ? '#2ecc71' : '#e74c3c';
             notificationElement.classList.remove('hidden');
-
             setTimeout(() => {
                 notificationElement.classList.add('hidden');
             }, 2000);
         }
 
         function updateDisplays() {
-            document.getElementById('coinDisplay').innerHTML = `Koin: ${coins}`;
+            document.getElementById('coinDisplay').innerText = `Koin: ${coins}`;
             const rank = coins >= 30 ? "Ahli" : coins >= 20 ? "Menengah" : coins >= 10 ? "Pemula" : "Pemula";
-            document.getElementById('rankDisplay').innerHTML = `Peringkat: ${rank}`;
+            document.getElementById('rankDisplay').innerText = `Peringkat: ${rank}`;
         }
 
         function nextQuestion() {
@@ -225,14 +148,11 @@
             localStorage.setItem('coins', coins);
         }
 
-        document.getElementById('rulesOverlay').classList.remove('hidden');
-
         document.getElementById('startButton').addEventListener('click', () => {
-            document.getElementById('rulesOverlay').classList.add('hidden');
+            document.getElementById('rulesOverlay').style.display = 'none';
             shuffleQuestions(questions);
             loadQuestion();
         });
     </script>
-
 </body>
 </html>
