@@ -60,6 +60,28 @@ beliButtons.forEach(button => {
     });
 });
 
+//  Konsumsi makanan
+function consumeFood(foodId) {
+    fetch('consume.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ foodId: foodId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        if (data.status === 'sukses') {
+            // Update UI sesuai dengan jumlah konsumsi
+            // Misalnya, jika sudah 10 kali, kunci makanan
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
 // Event listener untuk tombol beli
 document.querySelectorAll(".beliBtn").forEach(button => {
     button.addEventListener("click", function() {
@@ -71,5 +93,4 @@ document.querySelectorAll(".beliBtn").forEach(button => {
         }
     });
 });
-
 });
