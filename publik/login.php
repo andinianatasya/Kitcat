@@ -1,7 +1,7 @@
 <?php
 session_start();
 $host = "localhost";
-$dbname = "userPoat";
+$dbname = "kitcat";
 $user = "postgres";
 $pass = "Medan2005";
 
@@ -14,7 +14,7 @@ try {
         $password = $_POST['password'];
 
         // ini buat cek usernme sama pass ya
-        $stmt = $pdo->prepare("SELECT * FROM userPoat WHERE username = :username");
+        $stmt = $pdo->prepare("SELECT * FROM userkitcat WHERE username = :username");
         $stmt->execute(['username' => $username]);
         
         if ($stmt->rowCount() > 0) {

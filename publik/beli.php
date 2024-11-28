@@ -3,7 +3,7 @@ session_start();
 header('Content-Type: application/json');
 
 $host = "localhost";
-$dbname = "userPoat";
+$dbname = "kitcat";
 $user = "postgres";
 $password = "Medan2005"; 
 
@@ -15,10 +15,26 @@ try {
     exit;
 }
 
+// Memperbarui status makanan setelah pembelian
+// Memperbarui status makanan setelah pembelian
+function updateFoodStatus($produkId) {
+    global $pdo;
+    $stmt = $pdo->prepare("UPDATE produk SET status = TRUE WHERE produk_id = :produk_id");
+    $stmt->bindParam(':produk_id', $produkId, PDO::PARAM_STR); // Ganti :food_id menjadi :produk_id
+    return $stmt->execute();
+}
+
+$data = json_decode(file_get_contents("php://input"));
+
+if (isset($data->produkId)) {
+    $produkId = $data->produkId;
+    updateFoodStatus($produkId); // Memperbarui status produk
+}
+
 // Fungsi untuk mengurangi koin
 function beliItems($userId, $koin) {
     global $pdo;
-    $stmt = $pdo->prepare("SELECT koin FROM userPoat WHERE id = :user_id");
+    $stmt = $pdo->prepare("SELECT koin FROM userkitcat WHERE id = :user_id");
     $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -26,7 +42,7 @@ function beliItems($userId, $koin) {
     if ($result) {
         $currentKoin = $result['koin'];
         if ($currentKoin >= $koin) {
-            $stmt = $pdo->prepare("UPDATE userPoat SET koin = koin - :koin WHERE id = :user_id");
+            $stmt = $pdo->prepare("UPDATE userkitcat SET koin = koin - :koin WHERE id = :user_id");
             $stmt->bindParam(':koin', $koin, PDO::PARAM_INT);
             $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
             if ($stmt->execute()) {

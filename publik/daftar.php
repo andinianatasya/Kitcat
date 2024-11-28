@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$dbname = "userPoat";
+$dbname = "kitcat";
 $user = "postgres";
 $pass = "Medan2005";
 
@@ -12,13 +12,13 @@ try {
         $username = $_POST['username'];
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
         // Cek apakah username sudah ada ><
-        $stmt = $pdo->prepare("SELECT * FROM userPoat WHERE username = :username");
+        $stmt = $pdo->prepare("SELECT * FROM userkitcat WHERE username = :username");
         $stmt->execute(['username' => $username]);
         
         if ($stmt->rowCount() > 0) {
             echo "Username sudah terdaftar. Silakan pilih username lain.";
         } else {
-            $stmt = $pdo->prepare("INSERT INTO userPoat (username, password) VALUES (:username, :password)");
+            $stmt = $pdo->prepare("INSERT INTO userkitcat (username, password) VALUES (:username, :password)");
             $stmt->execute(['username' => $username, 'password' => $password]);
             header("Location: login.php");
             exit;

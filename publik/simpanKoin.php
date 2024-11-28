@@ -3,7 +3,7 @@ session_start();
 header('Content-Type: application/json');
 
 $host = "localhost";
-$dbname = "userPoat";
+$dbname = "kitcat";
 $user = "postgres";
 $password = "Medan2005"; 
 
@@ -19,7 +19,7 @@ try {
 function saveCoins($userId, $koin) {
     global $pdo;
 
-    $stmt = $pdo->prepare("UPDATE userPoat SET koin = koin + :koin WHERE id = :user_id");
+    $stmt = $pdo->prepare("UPDATE userkitcat SET koin = koin + :koin WHERE id = :user_id");
     $stmt->bindParam(':koin', $koin, PDO::PARAM_INT);
     $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
 
@@ -34,8 +34,9 @@ function saveCoins($userId, $koin) {
 function getCoins($userId) {
     global $pdo;
 
-    $stmt = $pdo->prepare("SELECT koin FROM userPoat WHERE id = :user_id");
+    $stmt = $pdo->prepare("SELECT koin FROM userkitcat WHERE id = :user_id");
     $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $stmt->bindParam(':koin', $koin, PDO::PARAM_INT);
     $stmt->execute();
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
