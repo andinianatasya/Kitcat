@@ -25,16 +25,29 @@ sabunImage.addEventListener("click", changeCatImage);
 showerImage.addEventListener("click", changeCatImage);
 
 // js button kunci di ruangmkn.html
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('getPenyimpanan.php')
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(item => {
-                const button = document.getElementById(`button${item.id_produk}`);
-                if (item.jumlah_konsumsi < 10) {
-                    button.disabled = false;
-                    button.classList.remove('opacity-50', 'cursor-not-allowed');
+    const buttons = document.querySelectorAll('.makan');
+    buttons.forEach(button => {
+        const id_produk = parseInt(this.getAttribute('konsumsi'));
+        console.log("Button clicked, id_produk: " + id_produk);
+        button.addEventListener('click', () => {
+            // Mengirim permintaan POST ke konsumsi.php
+            fetch('konsumsi.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id_produk: id_produk })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); // Menampilkan pesan dari server
+
+                // Jika produk dihapus, nonaktifkan tombol
+                if (data.status === 'sukses' && data.message.includes("dihapus")) {
+                    button.disabled = true;
+                    button.classList.add('opacity-50', 'cursor-not-allowed');
                 }
-            });
+            })
+            .catch(error => console.error('Error:', error));
         });
-});
+    });

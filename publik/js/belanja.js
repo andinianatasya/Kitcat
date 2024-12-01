@@ -1,7 +1,6 @@
 const shopImage = document.getElementById("shopImage");
 const shopOverlay = document.getElementById("shopOverlay");
 const closeShopBtn = document.getElementById("closeShopBtn");
-document.addEventListener('DOMContentLoaded', function() {
 const belanja = document.getElementById("belanja");
 const tutupBelanja = document.getElementById("tutupBelanja");
 const menuUtama = document.getElementById("menuUtama");
@@ -37,14 +36,16 @@ document.getElementById("backToMenuMakan").addEventListener("click", () => {
 const beliButtons = document.querySelectorAll('.beliBtn');
 beliButtons.forEach(button => {
     button.addEventListener('click', function() {
-        const hargaItem = parseInt(this.getAttribute('hargaItem'));
+        const id_produk = parseInt(this.getAttribute('data-id_produk')); // Ambil id_produk dari atribut data
+        // const hargaItem = parseInt(this.getAttribute('hargaItem'));
         // ke php buat ngurangi koin
+        console.log("Button clicked, id_produk: " + id_produk);
         fetch('beli.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ koin: hargaItem })
+            body: JSON.stringify({ id_produk: id_produk })
         })
         .then(response => response.json())
         .then(data => {
@@ -61,16 +62,15 @@ beliButtons.forEach(button => {
 });
 
 // Event listener untuk tombol beli
-document.querySelectorAll(".beliBtn").forEach(button => {
-    button.addEventListener("click", function() {
-        if (handlePurchase(this)) {
-            const motif = this.getAttribute("data-motif");
-            if (motif) {
-                catImage.src = `img/motif${motif}/default_bayi${motif}.png`;
-            }
-        }
-    });
-});
-});
+// document.querySelectorAll(".beliBtn").forEach(button => {
+//     button.addEventListener("click", function() {
+//         if (handlePurchase(this)) {
+//             const motif = this.getAttribute("data-motif");
+//             if (motif) {
+//                 catImage.src = `img/motif${motif}/default_bayi${motif}.png`;
+//             }
+//         }
+//     });
+// });
 
 

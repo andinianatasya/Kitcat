@@ -22,34 +22,29 @@ try {
                 window.location.href = 'login.html';
             </script>";
         } else {
-            // Jika username belum terdaftar, lanjutkan dengan proses pendaftaran
-            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
-            // Insert data pengguna ke tabel userkitcat
-            $insertStmt = $pdo->prepare("INSERT INTO userkitcat (username, password) VALUES (:username, :password)");
-            $insertStmt->execute([
+            // Insert data pengguna ke tabel userkitcat dan ambil id yang baru saja dibuat
+            $stmt = $pdo->prepare("INSERT INTO userkitcat (username, password) VALUES (:username, :password) RETURNING id");
+            $stmt->execute([
                 'username' => $username,
-                'password' => $hashedPassword
+                'password' => $password
             ]);
-
-            // Ambil ID pengguna yang baru saja terdaftar
-            $userId = $pdo->lastInsertId();
+            $userId = $stmt->fetchColumn(); // Mengambil ID yang baru saja dimasukkan
 
             // Insert data kucing yang terhubung dengan pengguna baru
-            $insertKucingStmt = $pdo->prepare("INSERT INTO kucing (id, umur, kondisi, path_gambar) 
-                                                VALUES (:id, :umur, :kondisi, :path_gambar)");
-            $insertKucingStmt->execute([
+            $stmt = $pdo->prepare("INSERT INTO kucing (id, umur, kondisi, path_gambar) 
+                                    VALUES (:id, :umur, :kondisi, :path_gambar)");
+            $stmt->execute([
                 'id' => $userId,             // Menggunakan id pengguna yang baru saja dibuat
                 'umur' => 'bayi',            // Default umur
                 'kondisi' => 'default',      // Default kondisi
                 'path_gambar' => 'img/default_bayi.png' // Default gambar
             ]);
+
             echo "<script>
                 alert('Pendaftaran berhasil! Silakan Masuk.');
                 window.location.href = 'login.html';
             </script>";
             exit;
-            // Setelah pendaftaran berhasil, Anda bisa mengarahkan pengguna ke halaman login atau halaman lain.
         }
     }
 }
