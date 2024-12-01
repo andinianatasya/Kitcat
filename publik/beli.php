@@ -3,9 +3,9 @@ session_start();
 header('Content-Type: application/json');
 
 $host = "localhost";
-$dbname = "userPoat";
+$dbname = "Kitcat";
 $user = "postgres";
-$password = "Medan2005"; 
+$password = "Miskagi8282"; 
 
 try {
     $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
@@ -18,7 +18,7 @@ try {
 // Fungsi untuk mengurangi koin
 function beliItems($userId, $koin) {
     global $pdo;
-    $stmt = $pdo->prepare("SELECT koin FROM userPoat WHERE id = :user_id");
+    $stmt = $pdo->prepare("SELECT koin FROM userkitcat WHERE id = :user_id");
     $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -26,7 +26,7 @@ function beliItems($userId, $koin) {
     if ($result) {
         $currentKoin = $result['koin'];
         if ($currentKoin >= $koin) {
-            $stmt = $pdo->prepare("UPDATE userPoat SET koin = koin - :koin WHERE id = :user_id");
+            $stmt = $pdo->prepare("UPDATE Kitcat SET koin = koin - :koin WHERE id = :user_id");
             $stmt->bindParam(':koin', $koin, PDO::PARAM_INT);
             $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
             if ($stmt->execute()) {

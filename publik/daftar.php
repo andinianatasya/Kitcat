@@ -1,8 +1,9 @@
 <?php
+session_start();
 $host = "localhost";
-$dbname = "userPoat";
+$dbname = "Kitcat";
 $user = "postgres";
-$pass = "Medan2005";
+$pass = "Miskagi8282";
 
 try {
     $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
@@ -10,18 +11,41 @@ try {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST['username'];
-        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        // Cek apakah username sudah ada ><
-        $stmt = $pdo->prepare("SELECT * FROM userPoat WHERE username = :username");
+        $password = $_POST['password'];
+
+        // Cek apakah username sudah terdaftar
+        $stmt = $pdo->prepare("SELECT * FROM userkitcat WHERE username = :username");
         $stmt->execute(['username' => $username]);
-        
+
         if ($stmt->rowCount() > 0) {
+            // Jika username sudah terdaftar
             echo "Username sudah terdaftar. Silakan pilih username lain.";
         } else {
-            $stmt = $pdo->prepare("INSERT INTO userPoat (username, password) VALUES (:username, :password)");
-            $stmt->execute(['username' => $username, 'password' => $password]);
-            header("Location: login.php");
+            // Jika username belum terdaftar, lanjutkan dengan proses pendaftaran
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+            // Insert data pengguna ke tabel userkitcat
+            $insertStmt = $pdo->prepare("INSERT INTO userkitcat (username, password) VALUES (:username, :password)");
+            $insertStmt->execute([
+                'username' => $username,
+                'password' => $hashedPassword
+            ]);
+
+            // Ambil ID pengguna yang baru saja terdaftar
+            $userId = $pdo->lastInsertId();
+
+            // Insert data kucing yang terhubung dengan pengguna baru
+            $insertKucingStmt = $pdo->prepare("INSERT INTO kucing (id, umur, kondisi, path_gambar) 
+                                                VALUES (:id, :umur, :kondisi, :path_gambar)");
+            $insertKucingStmt->execute([
+                'id' => $userId,             // Menggunakan id pengguna yang baru saja dibuat
+                'umur' => 'bayi',            // Default umur
+                'kondisi' => 'default',      // Default kondisi
+                'path_gambar' => 'img/default_bayi.png' // Default gambar
+            ]);
+            header("Location: login.html");
             exit;
+            // Setelah pendaftaran berhasil, Anda bisa mengarahkan pengguna ke halaman login atau halaman lain.
         }
     }
 }

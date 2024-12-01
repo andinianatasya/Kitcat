@@ -3,8 +3,8 @@ session_start();
 
 $host = "localhost";
 $user = "postgres";
-$pass = "Medan2005"; 
-$dbname = "userPoat"; 
+$pass = "Miskagi8282"; 
+$dbname = "Kitcat"; 
 
 try {
     $conn = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
@@ -14,7 +14,7 @@ try {
 }
 
 if (isset($_SESSION['user_id'])) {
-    $sql = "SELECT nama_profil, avatar FROM userPoat WHERE id = :user_id";
+    $sql = "SELECT nama_profil, avatar FROM userkitcat WHERE id = :user_id";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':user_id', $_SESSION['user_id']);
     $stmt->execute();
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['message'] = "Error: Nama pengguna tidak boleh lebih dari $max_length karakter.";
         $error = true; // Set flag kesalahan
     } else if (!empty($nama_baru) && isset($_SESSION['user_id'])) {
-        $sql = "UPDATE userPoat SET nama_profil = :nama_profil WHERE id = :user_id"; 
+        $sql = "UPDATE userkitcat SET nama_profil = :nama_profil WHERE id = :user_id"; 
         $stmt = $conn->prepare($sql);
         
         $stmt->bindParam(':nama_profil', $nama_baru);
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (!$error && $avatar && isset($_SESSION['user_id'])) {
-        $sql = "UPDATE userPoat SET avatar = :avatar WHERE id = :user_id";
+        $sql = "UPDATE userkitcat SET avatar = :avatar WHERE id = :user_id";
         $stmt = $conn->prepare($sql);
         
         $stmt->bindParam(':avatar', $avatar);

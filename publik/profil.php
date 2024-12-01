@@ -2,9 +2,9 @@
 session_start();
 
 $host = "localhost";
-$dbname = "userPoat";
+$dbname = "Kitcat";
 $user = "postgres";
-$password = "Medan2005"; 
+$password = "Miskagi8282"; 
 
 try {
     $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
@@ -21,7 +21,7 @@ if (empty($userId)) {
 }
 
 try {
-    $stmt = $pdo->prepare("SELECT level, exp FROM userPoat WHERE id = :id");
+    $stmt = $pdo->prepare("SELECT level, exp FROM userkitcat WHERE id = :id");
     $stmt->execute(['id' => $userId]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['makanan'])) {
     }
 
     try {
-        $stmt = $pdo->prepare("UPDATE userPoat SET level = :level, exp = :exp WHERE id = :id");
+        $stmt = $pdo->prepare("UPDATE userkitcat SET level = :level, exp = :exp WHERE id = :id");
         $stmt->execute(['level' => $level, 'exp' => $exp, 'id' => $userId]);
     } catch (PDOException $e) {
         echo "Kesalahan saat memperbarui data: " . $e->getMessage();
@@ -96,10 +96,8 @@ echo "Ruangan sebelumnya: " . htmlspecialchars($ruangan_sebelumnya);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-
     <link rel="icon" href="img/logo(1).png" type="image/png">
-
-    <title>Poat</title>
+    <title>Kitcat</title>
 </head>
 <body class="overflow-hidden">
     <div class="bg-bgProfil bg-cover bg-center h-screen">

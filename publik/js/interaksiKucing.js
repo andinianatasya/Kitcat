@@ -23,3 +23,18 @@ function changeCatImage() {
 }
 sabunImage.addEventListener("click", changeCatImage);
 showerImage.addEventListener("click", changeCatImage);
+
+// js button kunci di ruangmkn.html
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('getPenyimpanan.php')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(item => {
+                const button = document.getElementById(`button${item.id_produk}`);
+                if (item.jumlah_konsumsi < 10) {
+                    button.disabled = false;
+                    button.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            });
+        });
+});
