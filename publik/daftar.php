@@ -17,8 +17,10 @@ try {
         $stmt->execute(['username' => $username]);
 
         if ($stmt->rowCount() > 0) {
-            // Jika username sudah terdaftar
-            echo "Username sudah terdaftar. Silakan pilih username lain.";
+            echo "<script>
+                alert('Nama pengguna sudah terdaftar. Silahkan pilih nama pengguna lain.');
+                window.location.href = 'login.html';
+            </script>";
         } else {
             // Jika username belum terdaftar, lanjutkan dengan proses pendaftaran
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
@@ -42,7 +44,10 @@ try {
                 'kondisi' => 'default',      // Default kondisi
                 'path_gambar' => 'img/default_bayi.png' // Default gambar
             ]);
-            header("Location: login.html");
+            echo "<script>
+                alert('Pendaftaran berhasil! Silakan Masuk.');
+                window.location.href = 'login.html';
+            </script>";
             exit;
             // Setelah pendaftaran berhasil, Anda bisa mengarahkan pengguna ke halaman login atau halaman lain.
         }
