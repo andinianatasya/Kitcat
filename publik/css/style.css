@@ -610,6 +610,10 @@ video {
   z-index: 10;
 }
 
+.z-50 {
+  z-index: 50;
+}
+
 .m-4 {
   margin: 1rem;
 }
@@ -1354,11 +1358,6 @@ video {
   color: rgb(187 77 0 / var(--tw-text-opacity));
 }
 
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-
 .text-red-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
@@ -1407,6 +1406,10 @@ video {
 
 .outline-green-800 {
   outline-color: #166534;
+}
+
+.outline-oren {
+  outline-color: #ca5310;
 }
 
 .blur-sm {

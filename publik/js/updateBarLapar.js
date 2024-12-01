@@ -8,7 +8,11 @@ function updateLapar(amount) {
         })
         .then(data => {
             console.log('Data yg diterima: ', data);
-            let currentLapar = data.lapar;
+            let currentLapar = parseInt(data.lapar);
+            if (isNaN(currentLapar)) {
+                console.error('currentLapar tidak valid, tidak dapat dikonversi ke angka');
+                return;
+            }
 
             if (currentLapar < 100) {
                 currentLapar += amount;
@@ -48,44 +52,36 @@ function updateStatusOnServer(lapar, sehat, energi, senang) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('makanButton1').addEventListener('click', function() {
-        console.log('Button Makan 1 clicked');
-        updateLapar(10);
-    });
 
-    document.getElementById('makanButton2').addEventListener('click', function() {
-        console.log('Button Makan 2 clicked');
-        updateLapar(10);
-    });
-
-    document.getElementById('makanButton3').addEventListener('click', function() {
-        console.log('Button Makan 3 clicked');
-        updateLapar(10);
-    });
-
-    document.getElementById('makanButton4').addEventListener('click', function() {
-        console.log('Button Makan 4 clicked');
-        updateLapar(10);
-    });
-
-    document.getElementById('makanButton5').addEventListener('click', function() {
-        console.log('Button Makan 5 clicked');
-        updateLapar(10);
-    });
-
-    document.getElementById('minumButton1').addEventListener('click', function() {
-        console.log('Button Minum 1 clicked');
-        updateLapar(5);
-    });
-
-    document.getElementById('minumButton2').addEventListener('click', function() {
-        console.log('Button Minum 2 clicked');
-        updateLapar(5);
-    });
-
-    document.getElementById('minumButton3').addEventListener('click', function() {
-        console.log('Button Minum 3 clicked');
-        updateLapar(5);
-    });
+document.getElementById('makanButton1').addEventListener('click', function() {
+    console.log('Button Makan 1 clicked');
+    updateLapar(10);
+});
+document.getElementById('makanButton2').addEventListener('click', function() {
+    console.log('Button Makan 2 clicked');
+    updateLapar(10);
+});
+document.getElementById('makanButton3').addEventListener('click', function() {
+    console.log('Button Makan 3 clicked');
+    updateLapar(10);
+});
+document.getElementById('makanButton4').addEventListener('click', function() {
+    console.log('Button Makan 4 clicked');
+    updateLapar(10);
+});
+document.getElementById('makanButton5').addEventListener('click', function() {
+    console.log('Button Makan 5 clicked');
+    updateLapar(10);
+});
+document.getElementById('minumButton1').addEventListener('click', function() {
+    console.log('Button Minum 1 clicked');
+    updateLapar(5);
+});
+document.getElementById('minumButton2').addEventListener('click', function() {
+    console.log('Button Minum 2 clicked');
+    updateLapar(5);
+});
+document.getElementById('minumButton3').addEventListener('click', function() {
+    console.log('Button Minum 3 clicked');
+    updateLapar(5);
 });

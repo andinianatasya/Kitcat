@@ -8,7 +8,11 @@ function updateSenang(amount) {
         })
         .then(data => {
             console.log('Data yg diterima: ', data);
-            let currentSenang = data.senang;
+            let currentSenang = parseInt(data.senang);
+            if (isNaN(currentSenang)) {
+                console.error('currentSenang tidak valid, tidak dapat dikonversi ke angka');
+                return;
+            }
 
             if (currentSenang < 100) {
                 currentSenang += amount;
@@ -48,14 +52,19 @@ function updateStatusOnServer(lapar, sehat, energi, senang) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('senang1').addEventListener('click', function() {
-        console.log('Button Senang 1 clicked');
-        updateSenang(10);
-    });
+document.getElementById('senang1').addEventListener('click', function(event) {
+    event.preventDefault();
+    console.log('Button Senang 1 clicked');
+    updateSenang(10);
+    
 
-    document.getElementById('senang2').addEventListener('click', function() {
-        console.log('Button Senang 2 clicked');
-        updateSenang(10);
-    });
+    window.location.href = "bahasapemrograman.html";
+});
+
+document.getElementById('senang2').addEventListener('click', function(event) {
+    event.preventDefault();
+    console.log('Button Senang 2 clicked');
+    updateSenang(10);
+    
+    window.location.href = "bahasastandar.html";
 });

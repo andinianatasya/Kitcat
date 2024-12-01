@@ -51,14 +51,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         case 'makanan9':
         case 'makanan10':
         case 'makanan11':
-            $exp += 5;
+            $exp += 3;
             break;
         case 'mandi1':
         case 'mandi2':
-            $exp += 10;
+            $exp += 3;
             break;
         case 'tidur':
-            $exp += 15;
+            $exp += 2;
             break;
     }
 
