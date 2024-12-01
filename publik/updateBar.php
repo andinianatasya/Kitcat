@@ -28,7 +28,6 @@ $sehat = isset($data['sehat']) ? (int)$data['sehat'] : 100;
 $energi = isset($data['energi']) ? (int)$data['energi'] : 100;
 $senang = isset($data['senang']) ? (int)$data['senang'] : 100;
 
-// Validasi nilai
 if ($lapar < 0 || $lapar > 100 || $sehat < 0 || $sehat > 100 || $energi < 0 || $energi > 100 || $senang < 0 || $senang > 100) {
     echo json_encode(["status" => "error", "message" => "Nilai harus antara 0 dan 100."]);
     exit;

@@ -8,7 +8,11 @@ function updateSehat(amount) {
         })
         .then(data => {
             console.log('Data yg diterima: ', data);
-            let currentSehat = data.sehat;
+            let currentSehat = parseInt(data.sehat);
+            if (isNaN(currentSehat)) {
+                console.error('currentSehat tidak valid, tidak dapat dikonversi ke angka');
+                return;
+            }
 
             if (currentSehat < 100) {
                 currentSehat += amount;
@@ -48,19 +52,16 @@ function updateStatusOnServer(lapar, sehat, energi, senang) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('obatButton1').addEventListener('click', function() {
-        console.log('Button Obat 1 clicked');
-        updateSehat(10);
-    });
 
-    document.getElementById('obatButton2').addEventListener('click', function() {
-        console.log('Button Obat 2 clicked');
-        updateSehat(10);
-    });
-
-    document.getElementById('obatButton3').addEventListener('click', function() {
-        console.log('Button Obat 3 clicked');
-        updateSehat(10);
-    });
+document.getElementById('obatButton1').addEventListener('click', function() {
+    console.log('Button Obat 1 clicked');
+    updateSehat(10);
+});
+document.getElementById('obatButton2').addEventListener('click', function() {
+    console.log('Button Obat 2 clicked');
+    updateSehat(10);
+});
+document.getElementById('obatButton3').addEventListener('click', function() {
+    console.log('Button Obat 3 clicked');
+    updateSehat(10);
 });

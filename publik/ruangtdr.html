@@ -16,7 +16,7 @@
         <audio id="meong" src="img/meow.mp3"></audio>
     </div>
 
-    <nav class="fixed top-0 left-0 right-0 bg-oren p-2">
+    <nav class="fixed top-0 left-0 right-0 bg-oren p-2 z-50">
         <ul class="flex justify-around items-center">
 
             <li class="text-center hover:opacity-50 duration-300">
@@ -91,11 +91,18 @@
     
     <div id="matiLampu" class="fixed inset-0 bg-black bg-opacity-45 hidden">
     </div>
+
+    <div class="fixed inset-0 flex items-center justify-center">
+        <button id="message" class="text-center text-white rounded-full p-5 outline outline-oren bg-oren hidden">Tombol dinonaktifkan karena energi > 30%</button>
+    </div>
     <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4">
         <button id="tidurButton" class="w-16 h-16 shadow-cartoon rounded-full" onclick="updateExp('tidur')">
-            <img id="lampu" src="img/lampu.svg" alt="lampu" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300">
-            <p id="message" class="hidden text-center text-red-500 mt-2">Tombol dinonaktifkan karena energi >= 50%</p>
-        </button> 
+            <img id="lampu" src="img/lampu.png" alt="lampu" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300">
+        </button>
+
+        <button id="closeButton" class="w-16 h-16 shadow-cartoon rounded-full hidden">
+            <img src="img/hidupLampu.svg" alt="" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300">
+        </button>
     </div>
 
 
@@ -105,6 +112,6 @@
     <script src="js/exp.js"></script>
     <script src="js/bar.js"></script>
     <script src="js/updateBarEnergi.js"></script>
-    <script src="js/lampu.js"></script>
+    
 </body>
 </html>
