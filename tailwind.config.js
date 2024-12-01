@@ -10,7 +10,9 @@ module.exports = {
         'bgKmrMandi' : "url('/publik/img/bgkmrMandi.png')",
         'bgMain' : "url('/publik/img/bgmain.png')",
         'bgLogin' : "url('/publik/img/bglogin.png')",
-        'bgProfil' : "url('/publik/img/bgProfil.png')"
+        'bgProfil' : "url('/publik/img/bgProfil.png')",
+        'bgpapanperingkatbahasapemograman' : "url('/publik/img/bgppnprngkat.png')",
+        'bgpapanperingkatbahasamarkup' : "url('/publik/img/bgppnprngkat.png')"
       },
 
       colors : {
