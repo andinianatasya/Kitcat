@@ -17,10 +17,19 @@ catImage.addEventListener('click', function() {
     }
 });
 
-// kucing jadi tidur
-function changeCatImage() {
-    catImage.src = "img/ngantuk_bayi.png"; //ganti nanti
+// Fungsi untuk mengganti gambar kucing
+function changeToSabun() {
+    catImage.src = "img/kucing_sabun.png"; // Ganti gambar menjadi kucing terkena sabun
 }
+
+function changeToShower() {
+    catImage.src = "img/kucing_basah.png"; // Ganti gambar menjadi kucing basah
+}
+
+// Menambahkan event listener ke ikon sabun dan shower
+sabunImage.addEventListener("click", changeToSabun);
+showerImage.addEventListener("click", changeToShower);
+=======
 sabunImage.addEventListener("click", changeCatImage);
 showerImage.addEventListener("click", changeCatImage);
 
