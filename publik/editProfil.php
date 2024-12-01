@@ -15,6 +15,7 @@ try {
 
 if (isset($_SESSION['user_id'])) {
     $sql = "SELECT nama_profil, avatar FROM userkitcat WHERE id = :user_id";
+    $sql = "SELECT nama_profil, avatar FROM userkitcat WHERE id = :user_id";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':user_id', $_SESSION['user_id']);
     $stmt->execute();

@@ -11,9 +11,8 @@ try {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        // Cek apakah username sudah terdaftar
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        // Cek apakah username sudah ada ><
         $stmt = $pdo->prepare("SELECT * FROM userkitcat WHERE username = :username");
         $stmt->execute(['username' => $username]);
 

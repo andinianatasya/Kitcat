@@ -36,6 +36,7 @@ function getCoins($userId) {
 
     $stmt = $pdo->prepare("SELECT koin FROM userkitcat WHERE id = :user_id");
     $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $stmt->bindParam(':koin', $koin, PDO::PARAM_INT);
     $stmt->execute();
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
