@@ -3,8 +3,8 @@ session_start();
 
 $servername = "localhost";
 $username = "postgres";
-$password = "Medan2005";
-$dbname = "kitcat";
+$password = "Miskagi8282";
+$dbname = "Kitcat";
 
 $conn = pg_connect("host=$servername dbname=$dbname user=$username password=$password");
 
@@ -14,7 +14,7 @@ if (!$conn) {
 
 $user_id = $_SESSION['user_id'];
 
-$sql = "SELECT lapar, sehat, energi, senang FROM statusBar WHERE user_id = $1";
+$sql = "SELECT lapar, sehat, energi, senang FROM kucing WHERE user_id = $1";
 $result = pg_query_params($conn, $sql, array($user_id));
 
 if (pg_num_rows($result) > 0) {

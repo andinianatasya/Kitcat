@@ -2,9 +2,9 @@
 session_start();
 
 $host = "localhost";
-$dbname = "kitcat";
+$dbname = "Kitcat";
 $user = "postgres";
-$password = "Medan2005"; 
+$password = "Miskagi8282"; 
 
 try {
     $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
@@ -179,6 +179,15 @@ $ruangan_sebelumnya = isset($_GET['ruangan']) ? htmlspecialchars($_GET['ruangan'
                     </div>
 
                     <button class="mt-3 mb-2 px-3 py-1 md:px-4 md:py-2 bg-merahTua text-white rounded hover:bg-red-950 text-xs font-semibold"><a href="<?php echo $ruangan_sebelumnya; ?>">Tutup</a></button>
+                    <button id="deleteAccount" class="mt-3 mb-2 px-3 py-1 md:px-4 md:py-2 bg-red-600 text-white rounded hover:bg-red-800 text-xs font-semibold">Hapus Akun</button>
+                    <div id="confirmDelete" class="hidden">
+                        <p class="text-red-600">Apakah Anda yakin ingin menghapus akun? Tindakan ini tidak dapat dibatalkan.</p>
+                        <form action="delete_account.php" method="post">
+                            <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($userId); ?>">
+                            <button type="submit" class="mt-2 px-3 py-1 bg-red-700 text-white rounded hover:bg-red-800 text-xs font-semibold">Ya, Hapus Akun</button>
+                            <button type="button" id="cancelDelete" class="mt-2 px-3 py-1 bg-gray-300 text-black rounded hover:bg-gray-400 text-xs font-semibold">Batal</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -193,5 +202,12 @@ $ruangan_sebelumnya = isset($_GET['ruangan']) ? htmlspecialchars($_GET['ruangan'
     document.getElementById("avatar").addEventListener("click", function(){
         document.getElementById("tampilkanAvatar").classList.toggle("hidden");
     })
+    document.getElementById("deleteAccount").addEventListener("click", function() {
+    document.getElementById("confirmDelete").classList.toggle("hidden");
+    });
+
+    document.getElementById("cancelDelete").addEventListener("click", function() {
+        document.getElementById("confirmDelete").classList.toggle("hidden");
+    });
 </script>
 </html>
