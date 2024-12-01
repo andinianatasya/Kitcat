@@ -759,6 +759,10 @@ video {
   max-height: 15rem;
 }
 
+.max-h-\[400px\] {
+  max-height: 400px;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -867,10 +871,6 @@ video {
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -1574,6 +1574,10 @@ video {
 
   .md\:w-40 {
     width: 10rem;
+  }
+
+  .md\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .md\:space-x-72 > :not([hidden]) ~ :not([hidden]) {
