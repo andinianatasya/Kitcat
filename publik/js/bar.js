@@ -1,27 +1,23 @@
 function decreaseAllStatusBars() { 
-    let currentLapar = localStorage.getItem('lapar') || 100;
-    let currentSehat = localStorage.getItem('sehat') || 100;
-    let currentEnergi = localStorage.getItem('energi') || 100;
-    let currentSenang = localStorage.getItem('senang') || 100;
-    currentLapar = parseInt(currentLapar);
-    currentSehat = parseInt(currentSehat);
-    currentEnergi = parseInt(currentEnergi);
-    currentSenang = parseInt(currentSenang);
-    if (currentLapar > 0) currentLapar--;
-    if (currentSehat > 0) currentSehat--;
-    if (currentEnergi > 0) currentEnergi--;
-    if (currentSenang > 0) currentSenang--;
+    fetch('ambilStatusBar.php')
+        .then(response => response.json())
+        .then(data => {
+    
+            let currentLapar = Math.max(0, data.lapar - 1);
+            let currentSehat = Math.max(0, data.sehat - 1);
+            let currentEnergi = Math.max(0, data.energi - 1);
+            let currentSenang = Math.max(0, data.senang - 1);
 
-    // Menyimpan nilai baru ke Local Storage
-    localStorage.setItem('lapar', currentLapar);
-    localStorage.setItem('sehat', currentSehat);
-    localStorage.setItem('energi', currentEnergi);
-    localStorage.setItem('senang', currentSenang);
+            updateBarsDisplay(currentLapar, currentSehat, currentEnergi, currentSenang);
 
-    // Memperbarui tampilan bar
-    updateBarsDisplay(currentLapar, currentSehat, currentEnergi, currentSenang);
+            updateStatusOnServer(currentLapar, currentSehat, currentEnergi, currentSenang);
+        })
+        .catch(error => {
+            console.error('Error fetching status:', error);
+        });
 }
-// untuk memperbarui tampilan bar
+
+// Fungsi untuk memperbarui tampilan status bar di UI
 function updateBarsDisplay(lapar, sehat, energi, senang) {
     document.getElementById('status_bar_lapar').style.width = lapar + '%';
     document.getElementById('laparBar').textContent = lapar + '%';
@@ -35,13 +31,38 @@ function updateBarsDisplay(lapar, sehat, energi, senang) {
     document.getElementById('status_bar_senang').style.width = senang + '%';
     document.getElementById('senangBar').textContent = senang + '%';
 }
-setInterval(decreaseAllStatusBars, 60000);
+
+function updateStatusOnServer(lapar, sehat, energi, senang) {
+    fetch('updateBar.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ lapar, sehat, energi, senang })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Status updated successfully:', data);
+    })
+    .catch(error => {
+        console.error('Error updating status on server:', error);
+    });
+}
+
+setInterval(decreaseAllStatusBars, 30000);
 
 window.onload = function() {
-    updateBarsDisplay(
-        localStorage.getItem('lapar') || 100,
-        localStorage.getItem('sehat') || 100,
-        localStorage.getItem('energi') || 100,
-        localStorage.getItem('senang') || 100
-    );
+    fetch('ambilStatusBar.php')
+        .then(response => response.json())
+        .then(data => {
+            updateBarsDisplay(data.lapar, data.sehat, data.energi, data.senang);
+        })
+        .catch(error => {
+            console.error('Error fetching initial status:', error);
+        });
 };
