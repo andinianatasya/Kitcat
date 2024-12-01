@@ -37,8 +37,30 @@ try {
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['makanan'])) {
-    $exp += 5;
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    $action = $_POST['action'];
+    switch ($action) {
+        case 'makanan1':
+        case 'makanan2':
+        case 'makanan3':
+        case 'makanan4':
+        case 'makanan5':
+        case 'makanan6':
+        case 'makanan7':
+        case 'makanan8':
+        case 'makanan9':
+        case 'makanan10':
+        case 'makanan11':
+            $exp += 5;
+            break;
+        case 'mandi1':
+        case 'mandi2':
+            $exp += 10;
+            break;
+        case 'tidur':
+            $exp += 15;
+            break;
+    }
 
     if ($level < 50) {
         if ($exp >= ($level * 10)) {
@@ -83,11 +105,7 @@ $avatar = isset($_SESSION['avatar']) ? $_SESSION['avatar'] : "avatar1";
 
 $avatar_path = "img/" . htmlspecialchars($avatar) . ".png"; 
 
-
-echo "Path gambar avatar: " . htmlspecialchars($avatar_path);
-
 $ruangan_sebelumnya = isset($_GET['ruangan']) ? htmlspecialchars($_GET['ruangan']) : 'beranda.html';
-echo "Ruangan sebelumnya: " . htmlspecialchars($ruangan_sebelumnya);
 ?>
 
 <!DOCTYPE html>
@@ -104,11 +122,11 @@ echo "Ruangan sebelumnya: " . htmlspecialchars($ruangan_sebelumnya);
         <div class="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm">
             <div class="flex items-center justify-center h-full">
                 <div class="bg-gradient-to-br from-red-900 to-cream rounded-lg max-w-xl w-1/2 md:w-1/3 text-center outline outline-red-950">
-                    <?php if ($message): ?>
-                        <div class="text-red-600 text-xs font-semibold">
+                    
+                        <div class="text-slate-500 text-opacity-50 font-bold">
                             <?php echo htmlspecialchars($message); ?>
                         </div>
-                    <?php endif; ?>
+                    
                     <div class="flex items-center space-x-4 mb-4">
                         <img src="<?php echo $avatar_path; ?>" alt="Avatar" class="mb-4 rounded-md border-4 border-red-900 h-10 md:h-20 pt-0 shadow-xl shadow-red-950"> 
                         

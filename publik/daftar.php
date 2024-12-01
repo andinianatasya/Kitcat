@@ -16,11 +16,18 @@ try {
         $stmt->execute(['username' => $username]);
         
         if ($stmt->rowCount() > 0) {
-            echo "Username sudah terdaftar. Silakan pilih username lain.";
+            echo "<script>
+                alert('Nama pengguna sudah terdaftar. Silahkan pilih nama pengguna lain.');
+                window.location.href = 'login.html';
+            </script>";
         } else {
             $stmt = $pdo->prepare("INSERT INTO userkitcat (username, password) VALUES (:username, :password)");
             $stmt->execute(['username' => $username, 'password' => $password]);
-            header("Location: login.php");
+        
+            echo "<script>
+                alert('Pendaftaran berhasil! Silakan Masuk.');
+                window.location.href = 'login.html';
+            </script>";
             exit;
         }
     }

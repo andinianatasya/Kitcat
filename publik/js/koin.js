@@ -13,4 +13,4 @@ function tampilkanKoin() {
         });
 }
 
-document.addEventListener('DOMContentLoaded', loadKoin);
+document.addEventListener('DOMContentLoaded', tampilkanKoin);

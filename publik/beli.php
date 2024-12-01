@@ -15,22 +15,6 @@ try {
     exit;
 }
 
-// Memperbarui status makanan setelah pembelian
-// Memperbarui status makanan setelah pembelian
-function updateFoodStatus($produkId) {
-    global $pdo;
-    $stmt = $pdo->prepare("UPDATE produk SET status = TRUE WHERE produk_id = :produk_id");
-    $stmt->bindParam(':produk_id', $produkId, PDO::PARAM_STR); // Ganti :food_id menjadi :produk_id
-    return $stmt->execute();
-}
-
-$data = json_decode(file_get_contents("php://input"));
-
-if (isset($data->produkId)) {
-    $produkId = $data->produkId;
-    updateFoodStatus($produkId); // Memperbarui status produk
-}
-
 // Fungsi untuk mengurangi koin
 function beliItems($userId, $koin) {
     global $pdo;
