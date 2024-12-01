@@ -3,8 +3,8 @@ session_start();
 
 $host = "localhost";
 $user = "postgres";
-$pass = "Medan2005"; 
-$dbname = "kitcat"; 
+$pass = "Miskagi8282"; 
+$dbname = "Kitcat"; 
 
 try {
     $conn = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
@@ -14,6 +14,7 @@ try {
 }
 
 if (isset($_SESSION['user_id'])) {
+    $sql = "SELECT nama_profil, avatar FROM userkitcat WHERE id = :user_id";
     $sql = "SELECT nama_profil, avatar FROM userkitcat WHERE id = :user_id";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':user_id', $_SESSION['user_id']);

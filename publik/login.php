@@ -1,9 +1,9 @@
 <?php
 session_start();
 $host = "localhost";
-$dbname = "kitcat";
+$dbname = "Kitcat";
 $user = "postgres";
-$pass = "Medan2005";
+$pass = "Miskagi8282";
 
 try {
     $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
