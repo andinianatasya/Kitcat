@@ -72,10 +72,3 @@ function updateStatusOnServer(lapar, sehat, energi, senang) {
         console.error('Terjadi masalah', error);
     });
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('lampu').addEventListener('click', function() {
-        console.log('Button Tidur clicked');
-        updateEnergi(20);
-    });
-});
