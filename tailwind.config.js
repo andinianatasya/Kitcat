@@ -3,6 +3,7 @@ module.exports = {
   content: ["./publik/**/*.{html,js}"],
   theme: {
     extend: {
+      
       backgroundImage: {
         'bgBeranda' : "url('/publik/img/bgberanda.png')",
         'bgKamarTdr' : "url('/publik/img/bgtidur.png')",
@@ -10,17 +11,18 @@ module.exports = {
         'bgKmrMandi' : "url('/publik/img/bgkmrMandi.png')",
         'bgMain' : "url('/publik/img/bgmain.png')",
         'bgLogin' : "url('/publik/img/bglogin.png')",
+        'bgPpnPrngkat' : "url('/publik/img/bgppnprngkat.png')",
         'bgProfil' : "url('/publik/img/bgProfil.png')",
-        'bgpapanperingkatbahasapemograman' : "url('/publik/img/bgppnprngkat.png')",
-        'bgpapanperingkatbahasamarkup' : "url('/publik/img/bgppnprngkat.png')"
+        'bgGlobalchat' : "url('/publik/img/bgglobalcht.png')"
       },
 
       colors : {
-        'cream' : "#fbba72",
+        'cream' : "#fbc472",
         'merahTua' : "#691e06",
         'merah' : "#8f250c",
         'orenTua' : "#bb4d00",
-        'oren' : "#ca5310"
+        'oren' : "#a34815"
+       
       },
 
       boxShadow : {
