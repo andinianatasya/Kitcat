@@ -2,9 +2,9 @@
 session_start();
 
 $host = "localhost";
-$dbname = "userPoat";
+$dbname = "Kitcat";
 $user = "postgres";
-$password = "Medan2005"; 
+$password = "Miskagi8282"; 
 
 try {
     $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
@@ -21,7 +21,7 @@ if (empty($userId)) {
 }
 
 try {
-    $stmt = $pdo->prepare("SELECT level, exp FROM userPoat WHERE id = :id");
+    $stmt = $pdo->prepare("SELECT level, exp FROM userkitcat WHERE id = :id");
     $stmt->execute(['id' => $userId]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -37,8 +37,30 @@ try {
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['makanan'])) {
-    $exp += 5;
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    $action = $_POST['action'];
+    switch ($action) {
+        case 'makanan1':
+        case 'makanan2':
+        case 'makanan3':
+        case 'makanan4':
+        case 'makanan5':
+        case 'makanan6':
+        case 'makanan7':
+        case 'makanan8':
+        case 'makanan9':
+        case 'makanan10':
+        case 'makanan11':
+            $exp += 5;
+            break;
+        case 'mandi1':
+        case 'mandi2':
+            $exp += 10;
+            break;
+        case 'tidur':
+            $exp += 15;
+            break;
+    }
 
     if ($level < 50) {
         if ($exp >= ($level * 10)) {
@@ -53,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['makanan'])) {
     }
 
     try {
-        $stmt = $pdo->prepare("UPDATE userPoat SET level = :level, exp = :exp WHERE id = :id");
+        $stmt = $pdo->prepare("UPDATE userkitcat SET level = :level, exp = :exp WHERE id = :id");
         $stmt->execute(['level' => $level, 'exp' => $exp, 'id' => $userId]);
     } catch (PDOException $e) {
         echo "Kesalahan saat memperbarui data: " . $e->getMessage();
@@ -83,11 +105,7 @@ $avatar = isset($_SESSION['avatar']) ? $_SESSION['avatar'] : "avatar1";
 
 $avatar_path = "img/" . htmlspecialchars($avatar) . ".png"; 
 
-
-echo "Path gambar avatar: " . htmlspecialchars($avatar_path);
-
 $ruangan_sebelumnya = isset($_GET['ruangan']) ? htmlspecialchars($_GET['ruangan']) : 'beranda.html';
-echo "Ruangan sebelumnya: " . htmlspecialchars($ruangan_sebelumnya);
 ?>
 
 <!DOCTYPE html>
@@ -96,21 +114,19 @@ echo "Ruangan sebelumnya: " . htmlspecialchars($ruangan_sebelumnya);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-
     <link rel="icon" href="img/logo(1).png" type="image/png">
-
-    <title>Poat</title>
+    <title>Kitcat</title>
 </head>
 <body class="overflow-hidden">
     <div class="bg-bgProfil bg-cover bg-center h-screen">
         <div class="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm">
             <div class="flex items-center justify-center h-full">
                 <div class="bg-gradient-to-br from-red-900 to-cream rounded-lg max-w-xl w-1/2 md:w-1/3 text-center outline outline-red-950">
-                    <?php if ($message): ?>
-                        <div class="text-red-600 text-xs font-semibold">
+                    
+                        <div class="text-slate-500 text-opacity-50 font-bold">
                             <?php echo htmlspecialchars($message); ?>
                         </div>
-                    <?php endif; ?>
+                    
                     <div class="flex items-center space-x-4 mb-4">
                         <img src="<?php echo $avatar_path; ?>" alt="Avatar" class="mb-4 rounded-md border-4 border-red-900 h-10 md:h-20 pt-0 shadow-xl shadow-red-950"> 
                         
@@ -163,6 +179,15 @@ echo "Ruangan sebelumnya: " . htmlspecialchars($ruangan_sebelumnya);
                     </div>
 
                     <button class="mt-3 mb-2 px-3 py-1 md:px-4 md:py-2 bg-merahTua text-white rounded hover:bg-red-950 text-xs font-semibold"><a href="<?php echo $ruangan_sebelumnya; ?>">Tutup</a></button>
+                    <button id="deleteAccount" class="mt-3 mb-2 px-3 py-1 md:px-4 md:py-2 bg-red-600 text-white rounded hover:bg-red-800 text-xs font-semibold">Hapus Akun</button>
+                    <div id="confirmDelete" class="hidden">
+                        <p class="text-red-600">Apakah Anda yakin ingin menghapus akun? Tindakan ini tidak dapat dibatalkan.</p>
+                        <form action="delete_account.php" method="post">
+                            <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($userId); ?>">
+                            <button type="submit" class="mt-2 px-3 py-1 bg-red-700 text-white rounded hover:bg-red-800 text-xs font-semibold">Ya, Hapus Akun</button>
+                            <button type="button" id="cancelDelete" class="mt-2 px-3 py-1 bg-gray-300 text-black rounded hover:bg-gray-400 text-xs font-semibold">Batal</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -177,5 +202,12 @@ echo "Ruangan sebelumnya: " . htmlspecialchars($ruangan_sebelumnya);
     document.getElementById("avatar").addEventListener("click", function(){
         document.getElementById("tampilkanAvatar").classList.toggle("hidden");
     })
+    document.getElementById("deleteAccount").addEventListener("click", function() {
+    document.getElementById("confirmDelete").classList.toggle("hidden");
+    });
+
+    document.getElementById("cancelDelete").addEventListener("click", function() {
+        document.getElementById("confirmDelete").classList.toggle("hidden");
+    });
 </script>
 </html>

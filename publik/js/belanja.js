@@ -1,16 +1,13 @@
 const shopImage = document.getElementById("shopImage");
 const shopOverlay = document.getElementById("shopOverlay");
 const closeShopBtn = document.getElementById("closeShopBtn");
-let jumlahKoin = 1000
-document.addEventListener('DOMContentLoaded', function() {
 const belanja = document.getElementById("belanja");
-const jumlahKoinEl = document.getElementById("jumlahKoin");
 const tutupBelanja = document.getElementById("tutupBelanja");
 const menuUtama = document.getElementById("menuUtama");
 const menuKustom = document.getElementById("menuKustom");
 const menuMakan = document.getElementById("menuMakan");
 const catImage = document.getElementById("catImage");
-let jumlahKoin = 1000
+
 // Tampilkan dan tutup menu belanja
 document.getElementById("shopImage").addEventListener("click", () => belanja.classList.remove("hidden"));
 tutupBelanja.addEventListener("click", () => belanja.classList.add("hidden"))
@@ -35,36 +32,45 @@ document.getElementById("backToMenuMakan").addEventListener("click", () => {
     menuUtama.classList.remove("hidden");
 });
 
-//untuk memperbarui tampilan koin
-const updateCoinDisplay = () => {
-    jumlahKoinEl.textContent = jumlahKoin;
-};
-
-// Pembelian item
-const handlePurchase = (button) => {
-    const harga = parseInt(button.getAttribute("hargaItem"));
-    if (jumlahKoin >= harga) {
-        jumlahKoin -= harga;
-        alert("Anda telah membeli dengan harga " + harga + " koin");
-        updateCoinDisplay();
-        return true;
-    } else {
-        alert("Koin anda tidak cukup untuk membeli ini!");
-        return false;
-    }
-};
-
-// Event listener untuk tombol beli
-document.querySelectorAll(".beliBtn").forEach(button => {
-    button.addEventListener("click", function() {
-        if (handlePurchase(this)) {
-            const motif = this.getAttribute("data-motif");
-            if (motif) {
-                catImage.src = `img/motif${motif}/default_bayi${motif}.png`;
+// beli item
+const beliButtons = document.querySelectorAll('.beliBtn');
+beliButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const id_produk = parseInt(this.getAttribute('data-id_produk')); // Ambil id_produk dari atribut data
+        // const hargaItem = parseInt(this.getAttribute('hargaItem'));
+        // ke php buat ngurangi koin
+        console.log("Button clicked, id_produk: " + id_produk);
+        fetch('beli.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id_produk: id_produk })
+        })
+        .then(response => response.json())
+        .then(data => {
+        
+            alert(data.message);
+            if (data.status === 'sukses') {
+                tampilkanKoin();
             }
-        }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     });
 });
 
-updateCoinDisplay();
-});
+// Event listener untuk tombol beli
+// document.querySelectorAll(".beliBtn").forEach(button => {
+//     button.addEventListener("click", function() {
+//         if (handlePurchase(this)) {
+//             const motif = this.getAttribute("data-motif");
+//             if (motif) {
+//                 catImage.src = `img/motif${motif}/default_bayi${motif}.png`;
+//             }
+//         }
+//     });
+// });
+
+

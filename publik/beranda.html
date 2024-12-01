@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="css/style.css">
-
     <link rel="icon" href="img/logo(1).png" type="image/png">
-
     <title>Ruang Tamu</title>
 </head>
 
@@ -28,7 +26,7 @@
             </li>
 
             <li class="text-center hover:opacity-50 duration-300">
-                <a href="#shop" class="flex items-center flex">
+                <a href="#shop" class="flex items-center">
                     <img id="shopImage" src="img/belanja.svg" alt="Shop Icon" class="w-10 h-10 mb-1">
                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Toko</span>
                 </a>
@@ -107,7 +105,7 @@
                     </div>
 
                     <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
-                        <div id="status_bar_senang" class="h-full bg-green-600 rounded"></div>
+                        <div id="status_bar_senang" class="h-full bg-green-600 rounded status_bar"></div>
                         <span id="senangBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
                     </div>
                 </div>
@@ -119,7 +117,7 @@
                     </div>
 
                     <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
-                        <div id="status_bar_lapar" class="h-full bg-green-600 rounded"></div>
+                        <div id="status_bar_lapar" class="h-full bg-green-600 rounded status_bar"></div>
                         <span id="laparBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
                     </div>
                 </div>
@@ -131,7 +129,7 @@
                         <img src="img/sehat.svg" alt="Kesehatan" class="rounded-full">
                     </div>
                     <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
-                        <div id="status_bar_sehat" class="h-full bg-green-500 rounded"></div>
+                        <div id="status_bar_sehat" class="h-full bg-green-500 rounded status_bar"></div>
                         <span id="sehatBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
                     </div>
                 </div>
@@ -141,7 +139,7 @@
                         <img src="img/energi.svg" alt="Energi" class="rounded-full">
                     </div>
                     <div class="w-24 h-4 outline outline-green-800 bg-gray-300 rounded relative">
-                        <div id="status_bar_energi" class="h-full bg-green-500 rounded"></div>
+                        <div id="status_bar_energi" class="h-full bg-green-500 rounded status_bar"></div>
                         <span id="energiBar" class="absolute inset-0 flex justify-center items-center text-xs text-white">100%</span>
 
                     </div>
@@ -150,13 +148,12 @@
         </div>
     </div>
     
-
     <div id="belanja" class="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm hidden">
         <div class="flex items-center justify-center h-full">
             <div class="bg-gradient-to-bl from-merah to-cream p-5 rounded-lg max-w-xl w-full text-center m-5 md:m-0">
                 <div class="flex items-center gap-2">
                     <img src="img/koin.svg" alt="Coin" class="h-8">
-                    <span id="jumlahKoin" class="text-white text-xs font-semibold">1000</span>
+                    <span id="jumlahKoin" class="text-white text-xs font-semibold"></span>
                 </div>
                 <div id="menuUtama" class="grid grid-cols-2 gap-4">
                     <div>
@@ -172,39 +169,47 @@
                 <!-- Menu Makanan-->
                 <div id="menuMakan" class="hidden">
 
-                    <div class="grid grid-cols-4 gap-4">
+                    <!-- <div class="grid grid-cols-2 md:grid-cols-5 gap-4 overflow-y-auto max-h-[400px]"> -->
+                    <div class="grid grid-cols-4">
                         <div class="flex flex-col items-center">
                             <img src="img/makanan1.png" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="30">30 Koin</button>
+                            <button data-id_produk="1" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25">25 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
-                            <img src="img/makanan2.png" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="10">10 Koin</button>
+                            <img src="img/minum.svg" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button data-id_produk="7" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25">15 Koin</>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/makanan3.png" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="15">25 Koin</button>
+                            <button data-id_produk="3" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25">25 Koin</>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/minuman1.png" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="10">10 Koin</button>
+                            <button data-id_produk="8" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="15">15 Koin</>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/minuman2.png" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="10">10 Koin</button>
+                            <button data-id_produk="9" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="15">15 Koin</>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/obat1.png" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="10">10 Koin</button>
+                            <button data-id_produk="2" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">20 Koin</>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/obat2.png" alt="" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="10">10 Koin</button>
+                            <button data-id_produk="10" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">20 Koin</>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/sayur.svg" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button data-id_produk="5" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">25 Koin</button>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <img src="img/ikan.svg" alt="" class="w-24 h-24 mx-auto mb-2">
+                            <button data-id_produk="4" class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">25 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/obat3.png" alt="" class="w-24 h-24 mx-auto mb-2">
-
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="10">10 Koin</button>
+                            <button data-id_produk="11"  class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="20">20 Koin</button>
                         </div>
                     </div>
                     <button id="backToMenuMakan" class="mt-4 px-4 py-2 bg-merah text-white rounded hover:bg-red-900 text-xs font-semibold">Kembali</button>
@@ -217,15 +222,15 @@
                         <div class="flex flex-col items-center">
 
                             <img src="img/Motif1.png" alt="Kustom 1" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25" data-motif="1">25 Koin</button>
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="100" data-motif="1">100 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/Motif2.png" alt="Kustom 2" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="30" data-motif="2">30 Koin</button>
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="100" data-motif="2">100 Koin</button>
                         </div>
                         <div class="flex flex-col items-center">
                             <img src="img/Motif3.png" alt="Kustom 3" class="w-24 h-24 mx-auto mb-2">
-                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="25" data-motif="3">25 Koin</button>
+                            <button class="px-2 py-1 bg-orenTua text-white rounded hover:bg-orange-600 beliBtn text-xs font-semibold" hargaItem="100" data-motif="3">100 Koin</button>
 
                         </div>
                     </div>
@@ -242,5 +247,6 @@
     <script src="js/bar.js"></script>
     <script src="js/belanja.js"></script>
     <script src="js/interaksiKucing.js"></script>
+    <script src="js/koin.js"></script>
 </body>
 </html>

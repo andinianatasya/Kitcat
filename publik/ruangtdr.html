@@ -12,7 +12,7 @@
 
 <body class="overflow-hidden">
     <div class="bg-bgKamarTdr bg-cover bg-center absolute inset-0 flex justify-center items-center">
-        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-80 ml-12">
+        <img id="catImage" src="img/default_bayi.png" alt="Kucing" class="h-60 mt-16 md:h-80 ml-12">
         <audio id="meong" src="img/meow.mp3"></audio>
     </div>
 
@@ -92,52 +92,19 @@
     <div id="matiLampu" class="fixed inset-0 bg-black bg-opacity-45 hidden">
     </div>
     <div class="fixed bottom-0 left-0 right-0 flex justify-around py-4">
-        <div class="w-16 h-16 shadow-cartoon rounded-full">
+        <button id="tidurButton" class="w-16 h-16 shadow-cartoon rounded-full" onclick="updateExp('tidur')">
             <img id="lampu" src="img/lampu.svg" alt="lampu" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300">
-        </div> 
+            <p id="message" class="hidden text-center text-red-500 mt-2">Tombol dinonaktifkan karena energi >= 50%</p>
+        </button> 
     </div>
 
 
     <script src="js/index.js"></script>
     <script src="js/chatglobal.js"></script>
     <script src="js/interaksiKucing.js"></script>
-    <script>
-        const lampu = document.getElementById('lampu');
-        const overlay = document.getElementById('matiLampu');
-        let isOverlayActive = false;
-    
-
-        lampu.addEventListener('click', () => {
-            isOverlayActive = !isOverlayActive;
-            if (isOverlayActive) {
-                overlay.classList.remove('hidden');
-
-                catImage.src = 'img/tidur_bayi.png';
-            } else {
-                overlay.classList.add('hidden');
-                catImage.src = 'img/default_bayi.png';
-            }
-        });
-
-        document.getElementById('lampu').addEventListener('click', function() {
-        updateEnergi(10);
-        });
-        function updateEnergi(amount) {
-            let currentEnergi = localStorage.getItem('energi') || 100; 
-            currentEnergi = parseInt(currentEnergi);
-        
-            if (currentEnergi < 100) {
-                currentEnergi += amount;
-                if (currentEnergi > 100) {
-                    currentEnergi = 100; 
-                    alert("Bar energi sudah penuh!");
-                }
-                localStorage.setItem('energi', currentEnergi);
-            } 
-        
-            updateBarsDisplay(currentEnergi, localStorage.getItem('sehat') || 100, localStorage.getItem('lapar') || 100, localStorage.getItem('senang') || 100);
-        }
-
-    </script>
+    <script src="js/exp.js"></script>
+    <script src="js/bar.js"></script>
+    <script src="js/updateBarEnergi.js"></script>
+    <script src="js/lampu.js"></script>
 </body>
 </html>
