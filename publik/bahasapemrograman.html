@@ -7,20 +7,25 @@
     <title>Latihan Coding C/C++</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="img/logo(1).png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-bgMain backdrop-blur-sm flex items-center justify-center h-screen overflow-hidden bg-cover bg-center">
-    <div class="mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold mb-8 text-center text-merah bg-orange-300 rounded-lg">Latihan Coding C/C++</h1>
-        <div id="coinDisplay" class="text-xl font-bold mb-4 text-center text-merah bg-orange-300 rounded-lg">Koin: 0</div>
-        <div id="rankDisplay" class="text-xl font-bold mb-4 text-center text-merah bg-orange-300 rounded-lg">Peringkat: Pemula</div>
-        <div id="timer" class="hidden text-2xl text-red-600 font-bold text-center mb-5">60 detik tersisa</div>
+<body class="bg-bgMain backdrop-blur-sm flex items-center justify-center min-h-screen overflow-hidden bg-cover bg-center">
+    <div class="mx-auto px-4 py-8 w-full max-w-lg">
+        <h1 class="text-3xl md:text-4xl font-bold mb-8 text-center text-merah bg-orange-300 rounded-lg p-4">Latihan Coding C/C++</h1>
+        <div id="coinDisplay" class="text-lg md:text-xl font-bold mb-4 text-center text-merah bg-orange-300 rounded-lg p-4">Koin: 0</div>
+        <div id="rankDisplay" class="text-lg md:text-xl font-bold mb-4 text-center text-merah bg-orange-300 rounded-lg p-4">Peringkat: Pemula</div>
+        <div id="timer" class="hidden text-xl md:text-2xl text-red-600 font-bold text-center mb-5">60 detik tersisa</div>
         <button id="notification" class="m-4 p-4 text-white text-center rounded-lg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 hidden"></button>
-        <div id="questionContainer" class="bg-orange-300 rounded-lg shadow-lg p-6 mb-8 relative"></div>
+        
+        <div id="questionContainer" class="bg-orange-300 rounded-lg shadow-lg p-6 mb-8 relative max-h-60 overflow-y-auto">
+            <!-- Question text will be injected here -->
+            <p class="text-lg">Soal: Lengkapi kode berikut untuk mencetak "Hello, World!" di C++.</p>
+        </div>
     </div>
 
-    <div id="rulesOverlay" class="fixed inset-0 flex items-center justify-center min-h-screen">
-        <div class="bg-white p-10 rounded-lg shadow-lg w-11/12 max-w-md text-center">
-            <h2 class="text-2xl font-bold mb-4 text-red-800">Aturan Bermain</h2>
+    <div id="rulesOverlay" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20 hidden">
+        <div class="bg-white p-6 md:p-10 rounded-lg shadow-lg w-11/12 max-w-md text-center">
+            <h2 class="text-xl md:text-2xl font-bold mb-4 text-red-800">Aturan Bermain</h2>
             <p class="mb-4">Selamat datang di kuis C/C++! Berikut adalah cara bermain:</p>
             <ul class="list-disc pl-5 mb-4 text-left">
                 <li>Anda akan diberikan pertanyaan terkait C/C++.</li>
@@ -29,13 +34,14 @@
                 <li>Jawaban yang salah akan mengurangi waktu 5 detik.</li>
                 <li>Setiap jawaban yang benar akan menambah waktu 5 detik, hingga maksimal 60 detik total.</li>
                 <li>Permainan berakhir ketika waktu habis.</li>
-                <li>Semangat dan selamat bermain!</li>
             </ul>
+            <p class="text-center mb-4">Semangat dan selamat bermain!</p>
             <button id="startButton" class="bg-orange-400 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded transition duration-200">
                 Oke, Saya Mengerti
             </button>
         </div>
     </div>
+
 
     <script>
         let currentQuestion = 0;
@@ -200,6 +206,12 @@
                 [array[i], array[j]] = [array[j], array[i]];
             }
         } 
+
+        // Function to show the rules overlay
+        function showRules() {
+            document.getElementById('rulesOverlay').classList.remove('hidden');
+        }
+
   
         function loadQuestion() {
             const question = questions[currentQuestion];
