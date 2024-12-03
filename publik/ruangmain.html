@@ -27,7 +27,7 @@
 
             <li class="text-center">
                 <button id="dropdownButton" class="flex items-center hover:opacity-50 duration-300">
-                    <img src="img/icon rumah kitcat.svg" alt="ruangan" class="w-10 h-10 mb-1">
+                    <img src="img/iconruangan.png" alt="ruangan" class="w-10 h-10 mb-1">
                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruangan</span>
                 </button>
             
@@ -36,7 +36,7 @@
                         <li>
                             <button class="hover:opacity-50 duration-300">
                                 <a href="beranda.html" class="flex items-center" class="">
-                                    <img src="img/beranda.svg" alt="Ruang Makan" class="w-16 mb-1">
+                                    <img src="img/iconruangtamu.png" alt="Ruang Makan" class="w-16 mb-1">
                                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Tamu</span>
                                 </a>
                             </button>
@@ -44,7 +44,7 @@
                         <li>
                             <button class="hover:opacity-50 duration-300">
                                 <a href="ruangmkn.html" class="flex items-center">
-                                    <img src="img/makan.svg" alt="Ruang Makan" class="w-16 mb-1">
+                                    <img src="img/iconmakan.png" alt="Ruang Makan" class="w-16 mb-1">
                                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Makan</span>
                                 </a>
                             </button>
@@ -52,7 +52,7 @@
                         <li>
                             <button class="hover:opacity-50 duration-300">
                                 <a href="ruangtdr.html" class="flex items-center">
-                                    <img class="w-16 mb-1" src="img/tidur.svg" alt="Ruang Tidur">
+                                    <img class="w-16 mb-1" src="img/icontidur.png" alt="Ruang Tidur">
                                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Tidur</span>
                                 </a>
                             </button>                 
@@ -60,7 +60,7 @@
                         <li>
                             <button class="hover:opacity-50 duration-300">
                                 <a href="ruangmain.html" class="flex items-center">
-                                    <img class="w-16 mb-1" src="img/main.svg" alt="Ruang Main">
+                                    <img class="w-16 mb-1" src="img/iconmain.png" alt="Ruang Main">
                                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Main</span>
                                 </a>
                             </button>                                
@@ -68,7 +68,7 @@
                         <li>
                             <button class="hover:opacity-50 duration-300">
                                 <a href="ruangmandi.html" class="flex items-center">
-                                    <img class="w-16 mb-1" src="img/mandi.svg" alt="">
+                                    <img class="w-16 mb-1" src="img/iconmandi.png" alt="">
                                     <span class="hidden md:block text-white font-sans pl-4 pb-2 font-bold">Ruang Mandi</span>
                                 </a>
                             </button>                               
@@ -91,26 +91,29 @@
         <div class="flex space-x-5">
             <button id="leaderboardButton" class="w-16 h-16 shadow-cartoon rounded-full">
                 <a href="#" ></a>
-                <img src="img/leaderboard.svg" alt="leaderboard" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300">
+                <img src="img/iconleaderboard.png" alt="leaderboard" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300">
             </button>
             <buttonn id="questionImage" class="w-16 h-16 shadow-cartoon rounded-full">
-                <a href="#"><img src="img/tes.svg" alt="tes" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300"></a>
+                <a href="#"><img src="img/iconkuis.png" alt="tes" class="rounded-full active:border-2 active:border-white active:translate-y-[5px] active:duration-300"></a>
             </button>
         </div>
     </div>
 
     <!-- Leaderboard Section -->
-    <div id="leaderboardSection" class="hidden fixed bottom-16 left-1/2 transform -translate-x-1/2 bg-red-900 shadow-lg p-4 rounded-lg w-80">
-        <div class="flex justify-between items-center">
-            <h2 class="text-white font-bold">Papan Peringkat</h2>
-            <button id="closeButton" class="text-white hover:opacity-75 focus:outline-none text-xl">&times;</button>
-        </div>
-        <div class="flex flex-col space-y-2 mt-2">
+    <div id="leaderboardSection" class="fixed inset-0 bg-merahTua bg-opacity-30 backdrop-blur-sm hidden">
+        <div class="flex items-center justify-center h-screen">
+            <div class="bg-cream p-6 rounded-lg max-w-md w-screen text-center">
+                <h1 class="text-lg font-bold mb-4 text-oren">Papan Peringkat</h1>
+                <div class="relative flex flex-col space-y-4 p-4 rounded-lg">  
             <button id="programmingCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in" onclick="window.location.href='papanperingkatbahasapemograman.html'">Bahasa Pemrograman</button>
             <button id="markupCategory" class="bg-orenTua text-white px-2 py-1 rounded hover:bg-orange-400 fade-in" onclick="window.location.href='papanperingkatbahasamarkup.html'">Bahasa Markup Biasa</button>
+            <button id="tutupLeaderboard" class="text-oren font-semibold hover:text-merahTua" onclick="hideLeaderboard()">Tutup</button>
+        </div>
+    </div>
         </div>
     </div>
 
+    <!-- Quiz Section -->
     <div id="quizOverlay" class="fixed inset-0 bg-merahTua bg-opacity-30 backdrop-blur-sm hidden">
         <div class="flex items-center justify-center h-screen">
             <div class="bg-cream p-6 rounded-lg max-w-md w-screen text-center">

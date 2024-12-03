@@ -48,3 +48,25 @@ document.getElementById('programmingCategory').addEventListener('click', functio
 document.getElementById('markupCategory').addEventListener('click', function() {
     displayLeaderboard('markup');
 });
+
+// Function to show the leaderboard
+function showLeaderboard() {
+    document.getElementById('leaderboardSection').classList.remove('hidden');
+    document.getElementById('quizOverlay').classList.add('hidden'); // Hide quiz overlay if it's visible
+}
+
+// Function to hide the leaderboard
+function hideLeaderboard() {
+    document.getElementById('leaderboardSection').classList.add('hidden');
+}
+
+// Function to show the quiz
+function showQuiz() {
+    document.getElementById('quizOverlay').classList.remove('hidden');
+    document.getElementById('leaderboardSection').classList.add('hidden'); // Hide leaderboard if it's visible
+}
+
+// Function to hide the quiz
+function hideQuiz() {
+    document.getElementById('quizOverlay').classList.add('hidden');
+}

@@ -12,15 +12,16 @@ module.exports = {
         'bgLogin' : "url('/publik/img/bglogin.png')",
         'bgProfil' : "url('/publik/img/bgProfil.png')",
         'bgpapanperingkatbahasapemograman' : "url('/publik/img/bgppnprngkat.png')",
-        'bgpapanperingkatbahasamarkup' : "url('/publik/img/bgppnprngkat.png')"
+        'bgpapanperingkatbahasamarkup' : "url('/publik/img/bgppnprngkat.png')",
+        'bgGlobalchat' : "url('/publik/img/bgglobalchat.png')"
       },
 
       colors : {
-        'cream' : "#fbba72",
+        'cream' : "#fbc472",
         'merahTua' : "#691e06",
         'merah' : "#8f250c",
         'orenTua' : "#bb4d00",
-        'oren' : "#ca5310"
+        'oren' : "#a34815"
       },
 
       boxShadow : {
